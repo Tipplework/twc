@@ -1,10 +1,9 @@
-
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { CustomCursor } from '@/components/CustomCursor';
-import { ArrowUpRight, Instagram, Plus } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { ArrowUpRight, Instagram, Twitter, Linkedin, Plus, Sparkles } from 'lucide-react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 const projectsData = [
   {
@@ -73,7 +72,6 @@ const projectsData = [
   }
 ];
 
-// Additional featured clients for the showcase section
 const additionalClients = [
   { 
     name: "Farmers and Mike", 
@@ -110,8 +108,15 @@ const additionalClients = [
 const Work = () => {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
   const [filter, setFilter] = useState('all');
+  const containerRef = useRef(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
 
-  // Animation variants
+  const opacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     show: {
@@ -127,30 +132,26 @@ const Work = () => {
     show: { y: 0, opacity: 1 }
   };
   
+  const socialIconVariants = {
+    initial: { opacity: 0, y: 20 },
+    animate: (custom: number) => ({
+      opacity: 1, 
+      y: 0,
+      transition: { 
+        delay: 0.5 + (custom * 0.1),
+        duration: 0.5
+      }
+    })
+  };
+  
   useEffect(() => {
     document.title = "Our Work | Tipple Works Co.";
   }, []);
   
   return (
-    <div className="bg-black text-white min-h-screen">
+    <div className="bg-black text-white min-h-screen" ref={containerRef}>
       <CustomCursor />
       <Navbar />
-      
-      <div className="fixed top-4 right-4 flex flex-col gap-2 z-40">
-        <a 
-          href="https://instagram.com" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="bg-gradient-to-br from-[#ffb13d] via-[#dd3e6d] to-[#9e49dd] p-0.5 rounded-xl"
-        >
-          <div className="bg-black p-2 rounded-lg">
-            <Instagram size={20} className="text-white" />
-          </div>
-        </a>
-        <div className="bg-[#ffff00] p-3 rounded-xl flex items-center justify-center w-10 h-10">
-          <div className="w-4 h-4 border-2 border-black rounded-full"></div>
-        </div>
-      </div>
       
       <main className="pt-32 pb-20">
         <header className="px-6 md:px-10 mb-20">
@@ -223,11 +224,11 @@ const Work = () => {
                   variants={itemVariants}
                   whileHover={{ y: -5, transition: { duration: 0.2 } }}
                 >
-                  <div className="aspect-video bg-neutral-800 overflow-hidden">
+                  <div className="aspect-video bg-[#1a1a1a] overflow-hidden">
                     <img 
                       src={project.image} 
                       alt={project.title} 
-                      className="w-full h-full object-cover filter saturate-50 group-hover:saturate-100 group-hover:scale-105 transition-all duration-700"
+                      className="w-full h-full object-contain filter saturate-75 group-hover:saturate-100 group-hover:scale-105 transition-all duration-700"
                     />
                   </div>
                   
@@ -254,14 +255,14 @@ const Work = () => {
             </motion.div>
           </div>
           
-          {/* Gradient overlay at the bottom */}
           <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-black to-transparent pointer-events-none"></div>
         </div>
         
-        {/* Additional clients showcase */}
         <div className="container mx-auto px-6 md:px-10 mt-32">
           <div className="mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">More Brand Partners</h2>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4 flex items-center">
+              More Brand Partners <Sparkles className="ml-2 w-5 h-5 text-tipple-yellow" />
+            </h2>
             <p className="text-zinc-400">A selection of additional brands we've worked with</p>
           </div>
           
@@ -269,7 +270,7 @@ const Work = () => {
             {additionalClients.map((client, index) => (
               <motion.div 
                 key={index}
-                className="bg-zinc-900/30 rounded-lg p-6 flex items-center justify-center aspect-square hover:bg-zinc-800/50 transition-all duration-300 border border-transparent hover:border-white/10"
+                className="bg-[#1a1a1a] hover:bg-[#252525] rounded-lg p-6 flex items-center justify-center aspect-square transition-all duration-300 border border-zinc-800 hover:border-zinc-700 group"
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
@@ -279,14 +280,18 @@ const Work = () => {
                 <img 
                   src={client.image} 
                   alt={client.name}
-                  className="max-w-full max-h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-500"
+                  className="max-w-full max-h-full object-contain transition-all duration-500 brightness-90 group-hover:brightness-125"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 rounded-lg transition-opacity duration-300"></div>
+                <div className="absolute bottom-2 left-0 right-0 text-center text-xs opacity-0 group-hover:opacity-100 transition-opacity">
+                  <p className="font-medium text-white">{client.name}</p>
+                  <p className="text-gray-400">{client.category}</p>
+                </div>
               </motion.div>
             ))}
           </div>
         </div>
         
-        {/* Call to action */}
         <div className="container mx-auto px-6 md:px-10">
           <motion.div 
             className="mt-24 text-center relative"
@@ -307,6 +312,78 @@ const Work = () => {
           </motion.div>
         </div>
       </main>
+      
+      <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 flex gap-4 z-40">
+        <motion.a 
+          href="https://instagram.com" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="bg-gradient-to-br from-[#ffb13d] via-[#dd3e6d] to-[#9e49dd] p-0.5 rounded-xl hover:p-1 transition-all duration-300"
+          variants={socialIconVariants}
+          initial="initial"
+          animate="animate"
+          custom={0}
+          whileHover={{ scale: 1.1 }}
+        >
+          <div className="bg-black p-2 rounded-lg">
+            <Instagram size={20} className="text-white" />
+          </div>
+        </motion.a>
+        
+        <motion.a 
+          href="https://twitter.com" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="bg-[#1DA1F2] p-0.5 rounded-xl hover:p-1 transition-all duration-300"
+          variants={socialIconVariants}
+          initial="initial"
+          animate="animate"
+          custom={1}
+          whileHover={{ scale: 1.1 }}
+        >
+          <div className="bg-black p-2 rounded-lg">
+            <Twitter size={20} className="text-white" />
+          </div>
+        </motion.a>
+        
+        <motion.a 
+          href="https://linkedin.com" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="bg-[#0077B5] p-0.5 rounded-xl hover:p-1 transition-all duration-300"
+          variants={socialIconVariants}
+          initial="initial"
+          animate="animate"
+          custom={2}
+          whileHover={{ scale: 1.1 }}
+        >
+          <div className="bg-black p-2 rounded-lg">
+            <Linkedin size={20} className="text-white" />
+          </div>
+        </motion.a>
+        
+        <motion.div 
+          className="bg-[#ffff00] p-3 rounded-xl flex items-center justify-center w-10 h-10 hover:w-12 hover:h-12 transition-all duration-300"
+          variants={socialIconVariants}
+          initial="initial"
+          animate="animate"
+          custom={3}
+          whileHover={{ 
+            scale: 1.1,
+            rotate: 90,
+            transition: { duration: 0.3 }
+          }}
+        >
+          <div className="w-4 h-4 border-2 border-black rounded-full"></div>
+        </motion.div>
+        
+        <motion.div
+          className="absolute -z-10 w-full h-full left-0 top-0 blur-xl"
+          style={{ opacity }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-tipple-yellow/20 to-tipple-purple/20 rounded-full"></div>
+        </motion.div>
+      </div>
       
       <Footer />
     </div>

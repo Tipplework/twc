@@ -1,5 +1,5 @@
 
-import { useEffect } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Hero } from '@/components/Hero';
 import { Services } from '@/components/Services';
 import { Clients } from '@/components/Clients';
@@ -8,8 +8,8 @@ import { Contact } from '@/components/Contact';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { CustomCursor } from '@/components/CustomCursor';
-import { Instagram, Twitter, Linkedin } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { Instagram, Twitter, Linkedin, Sparkles } from 'lucide-react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 const Index = () => {
   useEffect(() => {
@@ -17,9 +17,17 @@ const Index = () => {
     document.title = "Tipple Works Co. | Creative Marketing Agency";
   }, []);
 
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  const opacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
+
   // Animation variants
   const socialIconVariants = {
-    initial: { opacity: 0, y: -10 },
+    initial: { opacity: 0, y: 20 },
     animate: (custom: number) => ({
       opacity: 1, 
       y: 0,
@@ -31,12 +39,20 @@ const Index = () => {
   };
 
   return (
-    <div className="bg-black text-white min-h-screen">
+    <div className="bg-black text-white min-h-screen" ref={containerRef}>
       <CustomCursor />
       <Navbar />
-      
-      {/* Social Media Icons */}
-      <div className="fixed top-4 right-4 flex flex-col gap-2 z-40">
+
+      <main>
+        <Hero />
+        <Services />
+        <Clients />
+        <About />
+        <Contact />
+      </main>
+
+      {/* Social Media Icons - Moved to bottom */}
+      <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 flex gap-4 z-40">
         <motion.a 
           href="https://instagram.com" 
           target="_blank" 
@@ -99,15 +115,15 @@ const Index = () => {
         >
           <div className="w-4 h-4 border-2 border-black rounded-full"></div>
         </motion.div>
+        
+        <motion.div
+          className="absolute -z-10 w-full h-full left-0 top-0 blur-xl"
+          style={{ opacity }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-tipple-yellow/20 to-tipple-purple/20 rounded-full"></div>
+        </motion.div>
       </div>
-      
-      <main>
-        <Hero />
-        <Services />
-        <Clients />
-        <About />
-        <Contact />
-      </main>
+
       <Footer />
     </div>
   );
