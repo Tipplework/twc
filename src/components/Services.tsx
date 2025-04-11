@@ -27,30 +27,42 @@ export const Services = () => {
     },
     {
       id: 3,
-      title: "Digital Marketing",
-      description: "Performance marketing, e-commerce development, and targeted ads strategies for maximum growth.",
+      title: "Content Creation",
+      description: "High-quality photos, engaging reels, and tailored content that resonates with your audience.",
       color: "border-tipple-purple",
-      icon: <div className="w-12 h-12 rounded-full bg-tipple-purple bg-opacity-20 flex items-center justify-center text-2xl">4.</div>
+      icon: <div className="w-12 h-12 rounded-full bg-tipple-purple bg-opacity-20 flex items-center justify-center text-2xl">3.</div>
     },
     {
       id: 4,
-      title: "Event Services",
-      description: "Captivating stage designs, seamless logistics, and immersive brand experiences for memorable events.",
+      title: "Digital Marketing",
+      description: "Performance marketing, e-commerce development, and targeted ads strategies for maximum growth.",
       color: "border-tipple-yellow",
-      icon: <div className="w-12 h-12 rounded-full bg-tipple-yellow bg-opacity-20 flex items-center justify-center text-2xl">5.</div>
+      icon: <div className="w-12 h-12 rounded-full bg-tipple-yellow bg-opacity-20 flex items-center justify-center text-2xl">4.</div>
     },
     {
       id: 5,
+      title: "Event Services",
+      description: "Captivating stage designs, seamless logistics, and immersive brand experiences for memorable events.",
+      color: "border-tipple-red",
+      icon: <div className="w-12 h-12 rounded-full bg-tipple-red bg-opacity-20 flex items-center justify-center text-2xl">5.</div>
+    },
+    {
+      id: 6,
       title: "Hospitality Services",
       description: "Brand identities, visual design, and marketing strategies tailored for hospitality businesses.",
-      color: "border-tipple-red",
-      icon: <div className="w-12 h-12 rounded-full bg-tipple-red bg-opacity-20 flex items-center justify-center text-2xl">6.</div>
+      color: "border-tipple-purple",
+      icon: <div className="w-12 h-12 rounded-full bg-tipple-purple bg-opacity-20 flex items-center justify-center text-2xl">6.</div>
     }
   ];
 
   return (
     <section className="py-20 px-6 md:px-10 bg-black" id="services">
       <div className="container mx-auto">
+        <div className="flex gap-2 items-center mb-6 text-gray-400">
+          <span>SERVICES @</span>
+          <span className="uppercase font-bold">TIPLEWORKSCO</span>
+        </div>
+        
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Our Services</h2>
         <p className="text-zinc-400 max-w-2xl mb-12">
           We offer strategic marketing solutions that drive impact and growth for brands across industries.
@@ -60,18 +72,29 @@ export const Services = () => {
           {services.map((service) => (
             <div 
               key={service.id}
-              className={`service-card p-6 hover:-translate-y-1 ${service.color}`}
+              className={`service-card group p-6 hover:-translate-y-1 ${service.color} transition-all duration-300`}
             >
               <div className="mb-4">{service.icon}</div>
               <h3 className="text-xl font-bold mb-2">{service.title}</h3>
               <p className="text-zinc-400 mb-6">{service.description}</p>
-              <div className="flex justify-end">
-                <button className="p-2 rounded-full hover:bg-white/10 transition-all">
+              
+              <a href={`/services#${service.id}`} className="flex justify-end">
+                <div className="p-2 rounded-full group-hover:bg-white/10 transition-all">
                   <ArrowUpRight className="w-5 h-5" />
-                </button>
-              </div>
+                </div>
+              </a>
             </div>
           ))}
+        </div>
+        
+        {/* Colored bar at the bottom */}
+        <div className="flex h-1.5 mt-12">
+          <div className="flex-1 bg-tipple-yellow"></div>
+          <div className="flex-1 bg-tipple-red"></div>
+          <div className="flex-1 bg-tipple-purple"></div>
+          <div className="flex-1 bg-tipple-yellow"></div>
+          <div className="flex-1 bg-tipple-red"></div>
+          <div className="flex-1 bg-tipple-purple"></div>
         </div>
       </div>
     </section>
