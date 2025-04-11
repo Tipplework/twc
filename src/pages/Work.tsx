@@ -10,37 +10,37 @@ const projectsData = [
     id: 1,
     title: "SULA Vineyards",
     category: "Brand Identity & Packaging",
-    image: "https://via.placeholder.com/600x400/111111/ffffff?text=SULA+Vineyards"
+    image: "/lovable-uploads/b6fed313-87ea-465d-b759-68775fc17809.png"
   },
   {
     id: 2,
-    title: "NAAR Restaurant",
+    title: "Estate Monkeys",
     category: "Brand Design & Social Media",
-    image: "https://via.placeholder.com/600x400/111111/ffffff?text=NAAR+Restaurant"
+    image: "/lovable-uploads/f99330e1-a20a-4e9f-bba0-495d93a93776.png"
   },
   {
     id: 3,
-    title: "MOMOLAND",
+    title: "Matero",
     category: "Brand Identity & Packaging",
-    image: "https://via.placeholder.com/600x400/111111/ffffff?text=MOMOLAND"
+    image: "/lovable-uploads/f7f985b7-ba33-4c6c-b690-0298a796a336.png"
   },
   {
     id: 4,
-    title: "BB Event",
-    category: "Event Services",
-    image: "https://via.placeholder.com/600x400/111111/ffffff?text=BB+Event"
+    title: "Shaka Can",
+    category: "Brand Design",
+    image: "/lovable-uploads/fc373324-94ad-499a-a254-05b6bd6988af.png"
   },
   {
     id: 5,
     title: "Space Coffee",
     category: "Product Design",
-    image: "https://via.placeholder.com/600x400/111111/ffffff?text=Space+Coffee"
+    image: "/lovable-uploads/dbb0fa30-3a2d-4b38-8c82-9f8864152a6c.png"
   },
   {
     id: 6,
-    title: "KIDDOPiA",
-    category: "Educational Brand Identity",
-    image: "https://via.placeholder.com/600x400/111111/ffffff?text=KIDDOPiA"
+    title: "The Source at Sula",
+    category: "Brand Identity",
+    image: "/lovable-uploads/49cb6ca5-df1b-4552-bc62-bae892696195.png"
   }
 ];
 
@@ -68,7 +68,7 @@ const Work = () => {
                   <img 
                     src={project.image} 
                     alt={project.title} 
-                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                    className="w-full h-full object-contain object-center p-6 bg-neutral-800"
                   />
                 </div>
                 
