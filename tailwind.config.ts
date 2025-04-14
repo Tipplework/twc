@@ -70,9 +70,9 @@ export default {
 				}
 			},
 			fontFamily: {
-				sans: ['Inter', 'sans-serif'],
-				serif: ['Times New Roman', 'Times', 'serif'],
-				display: ['Inter', 'sans-serif']
+				sans: ['"Neue Haas Grotesk"', 'Inter', 'sans-serif'],
+				serif: ['"Times New Roman"', 'Times', 'serif'],
+				display: ['"Founders Grotesk"', '"Neue Haas Grotesk"', 'Inter', 'sans-serif']
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
