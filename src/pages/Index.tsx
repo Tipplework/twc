@@ -39,11 +39,11 @@ const Index = () => {
   };
 
   return (
-    <div className="bg-black text-white min-h-screen" ref={containerRef}>
+    <div className="bg-black text-white min-h-screen grid grid-cols-1" ref={containerRef}>
       <CustomCursor />
       <Navbar />
 
-      <main>
+      <main className="grid grid-cols-1 w-full">
         <Hero />
         <Services />
         <Clients />
@@ -51,7 +51,7 @@ const Index = () => {
         <Contact />
       </main>
 
-      {/* Social Media Icons - Moved to bottom */}
+      {/* Social Media Icons - Positioned at bottom */}
       <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 flex gap-4 z-40">
         <motion.a 
           href="https://instagram.com" 

@@ -1,38 +1,42 @@
 
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 export const Hero = () => {
   return (
     <section className="min-h-screen flex flex-col justify-center relative px-6 md:px-10 py-20">
       <div className="absolute inset-0 z-0 bg-gradient-to-b from-black/10 via-black to-black pointer-events-none"></div>
 
-      <div className="container mx-auto relative z-10 mt-10">
-        <div className="flex flex-col items-center text-center">
-          {/* Animated entry elements */}
-          <h1 
-            className="text-5xl md:text-7xl lg:text-9xl font-bold tracking-tighter mb-8 opacity-0 animate-fade-up"
-            style={{ animationDelay: '0.2s' }}
+      <div className="container mx-auto relative z-10 mt-10 grid grid-cols-1 md:grid-cols-12 gap-8">
+        <div className="md:col-span-8 md:col-start-2">
+          <motion.h1 
+            className="text-5xl md:text-7xl lg:text-9xl font-bold tracking-tighter mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
             Let's Create
-          </h1>
+          </motion.h1>
           
-          <div 
-            className="flex flex-col lg:flex-row items-center justify-center gap-4 opacity-0 animate-fade-up" 
-            style={{ animationDelay: '0.4s' }}
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12 text-zinc-400"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <p className="text-lg md:text-xl text-zinc-400">
+            <p className="text-lg md:text-xl">
               +91 9810035669
             </p>
-            <span className="hidden lg:block text-zinc-600">•</span>
-            <p className="text-lg md:text-xl text-zinc-400">
+            <p className="text-lg md:text-xl">
               srishti.bhatia@tippeworks.com
             </p>
-          </div>
+          </motion.div>
           
-          <div 
-            className="mt-12 opacity-0 animate-fade-up"
-            style={{ animationDelay: '0.6s' }}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
           >
             <Link 
               to="/contact" 
@@ -41,7 +45,7 @@ export const Hero = () => {
               Start a Project
               <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
             </Link>
-          </div>
+          </motion.div>
         </div>
       </div>
       

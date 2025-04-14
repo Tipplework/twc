@@ -81,14 +81,16 @@
     @apply scale-x-100 origin-bottom-left;
   }
   
+  /* Pentagram-inspired grid card styling */
   .service-card {
-    @apply relative overflow-hidden bg-black border border-zinc-800 rounded-lg transition-all duration-300;
+    @apply relative overflow-hidden bg-black border border-zinc-800 rounded-none transition-all duration-300;
   }
   
   .service-card:hover {
     @apply border-white;
   }
 
+  /* Pentagram-inspired navigation */
   .nav-item {
     @apply text-lg text-zinc-400 transition-colors duration-200 hover:text-white;
   }
@@ -101,23 +103,23 @@
     animation: rotate-circle 25s linear infinite;
   }
   
+  /* Pentagram-inspired border effects */
   .gradient-border {
     position: relative;
-    border-radius: 0.5rem;
+    border-radius: 0;
     background: #000;
   }
   
   .gradient-border::before {
     content: "";
     position: absolute;
-    inset: -2px;
-    border-radius: 0.6rem;
+    inset: -1px;
     background: linear-gradient(90deg, #FFC700, #FF3D00, #8A2BE2, #FFC700);
     z-index: -1;
   }
   
   .services-grid-item {
-    @apply bg-black relative border border-zinc-800 p-6 rounded-lg overflow-hidden transition-all duration-300;
+    @apply bg-black relative border border-zinc-800 p-6 rounded-none overflow-hidden transition-all duration-300;
   }
   
   .services-grid-item:hover {
@@ -138,8 +140,12 @@
     opacity: 1;
   }
   
-  .circular-text-container {
+  /* Pentagram-inspired text container */
+  .pentagram-text-container {
     position: relative;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 2rem;
   }
   
   /* Logo hover effects */
@@ -151,26 +157,26 @@
     @apply grayscale-0 opacity-100 scale-110;
   }
   
-  /* Creative text hover effect */
-  .creative-text {
+  /* Pentagram-inspired text hover effect */
+  .pentagram-text {
     @apply relative inline-block overflow-hidden;
   }
   
-  .creative-text::before {
+  .pentagram-text::before {
     content: attr(data-text);
     @apply absolute top-0 left-0 w-0 overflow-hidden whitespace-nowrap transition-all duration-500;
     color: theme('colors.tipple.yellow');
   }
   
-  .creative-text:hover::before {
+  .pentagram-text:hover::before {
     @apply w-full;
   }
   
-  /* Animated background gradient */
-  .animated-gradient {
-    background: linear-gradient(-45deg, #FFC700, #FF3D00, #8A2BE2, #000000);
-    background-size: 400% 400%;
-    animation: gradient-shift 15s ease infinite;
+  /* Pentagram-inspired background grid */
+  .pentagram-grid {
+    background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
   }
   
   /* Image mask reveal */
@@ -238,7 +244,7 @@
   }
 }
 
-/* Creative text block effect */
+/* Pentagram-inspired text block effect */
 @keyframes text-block-reveal {
   0% {
     transform: scaleX(0);

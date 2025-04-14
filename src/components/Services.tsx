@@ -1,5 +1,6 @@
 
 import { ArrowUpRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 type Service = {
   id: number;
@@ -58,33 +59,70 @@ export const Services = () => {
   return (
     <section className="py-20 px-6 md:px-10 bg-black" id="services">
       <div className="container mx-auto">
-        <div className="flex gap-2 items-center mb-6 text-gray-400">
-          <span>SERVICES @</span>
-          <span className="uppercase font-bold">TIPLEWORKSCO</span>
-        </div>
-        
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Our Services</h2>
-        <p className="text-zinc-400 max-w-2xl mb-12">
-          We offer strategic marketing solutions that drive impact and growth for brands across industries.
-        </p>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service) => (
-            <div 
-              key={service.id}
-              className={`service-card group p-6 hover:-translate-y-1 ${service.color} transition-all duration-300`}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-y-8">
+          <div className="md:col-span-3 md:col-start-1">
+            <motion.div 
+              className="flex gap-2 items-center mb-6 text-gray-400"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
             >
-              <div className="mb-4">{service.icon}</div>
-              <h3 className="text-xl font-bold mb-2">{service.title}</h3>
-              <p className="text-zinc-400 mb-6">{service.description}</p>
-              
-              <a href={`/services#${service.id}`} className="flex justify-end">
-                <div className="p-2 rounded-full group-hover:bg-white/10 transition-all">
-                  <ArrowUpRight className="w-5 h-5" />
-                </div>
-              </a>
-            </div>
-          ))}
+              <span>SERVICES @</span>
+              <span className="uppercase font-bold">TIPLEWORKSCO</span>
+            </motion.div>
+            
+            <motion.h2 
+              className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              Our Services
+            </motion.h2>
+            
+            <motion.p 
+              className="text-zinc-400"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              We offer strategic marketing solutions that drive impact and growth for brands across industries.
+            </motion.p>
+          </div>
+          
+          <div className="md:col-span-8 md:col-start-5">
+            <motion.div 
+              className="grid grid-cols-1 md:grid-cols-2 gap-6"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              {services.map((service, index) => (
+                <motion.div 
+                  key={service.id}
+                  className={`service-card group p-6 hover:-translate-y-1 ${service.color} transition-all duration-300`}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.1 * index }}
+                >
+                  <div className="mb-4">{service.icon}</div>
+                  <h3 className="text-xl font-bold mb-2">{service.title}</h3>
+                  <p className="text-zinc-400 mb-6">{service.description}</p>
+                  
+                  <a href={`/services#${service.id}`} className="flex justify-end">
+                    <div className="p-2 rounded-full group-hover:bg-white/10 transition-all">
+                      <ArrowUpRight className="w-5 h-5" />
+                    </div>
+                  </a>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
         </div>
         
         {/* Colored bar at the bottom */}

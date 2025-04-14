@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 
 export const Clients = () => {
   const [hoveredLogo, setHoveredLogo] = useState<number | null>(null);
+  const [filter, setFilter] = useState('all');
   
   // Client data with new logos
   const clientData = [
@@ -147,8 +148,8 @@ export const Clients = () => {
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.3
+        staggerChildren: 0.05,
+        delayChildren: 0.2
       }
     }
   };
@@ -157,68 +158,107 @@ export const Clients = () => {
     hidden: { y: 20, opacity: 0 },
     show: { y: 0, opacity: 1 }
   };
+  
+  // Filter clients based on selected category
+  const filteredClients = filter === 'all' 
+    ? clientData 
+    : clientData.filter(client => client.category === filter);
 
   return (
     <section className="py-20 px-6 md:px-10 bg-black border-t border-zinc-900" id="clients">
       <div className="container mx-auto">
-        <div className="flex items-end justify-between mb-12">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">Our Clients</h2>
-          <div className="hidden md:flex space-x-4">
-            {/* This could be filter buttons for categories */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-y-8">
+          <div className="md:col-span-3 md:col-start-1">
+            <motion.h2 
+              className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              Our Clients
+            </motion.h2>
+            
+            <motion.p 
+              className="text-lg text-zinc-400 mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              We collaborate with innovative brands across various industries, helping them reach new heights with our creative solutions.
+            </motion.p>
+            
+            <motion.div 
+              className="flex flex-wrap gap-2 mb-8 md:mb-0"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <button 
+                onClick={() => setFilter('all')}
+                className={`px-4 py-1 rounded-full text-sm ${filter === 'all' ? 'bg-white text-black' : 'bg-zinc-900 text-zinc-400 hover:bg-zinc-800'} transition-all duration-300`}
+              >
+                All
+              </button>
+              {categories.map((category, index) => (
+                <button 
+                  key={index}
+                  onClick={() => setFilter(category)}
+                  className={`px-4 py-1 rounded-full text-sm ${filter === category ? 'bg-white text-black' : 'bg-zinc-900 text-zinc-400 hover:bg-zinc-800'} transition-all duration-300`}
+                >
+                  {category}
+                </button>
+              ))}
+            </motion.div>
+          </div>
+          
+          <div className="md:col-span-8 md:col-start-5">
+            <motion.div 
+              className="grid grid-cols-2 md:grid-cols-4 gap-4"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+            >
+              {filteredClients.map((client) => (
+                <motion.div
+                  key={client.id}
+                  className={`relative bg-zinc-800/50 rounded-none backdrop-blur-sm transition-all duration-300 border border-zinc-700 hover:border-white/20 aspect-square ${
+                    hoveredLogo === client.id ? 'scale-105' : 'scale-100'
+                  }`}
+                  onMouseEnter={() => setHoveredLogo(client.id)}
+                  onMouseLeave={() => setHoveredLogo(null)}
+                  variants={itemVariants}
+                  whileHover={{ scale: 1.05 }}
+                >
+                  <div className="aspect-square flex items-center justify-center p-6 overflow-hidden">
+                    <img 
+                      src={client.image} 
+                      alt={client.name} 
+                      className="w-auto max-h-full object-contain transition-all duration-500 brightness-100 grayscale group-hover:grayscale-0" 
+                    />
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <p className="text-sm text-white font-medium">{client.name}</p>
+                    <p className="text-xs text-zinc-400">{client.category}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
         </div>
-        
-        <div className="mb-16">
-          <p className="text-lg md:text-xl text-zinc-400 max-w-2xl">We collaborate with innovative brands across various industries, helping them reach new heights with our creative solutions.</p>
-        </div>
-        
-        {/* Creative logo showcase - Main clients */}
-        <motion.div 
-          className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-8"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-        >
-          {clientData.map((client) => (
-            <motion.div
-              key={client.id}
-              className={`relative bg-zinc-900/30 rounded-lg backdrop-blur-sm hover:bg-zinc-800/50 transition-all duration-300 border border-transparent hover:border-white/10 group ${
-                hoveredLogo === client.id ? 'scale-105' : 'scale-100'
-              }`}
-              onMouseEnter={() => setHoveredLogo(client.id)}
-              onMouseLeave={() => setHoveredLogo(null)}
-              variants={itemVariants}
-              whileHover={{ scale: 1.05 }}
-            >
-              <div className="aspect-square flex items-center justify-center p-6 overflow-hidden">
-                <img 
-                  src={client.image} 
-                  alt={client.name} 
-                  className="w-auto max-h-full object-contain transition-all duration-500 filter group-hover:brightness-125 grayscale group-hover:grayscale-0" 
-                />
-              </div>
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <p className="text-sm text-white font-medium">{client.name}</p>
-                <p className="text-xs text-zinc-400">{client.category}</p>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
         
         <div className="mt-16 text-center">
-          <p className="text-xl text-zinc-400 italic">
+          <motion.p 
+            className="text-xl text-zinc-400 italic"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
             ...and many more innovative brands trusting our creative vision
-          </p>
-          
-          {/* Creative visual element */}
-          <div className="mt-12 relative">
-            <div className="flex justify-center gap-2 opacity-25">
-              <div className="w-2 h-2 bg-tipple-yellow rounded-full animate-pulse"></div>
-              <div className="w-2 h-2 bg-tipple-red rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
-              <div className="w-2 h-2 bg-tipple-purple rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
-            </div>
-          </div>
+          </motion.p>
         </div>
       </div>
     </section>

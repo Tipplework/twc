@@ -71,6 +71,7 @@ export default {
 			},
 			fontFamily: {
 				sans: ['Inter', 'sans-serif'],
+				serif: ['Times New Roman', 'Times', 'serif'],
 				display: ['Inter', 'sans-serif']
 			},
 			borderRadius: {
@@ -102,6 +103,10 @@ export default {
 				'marquee': {
 					'0%': { transform: 'translateX(0%)' },
 					'100%': { transform: 'translateX(-100%)' }
+				},
+				'grid-pulse': {
+					'0%, 100%': { opacity: '0.2' },
+					'50%': { opacity: '0.5' }
 				}
 			},
 			animation: {
@@ -110,7 +115,8 @@ export default {
 				'fade-in': 'fade-in 0.7s ease-in-out forwards',
 				'fade-up': 'fade-up 0.7s ease-out forwards',
 				'fade-down': 'fade-down 0.7s ease-out forwards',
-				'marquee': 'marquee 25s linear infinite'
+				'marquee': 'marquee 25s linear infinite',
+				'grid-pulse': 'grid-pulse 4s infinite ease-in-out'
 			}
 		}
 	},
