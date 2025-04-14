@@ -24,7 +24,7 @@ export const About = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Lovable AI by Tipple Works Co.
+            Tipple Works Co.
           </motion.h2>
           
           <motion.div 
@@ -35,7 +35,7 @@ export const About = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <p className="text-lg">
-              Lovable AI by Tipple Works Co. is where strategy meets soul. We build systems, campaigns, and visual stories that not only work but are remembered. We blend data, creativity, and cutting-edge AI tools to bring brands alive — not just as logos, but as experiences.
+              Tipple Works Co. is where strategy meets soul. We build systems, campaigns, and visual stories that not only work but are remembered. We blend data, creativity, and cutting-edge AI tools to bring brands alive — not just as logos, but as experiences.
             </p>
             
             <p className="text-lg">

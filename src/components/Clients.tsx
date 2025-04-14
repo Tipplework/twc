@@ -12,31 +12,31 @@ export const Clients = () => {
     { 
       id: 1, 
       name: "SULA Vineyards", 
-      image: "/lovable-uploads/1f3b3375-5b9b-4cf2-ba8a-d1bc5e3a203a.png",
+      image: "/lovable-uploads/5408fbd0-c855-46c5-b4dc-ae4b5252431d.png",
       category: "Beverages"
     },
     { 
       id: 2, 
       name: "YORK Winery", 
-      image: "/lovable-uploads/0f8c023a-3265-40e5-b918-254a9a1b948a.png",
+      image: "/lovable-uploads/e3dd22eb-407e-4098-af8a-9a1f9763da8f.png",
       category: "Beverages" 
     },
     { 
       id: 3, 
       name: "RASA", 
-      image: "/lovable-uploads/d49bc652-d8cb-4cb0-9248-920ffd4ceada.png",
+      image: "/lovable-uploads/cb05f2c8-dee5-429f-b303-7fcab94aa530.png",
       category: "Restaurants"
     },
     { 
       id: 4, 
       name: "SPACE", 
-      image: "/lovable-uploads/c811ded8-6624-4e26-8c62-9e1fb461d271.png",
+      image: "/lovable-uploads/d22f10d9-d5e3-4506-96ab-e87d32c37f71.png",
       category: "Beverages"
     },
     { 
       id: 5, 
       name: "ELAAN", 
-      image: "/lovable-uploads/37dfa66f-eed8-4b35-a80f-d7fdb5d4c16f.png",
+      image: "/lovable-uploads/49dfd6d5-5a40-4ba1-b080-34a7a0ed8d00.png",
       category: "Restaurants"
     },
     
@@ -44,25 +44,25 @@ export const Clients = () => {
     { 
       id: 6, 
       name: "MATERO", 
-      image: "/lovable-uploads/d00b89d1-8228-4501-a953-df6b38da715c.png",
+      image: "/lovable-uploads/c0e9e3ac-d51a-4c12-81cf-e458eb0e2664.png",
       category: "Food & Beverage" 
     },
     { 
       id: 7, 
       name: "Estate Monkeys", 
-      image: "/lovable-uploads/01cc5927-55a8-440c-aebb-ae5d97e0495e.png",
+      image: "/lovable-uploads/0231f590-ace6-4ce6-9e07-b2c4b379f6b1.png",
       category: "Real Estate" 
     },
     { 
       id: 8, 
       name: "ShakaCan", 
-      image: "/lovable-uploads/f4515253-c44f-4b09-ad8c-45d8a5a212ba.png",
+      image: "/lovable-uploads/720f08fe-787e-45a3-8ffd-7c235ff5d8aa.png",
       category: "Food & Beverage" 
     },
     { 
       id: 9, 
       name: "The Source", 
-      image: "/lovable-uploads/958b04a5-593d-413d-b00f-3f744e36ba71.png",
+      image: "/lovable-uploads/526b39b7-c3e5-42f9-92ee-145e0dddce99.png",
       category: "Hospitality" 
     },
     
@@ -70,25 +70,25 @@ export const Clients = () => {
     { 
       id: 10, 
       name: "FARMERS AND MIKE", 
-      image: "/lovable-uploads/f8dd037d-7f77-40ac-aeb6-a2b7e21288c8.png",
+      image: "/lovable-uploads/b246673d-6bf9-4339-9091-9da121b4de83.png",
       category: "Food & Beverage" 
     },
     { 
       id: 11, 
       name: "KIDDOPIA", 
-      image: "/lovable-uploads/b8e2f36f-0193-4feb-9e85-339d2f7f5c04.png",
+      image: "/lovable-uploads/5de0c8fc-2168-4598-b582-6d65f001d55f.png",
       category: "Education" 
     },
     { 
       id: 12, 
       name: "NAAR", 
-      image: "/lovable-uploads/dfb366cd-41c2-4366-9b46-9f769a614bad.png",
+      image: "/lovable-uploads/3c82352b-919d-4df9-b9b9-b425780e5cfb.png",
       category: "Fashion" 
     },
     { 
       id: 13, 
       name: "BBQ NATION", 
-      image: "/lovable-uploads/c7f0031d-1d1d-4d10-9973-effe4da21829.png",
+      image: "/lovable-uploads/64878f2c-fc9e-46f9-9944-b6c3ad06bb79.png",
       category: "Restaurants" 
     },
     
@@ -96,25 +96,25 @@ export const Clients = () => {
     { 
       id: 14, 
       name: "MOMOLAND", 
-      image: "/lovable-uploads/bcab1467-a3c6-4676-86ab-f083cdd37f61.png",
+      image: "/lovable-uploads/967f7f59-47b4-46fb-8867-2a57e12f4bc0.png",
       category: "Food & Beverage" 
     },
     { 
       id: 15, 
       name: "BUNS & SLICES", 
-      image: "/lovable-uploads/e2931398-c00a-49cc-8292-c38e955e4797.png",
+      image: "/lovable-uploads/eb7e8ed5-eba1-4e3f-a8e5-69f08e9656f5.png",
       category: "Food & Beverage" 
     },
     { 
       id: 16, 
       name: "COPPER GRILLHOUSE", 
-      image: "/lovable-uploads/2ed8b729-9006-44b3-9c49-eeb349cf52d9.png",
+      image: "/lovable-uploads/2221dfaf-39fe-4883-9240-2e7193e36385.png",
       category: "Restaurants" 
     },
     { 
       id: 17, 
       name: "BEYOND BY SULA", 
-      image: "/lovable-uploads/dc5982e9-00e3-4171-b824-41335512f39e.png",
+      image: "/lovable-uploads/37b7ee37-f9c1-48f0-86aa-67d8263b7df8.png",
       category: "Hospitality" 
     },
     
@@ -122,19 +122,19 @@ export const Clients = () => {
     { 
       id: 18, 
       name: "SPRIG", 
-      image: "/lovable-uploads/57df3e56-577d-4107-9447-1ec6174de12c.png",
+      image: "/lovable-uploads/bc381b7c-b452-41ea-9f62-8ace06f7bbe5.png",
       category: "Health & Wellness" 
     },
     { 
       id: 19, 
       name: "PROVOQUE", 
-      image: "/lovable-uploads/1264f900-dda5-4b12-8c00-19b29f188ab5.png",
+      image: "/lovable-uploads/959b4b1a-1841-4d59-a367-6c83e6e8952d.png",
       category: "Fashion" 
     },
     { 
       id: 20, 
       name: "DSG", 
-      image: "/lovable-uploads/25fa32e5-b032-4a6c-b7e5-4b9625233327.png",
+      image: "/lovable-uploads/d8e77c41-59c5-4b13-a24b-e665a3caa146.png",
       category: "Business" 
     }
   ];

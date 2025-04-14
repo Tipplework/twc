@@ -9,6 +9,7 @@ import { Contact } from '@/components/Contact';
 import { Testimonials } from '@/components/Testimonials';
 import { ProjectShowcase } from '@/components/ProjectShowcase';
 import { ServicesAccordion } from '@/components/ServicesAccordion';
+import { Clients } from '@/components/Clients';
 
 const Index = () => {
   useEffect(() => {
@@ -34,6 +35,7 @@ const Index = () => {
         <ProjectShowcase />
         <ServicesAccordion />
         <Testimonials />
+        <Clients />
         <About />
         <Contact />
       </main>
