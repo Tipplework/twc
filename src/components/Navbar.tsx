@@ -1,8 +1,9 @@
 
 import { useState, useEffect } from 'react';
-import { Menu, X, Instagram } from 'lucide-react';
+import { Menu, X, Instagram, Linkedin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
+import { motion } from 'framer-motion';
 
 interface NavLinkProps {
   href: string;
@@ -23,6 +24,7 @@ const NavLink = ({ href, label, onClick }: NavLinkProps) => (
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isLogoHovered, setIsLogoHovered] = useState(false);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
@@ -45,18 +47,35 @@ export const Navbar = () => {
     <header 
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4 px-6 md:px-10",
-        isScrolled ? "bg-black/80 backdrop-blur-sm" : "bg-transparent"
+        isScrolled ? "bg-white/80 backdrop-blur-sm shadow-sm" : "bg-transparent"
       )}
     >
       <div className="mx-auto flex items-center justify-between">
-        {/* Logo */}
-        <Link to="/" className="flex items-center gap-1 z-50">
-          <div className="flex items-center">
-            <div className="w-3 h-3 rounded-full bg-tipple-yellow"></div>
-            <div className="w-3 h-3 rounded-full bg-tipple-red ml-0.5"></div>
-            <div className="w-3 h-3 rounded-full bg-tipple-purple ml-0.5"></div>
-          </div>
-          <span className="ml-2 font-bold text-xl">tipple works co.</span>
+        {/* Logo with hover animation */}
+        <Link 
+          to="/" 
+          className="z-50 relative"
+          onMouseEnter={() => setIsLogoHovered(true)}
+          onMouseLeave={() => setIsLogoHovered(false)}
+        >
+          <img 
+            src="/lovable-uploads/50a52fb1-e68c-4f55-8d9b-8f706d18b161.png" 
+            alt="Tipple Works Co." 
+            className="h-10 md:h-12 w-auto"
+            style={{
+              opacity: isLogoHovered ? 0 : 1,
+              transition: 'opacity 0.3s ease'
+            }}
+          />
+          <img 
+            src="/lovable-uploads/260ff3be-b535-429f-a94b-22d4394053b2.png" 
+            alt="Tipple Works Co." 
+            className="h-10 md:h-12 w-auto absolute top-0 left-0"
+            style={{
+              opacity: isLogoHovered ? 1 : 0,
+              transition: 'opacity 0.3s ease'
+            }}
+          />
         </Link>
 
         {/* Desktop Navigation */}
@@ -66,16 +85,6 @@ export const Navbar = () => {
           <NavLink href="/work" label="Work" />
           <NavLink href="/services" label="Services" />
           <NavLink href="/contact" label="Contact" />
-          
-          <a 
-            href="https://instagram.com" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="ml-4 p-2 rounded-full hover:bg-white/10 transition-colors"
-            aria-label="Instagram"
-          >
-            <Instagram size={20} />
-          </a>
         </nav>
 
         {/* Mobile menu button */}
@@ -90,7 +99,7 @@ export const Navbar = () => {
         {/* Mobile Navigation */}
         <div 
           className={cn(
-            "fixed inset-0 bg-black flex flex-col items-center justify-center transition-all duration-300 ease-in-out",
+            "fixed inset-0 bg-white flex flex-col items-center justify-center transition-all duration-300 ease-in-out",
             isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
           )}
         >
@@ -100,16 +109,6 @@ export const Navbar = () => {
             <NavLink href="/work" label="Work" onClick={closeMenu} />
             <NavLink href="/services" label="Services" onClick={closeMenu} />
             <NavLink href="/contact" label="Contact" onClick={closeMenu} />
-            
-            <a 
-              href="https://instagram.com" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="mt-8 p-2 rounded-full hover:bg-white/10 transition-colors"
-              aria-label="Instagram"
-            >
-              <Instagram size={24} />
-            </a>
           </nav>
         </div>
       </div>
