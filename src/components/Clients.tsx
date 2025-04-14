@@ -165,12 +165,12 @@ export const Clients = () => {
     : clientData.filter(client => client.category === filter);
 
   return (
-    <section className="py-20 px-6 md:px-10 bg-black border-t border-zinc-900" id="clients">
+    <section className="py-20 px-6 md:px-10 bg-white" id="clients">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-y-8">
           <div className="md:col-span-3 md:col-start-1">
             <motion.h2 
-              className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4"
+              className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-black"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -180,7 +180,7 @@ export const Clients = () => {
             </motion.h2>
             
             <motion.p 
-              className="text-lg text-zinc-400 mb-8"
+              className="text-lg text-gray-600 mb-8"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -198,7 +198,7 @@ export const Clients = () => {
             >
               <button 
                 onClick={() => setFilter('all')}
-                className={`px-4 py-1 rounded-full text-sm ${filter === 'all' ? 'bg-white text-black' : 'bg-zinc-900 text-zinc-400 hover:bg-zinc-800'} transition-all duration-300`}
+                className={`px-4 py-1 rounded-full text-sm ${filter === 'all' ? 'bg-black text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'} transition-all duration-300`}
               >
                 All
               </button>
@@ -206,7 +206,7 @@ export const Clients = () => {
                 <button 
                   key={index}
                   onClick={() => setFilter(category)}
-                  className={`px-4 py-1 rounded-full text-sm ${filter === category ? 'bg-white text-black' : 'bg-zinc-900 text-zinc-400 hover:bg-zinc-800'} transition-all duration-300`}
+                  className={`px-4 py-1 rounded-full text-sm ${filter === category ? 'bg-black text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'} transition-all duration-300`}
                 >
                   {category}
                 </button>
@@ -225,8 +225,8 @@ export const Clients = () => {
               {filteredClients.map((client) => (
                 <motion.div
                   key={client.id}
-                  className={`relative bg-zinc-800/50 rounded-none backdrop-blur-sm transition-all duration-300 border border-zinc-700 hover:border-white/20 aspect-square ${
-                    hoveredLogo === client.id ? 'scale-105' : 'scale-100'
+                  className={`relative bg-white rounded-lg transition-all duration-300 border border-gray-100 hover:border-black overflow-hidden ${
+                    hoveredLogo === client.id ? 'scale-105 shadow-md' : 'scale-100'
                   }`}
                   onMouseEnter={() => setHoveredLogo(client.id)}
                   onMouseLeave={() => setHoveredLogo(null)}
@@ -237,28 +237,19 @@ export const Clients = () => {
                     <img 
                       src={client.image} 
                       alt={client.name} 
-                      className="w-auto max-h-full object-contain transition-all duration-500 brightness-100 grayscale group-hover:grayscale-0" 
+                      className={`w-auto h-auto max-h-full object-contain transition-all duration-500 ${hoveredLogo === client.id ? 'filter-none' : 'grayscale opacity-60'}`}
                     />
                   </div>
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <p className="text-sm text-white font-medium">{client.name}</p>
-                    <p className="text-xs text-zinc-400">{client.category}</p>
+                  <div className={`absolute inset-0 flex items-end p-3 bg-gradient-to-t from-black/50 to-transparent transition-opacity duration-300 ${hoveredLogo === client.id ? 'opacity-100' : 'opacity-0'}`}>
+                    <div>
+                      <p className="text-sm text-white font-medium">{client.name}</p>
+                      <p className="text-xs text-white/80">{client.category}</p>
+                    </div>
                   </div>
                 </motion.div>
               ))}
             </motion.div>
           </div>
-        </div>
-        
-        <div className="mt-16 text-center">
-          <motion.p 
-            className="text-xl text-zinc-400 italic"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            ...and many more innovative brands trusting our creative vision
-          </motion.p>
         </div>
       </div>
     </section>
