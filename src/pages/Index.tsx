@@ -1,36 +1,7 @@
-import { useRef, useEffect, useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import {
-  QueryClient,
-  QueryClientProvider,
-} from "@tanstack/react-query";
-import {
-  BrowserRouter,
-  Routes,
-  Route
-} from "react-router-dom";
 
-// Components for export
-const Shlok = () => (
-  <section className="bg-gradient-to-r from-orange-500 to-pink-500 text-white text-center py-6">
-    <h2 className="text-2xl font-bold">Shlok</h2>
-    <p>This is where your Shlok content will go.</p>
-  </section>
-);
-
-const VissionStatement = () => (
-  <section className="bg-white text-black px-6 py-10">
-    <h2 className="text-2xl font-bold mb-4">Our Vision</h2>
-    <p>
-      Tipple Works Co. is a creative marketing agency that transforms brands with bold thinking, beautiful design, and
-      performance-driven strategies.
-    </p>
-  </section>
-);
-
+// 💡 Hero section with logo on black
 const BlackHero = () => {
   return (
     <>
@@ -57,28 +28,27 @@ const BlackHero = () => {
   );
 };
 
-const Home = () => {
-  const containerRef = useRef(null);
-  const [currentWord, setCurrentWord] = useState(0);
-  const words = ["build", "stand out", "win awards"];
+// 💡 Shlok section placeholder
+const Shlok = () => (
+  <section className="bg-gradient-to-r from-orange-500 to-pink-500 text-white text-center py-6">
+    <h2 className="text-2xl font-bold">Shlok</h2>
+    <p>This is where your Shlok content will go.</p>
+  </section>
+);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentWord((prev) => (prev + 1) % words.length);
-    }, 2000);
-    return () => clearInterval(interval);
-  }, []);
+// 💡 Vision statement section placeholder
+const VissionStatement = () => (
+  <section className="bg-white text-black px-6 py-10">
+    <h2 className="text-2xl font-bold mb-4">Our Vision</h2>
+    <p>
+      Tipple Works Co. is a creative marketing agency that transforms brands
+      with bold thinking, beautiful design, and performance-driven strategies.
+    </p>
+  </section>
+);
 
-  return (
-    <div ref={containerRef} className="text-white text-center py-16">
-      <h1 className="text-4xl font-bold">
-        Tipple Works Co.
-      </h1>
-      <p className="mt-4 text-xl">We {words[currentWord]}</p>
-    </div>
-  );
-};
+// ✅ Default export for hero page
+export default BlackHero;
 
-// ✅ Final exports
-export { BlackHero, Shlok, VissionStatement };
-export default Home;
+// ✅ Named exports (no duplicates)
+export { Shlok, VissionStatement };
