@@ -47,31 +47,15 @@ const Index = () => {
 
 const BlackHero = () => {
   return (
-    <section className="min-h-[90vh] bg-black text-white flex flex-col justify-center relative px-6 md:px-10 py-20 overflow-hidden">
-      <div className="container mx-auto relative z-10 mt-10">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-          <div className="md:col-span-10 md:col-start-2 text-center">
-            <motion.h1 
-              className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter mb-8 text-white"
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              Tipple Works Co.
-            </motion.h1>
-            
-            <motion.p
-              className="text-xl md:text-2xl lg:text-3xl text-gray-300 max-w-4xl mx-auto"
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              We design brand experiences that create lasting connections. Strategic marketing solutions for brands that want to stand out.
-            </motion.p>
-          </div>
-        </div>
-      </div>
-      
+    return (
+  <div className="min-h-screen bg-black flex items-center justify-center">
+    <img
+      src="/logo.png"
+      alt="Tipple Works Co. Logo"
+      className="w-[280px] md:w-[380px] lg:w-[480px]"
+    />
+  </div>
+);
       {/* Colored bar at the bottom */}
       <motion.div 
         className="absolute bottom-0 left-0 right-0 flex h-1.5"
