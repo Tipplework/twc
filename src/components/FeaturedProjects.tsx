@@ -16,19 +16,19 @@ export const FeaturedProjects = () => {
       id: 1,
       title: "SulaFest 2025",
       description: "India's premier wine and music festival",
-      image: "/lovable-uploads/3756d2b7-2e14-40de-b2de-46d831d20737.png"
+      image: "/lovable-uploads/Sulafest.jpg"
     },
     {
       id: 2,
-      title: "SulaFest Day Experience",
-      description: "Daytime celebrations at Sula Vineyards",
-      image: "/lovable-uploads/9c0583f2-3538-4023-9bd4-bf24755d0d62.png"
+      title: "Buns & Slices",
+      description: "Brand Identity for k hospitality QSR",
+      image: "/lovable-uploads/Bunsandslices.jpg"
     },
     {
       id: 3,
-      title: "Sula Fest Night Experience",
-      description: "Spectacular night performances and pyrotechnics",
-      image: "/lovable-uploads/b6a09252-c4ed-4f12-a703-c5efa9631b10.png"
+      title: "Brand Photography",
+      description: "Spectacular Brand Shots",
+      image: "/lovable-uploads/Brandphotos.jpg"
     }
   ];
 
