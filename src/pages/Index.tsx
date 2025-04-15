@@ -1,69 +1,84 @@
 import { useRef, useEffect, useState } from "react";
-import { cn } from "@/lib/utils";
-import { siteConfig } from "@/config/site";
-import { useInView } from "framer-motion";
 import { motion } from "framer-motion";
-import { useScroll } from "framer-motion";
-import { useTransform } from "framer-motion";
-import { useSpring } from "framer-motion";
-import { useVelocity } from "framer-motion";
-import { useRefScrollProgress } from "@/hooks/use-ref-scroll-progress";
-import { useSectionObserver } from "@/hooks/use-section-observer";
+import { Toaster } from "@/components/ui/toaster";
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import {
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom";
 
-const Home = () => {
-  return (
-    <div className="min-h-screen bg-black text-white flex items-center justify-center">
-      <h1 className="text-4xl md:text-6xl font-bold">Tipple Works Co.</h1>
-    </div>
-  );
-};
+// Components for export
+const Shlok = () => (
+  <section className="bg-gradient-to-r from-orange-500 to-pink-500 text-white text-center py-6">
+    <h2 className="text-2xl font-bold">Shlok</h2>
+    <p>This is where your Shlok content will go.</p>
+  </section>
+);
 
-export const BlackHero = () => {
-  return (
-    <div className="min-h-screen bg-black flex items-center justify-center">
-      <img
-        src="/logo.png"
-        alt="Tipple Works Co. Logo"
-        className="w-[280px] md:w-[380px] lg:w-[480px]"
-      />
-    </div>
-  );
-};
+const VissionStatement = () => (
+  <section className="bg-white text-black px-6 py-10">
+    <h2 className="text-2xl font-bold mb-4">Our Vision</h2>
+    <p>
+      Tipple Works Co. is a creative marketing agency that transforms brands with bold thinking, beautiful design, and
+      performance-driven strategies.
+    </p>
+  </section>
+);
 
-export const Shlok = () => {
+const BlackHero = () => {
   return (
-    <section className="flex justify-center items-end h-[calc(100vh-64px)]">
+    <>
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <img
+          src="/logo.png"
+          alt="Tipple Works Co. Logo"
+          className="w-[280px] md:w-[380px] lg:w-[480px]"
+        />
+      </div>
+
+      {/* Colored bar at the bottom */}
       <motion.div
-        className="text-white text-center mb-8"
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
+        className="absolute bottom-0 left-0 right-0 flex h-1.5"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 1 }}
       >
-        <div className="flex justify-center space-x-3">
-          <div className="flex-1 bg-tipple-yellow h-1.5" />
-          <div className="flex-1 bg-tipple-red h-1.5" />
-          <div className="flex-1 bg-tipple-purple h-1.5" />
-        </div>
+        <div className="flex-1 bg-tipple-yellow"></div>
+        <div className="flex-1 bg-tipple-red"></div>
+        <div className="flex-1 bg-tipple-purple"></div>
       </motion.div>
-    </section>
+    </>
   );
 };
 
-export const VissionStatement = () => {
+const Home = () => {
+  const containerRef = useRef(null);
+  const [currentWord, setCurrentWord] = useState(0);
+  const words = ["build", "stand out", "win awards"];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentWord((prev) => (prev + 1) % words.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section className="px-4 py-6 lg:px-8 lg:py-16 text-white">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl font-bold mb-4">Our Vision</h2>
-        <p className="text-lg leading-relaxed">
-          We collaborate with innovative brands across various industries, helping them reach new heights with our creative solutions. At Tipple Works Co., we don’t just craft campaigns—we build brands, drive growth, and shape the future of business.
-        </p>
-      </div>
-    </section>
+    <div ref={containerRef} className="text-white text-center py-16">
+      <h1 className="text-4xl font-bold">
+        Tipple Works Co.
+      </h1>
+      <p className="mt-4 text-xl">We {words[currentWord]}</p>
+    </div>
   );
 };
 
-// ✅ Export all non-default components here
-export { Shlok, VissionStatement };
-
-// ✅ Default export for main page
+// ✅ Final exports
+export { BlackHero, Shlok, VissionStatement };
 export default Home;
