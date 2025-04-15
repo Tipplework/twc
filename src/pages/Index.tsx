@@ -56,6 +56,7 @@ const BlackHero = () => {
     />
   </div>
 );
+};
       {/* Colored bar at the bottom */}
       <motion.div 
         className="absolute bottom-0 left-0 right-0 flex h-1.5"
