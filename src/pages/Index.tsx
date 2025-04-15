@@ -48,7 +48,13 @@ const Index = () => {
           </motion.div>
         </div>
 
-        {/* ✅ Other Homepage Sections */}
+        {/* ❌ This section is removed:
+        <section className="py-20 px-6 md:px-10 bg-white text-black">
+          ...
+        </section>
+        */}
+
+        {/* ✅ Homepage Sections */}
         <FeaturedProjects />
         <Clients />
         <Testimonials />
