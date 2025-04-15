@@ -29,7 +29,7 @@ const Index = () => {
       <Navbar />
 
       <main className="grid grid-cols-1 w-full">
-        {/* ✅ BlackHero Section */}
+        {/* ✅ Hero Section with Logo */}
         <div className="min-h-screen bg-black flex flex-col justify-center items-center">
           <img
             src="/logo.png"
@@ -47,6 +47,7 @@ const Index = () => {
             <div className="flex-1 bg-tipple-purple"></div>
           </motion.div>
         </div>
+
         {/* ✅ Other Homepage Sections */}
         <FeaturedProjects />
         <Clients />
