@@ -1,7 +1,29 @@
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
+import { Toaster } from "@/components/ui/toaster";
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom";
 
-// 💡 Hero section with logo on black
+import About from "./About";
+import Work from "./Work";
+import Services from "./Services";
+import Contact from "./Contact";
+import NotFound from "./NotFound";
+
+import Footer from "../components/Footer";
+import Shlok from "../components/Shlok";
+import VisionStatement from "../components/VisionStatement";
+
+const queryClient = new QueryClient();
+
+// BlackHero Section – Hero Logo on Black Background
 const BlackHero = () => {
   return (
     <>
@@ -28,27 +50,22 @@ const BlackHero = () => {
   );
 };
 
-// 💡 Shlok section placeholder
-const Shlok = () => (
-  <section className="bg-gradient-to-r from-orange-500 to-pink-500 text-white text-center py-6">
-    <h2 className="text-2xl font-bold">Shlok</h2>
-    <p>This is where your Shlok content will go.</p>
-  </section>
-);
+// Main Page Content
+const Index = () => {
+  return (
+    <>
+      <BlackHero />
+      <main className="bg-black text-white">
+        <About />
+        <Work />
+        <Services />
+        <Contact />
+        <Shlok />
+        <VisionStatement />
+        <Footer />
+      </main>
+    </>
+  );
+};
 
-// 💡 Vision statement section placeholder
-const VissionStatement = () => (
-  <section className="bg-white text-black px-6 py-10">
-    <h2 className="text-2xl font-bold mb-4">Our Vision</h2>
-    <p>
-      Tipple Works Co. is a creative marketing agency that transforms brands
-      with bold thinking, beautiful design, and performance-driven strategies.
-    </p>
-  </section>
-);
-
-// ✅ Default export for hero page
-export default BlackHero;
-
-// ✅ Named exports (no duplicates)
-export { Shlok, VissionStatement };
+export default Index;
