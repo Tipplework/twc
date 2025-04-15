@@ -51,25 +51,6 @@ export const Navbar = () => {
       )}
     >
       
-            src="/lovable-uploads/50a52fb1-e68c-4f55-8d9b-8f706d18b161.png" 
-            alt="Tipple Works Co." 
-            className="h-10 md:h-12 w-auto"
-            style={{
-              opacity: isLogoHovered ? 0 : 1,
-              transition: 'opacity 0.3s ease'
-            }}
-          />
-          <img 
-            src="/lovable-uploads/260ff3be-b535-429f-a94b-22d4394053b2.png" 
-            alt="Tipple Works Co." 
-            className="h-10 md:h-12 w-auto absolute top-0 left-0"
-            style={{
-              opacity: isLogoHovered ? 1 : 0,
-              transition: 'opacity 0.3s ease'
-            }}
-          />
-        </Link>
-
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-1">
           <NavLink href="/" label="Home" />
