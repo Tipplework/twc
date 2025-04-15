@@ -47,33 +47,6 @@ const Index = () => {
             <div className="flex-1 bg-tipple-purple"></div>
           </motion.div>
         </div>
-
-       {/* 
-<section className="py-20 px-6 md:px-10 bg-white text-black">
-  <div className="container mx-auto max-w-4xl">
-    <motion.p
-      className="text-lg md:text-xl leading-relaxed text-gray-800"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
-    >
-      We collaborate with innovative brands...
-    </motion.p>
-    <motion.p
-      className="text-lg md:text-xl leading-relaxed text-gray-800 mt-6"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: 0.1 }}
-    >
-      What began as a boutique agency...
-    </motion.p>
-  </div>
-</section>
-*/}
-
-
         {/* ✅ Other Homepage Sections */}
         <FeaturedProjects />
         <Clients />
