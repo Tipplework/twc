@@ -1,10 +1,12 @@
 return (
-  <header className={cn(
-    "fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4 px-6 md:px-10",
-    isScrolled ? "bg-white/80 backdrop-blur-sm shadow-sm" : "bg-transparent"
-  )}>
+  <header
+    className={cn(
+      "fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4 px-6 md:px-10",
+      isScrolled ? "bg-white/80 backdrop-blur-sm shadow-sm" : "bg-transparent"
+    )}
+  >
     <div className="flex justify-between items-center">
-      {/* Logo & Desktop Navigation */}
+      {/* Desktop Navigation */}
       <nav className="hidden md:flex items-center space-x-6">
         <NavLink href="/" label="Home" />
         <NavLink href="/about" label="About" />
@@ -14,9 +16,9 @@ return (
       </nav>
 
       {/* Mobile Menu Button */}
-      <button 
-        className="md:hidden z-50 p-2" 
-        onClick={toggleMenu} 
+      <button
+        className="md:hidden z-50 p-2"
+        onClick={toggleMenu}
         aria-label="Toggle menu"
       >
         {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -24,7 +26,7 @@ return (
     </div>
 
     {/* Mobile Navigation */}
-    <div 
+    <div
       className={cn(
         "fixed inset-0 bg-white flex flex-col items-center justify-center transition-all duration-300 ease-in-out",
         isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
