@@ -47,16 +47,16 @@ const Index = () => {
 
 const BlackHero = () => {
   return (
-    return (
-  <div className="min-h-screen bg-black flex items-center justify-center">
-    <img
-      src="/logo.png"
-      alt="Tipple Works Co. Logo"
-      className="w-[280px] md:w-[380px] lg:w-[480px]"
-    />
-  </div>
-);
+    <div className="min-h-screen bg-black flex items-center justify-center">
+      <img
+        src="/logo.png"
+        alt="Tipple Works Co. Logo"
+        className="w-[280px] md:w-[380px] lg:w-[480px]"
+      />
+    </div>
+  );
 };
+
       {/* Colored bar at the bottom */}
       <motion.div 
         className="absolute bottom-0 left-0 right-0 flex h-1.5"
