@@ -45,6 +45,8 @@ const Index = () => {
   );
 };
 
+import React from "react";
+
 const BlackHero = () => {
   return (
     <div className="min-h-screen bg-black flex items-center justify-center">
@@ -57,6 +59,7 @@ const BlackHero = () => {
   );
 };
 
+export default BlackHero;
       {/* Colored bar at the bottom */}
       <motion.div 
         className="absolute bottom-0 left-0 right-0 flex h-1.5"
