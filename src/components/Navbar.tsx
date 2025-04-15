@@ -50,15 +50,7 @@ export const Navbar = () => {
         isScrolled ? "bg-white/80 backdrop-blur-sm shadow-sm" : "bg-transparent"
       )}
     >
-      <div className="mx-auto flex items-center justify-between">
-        {/* Logo with hover animation */}
-        <Link 
-          to="/" 
-          className="z-50 relative"
-          onMouseEnter={() => setIsLogoHovered(true)}
-          onMouseLeave={() => setIsLogoHovered(false)}
-        >
-          <img 
+      
             src="/lovable-uploads/50a52fb1-e68c-4f55-8d9b-8f706d18b161.png" 
             alt="Tipple Works Co." 
             className="h-10 md:h-12 w-auto"
