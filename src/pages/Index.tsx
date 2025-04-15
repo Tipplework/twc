@@ -58,7 +58,6 @@ const BlackHero = () => {
     </div>
   );
 };
-
 export default BlackHero;
       {/* Colored bar at the bottom */}
       <motion.div 
@@ -74,7 +73,6 @@ export default BlackHero;
     </section>
   );
 };
-
 const WhiteContentSection = () => {
   return (
     <section className="py-20 px-6 md:px-10 bg-white text-black">
