@@ -14,13 +14,13 @@ export const FeaturedProjects = () => {
   const projects: Project[] = [
     {
       id: 1,
-      title: "Sula Fest 2023",
+      title: "SulaFest 2025",
       description: "India's premier wine and music festival",
       image: "/lovable-uploads/3756d2b7-2e14-40de-b2de-46d831d20737.png"
     },
     {
       id: 2,
-      title: "Sula Fest Day Experience",
+      title: "SulaFest Day Experience",
       description: "Daytime celebrations at Sula Vineyards",
       image: "/lovable-uploads/9c0583f2-3538-4023-9bd4-bf24755d0d62.png"
     },
