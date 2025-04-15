@@ -29,7 +29,7 @@ export const FeaturedProjects = () => {
       title: "Brand Photography",
       description: "Spectacular Brand Shots",
       image: "/lovable-uploads/Brandphotos.jpg"
-    }
+    },
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
