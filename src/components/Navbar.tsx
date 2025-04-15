@@ -84,7 +84,6 @@ export const Navbar = () => {
             <NavLink href="/contact" label="Contact" onClick={closeMenu} />
           </nav>
         </div>
-      </div>
     </header>
   );
 };
