@@ -1,32 +1,21 @@
 import React from "react";
-import Image from "next/image";
 import { motion } from "framer-motion";
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import {
-  BrowserRouter,
-  Routes,
-  Route
-} from "react-router-dom";
 
-import About from "./About";
-import Work from "./Work";
-import Services from "./Services";
-import Contact from "./Contact";
-import NotFound from "./NotFound";
+import Navbar from "@/components/Navbar";
+import Shlok from "@/components/Shlok";
+import Hero from "@/components/Hero";
+import Clients from "@/components/Clients";
+import Services from "@/components/Services";
+import Work from "@/components/Work";
+import About from "@/components/About";
+import Industries from "@/components/Industries";
+import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
 
-import Footer from "../components/Footer";
-import Shlok from "../components/Shlok";
-import VisionStatement from "../components/VisionStatement";
-
-const queryClient = new QueryClient();
-
-// BlackHero Section – Hero Logo on Black Background
-const BlackHero = () => {
+const Index = () => {
   return (
     <>
+      {/* ✅ BlackHero Section (Logo on Black Background) */}
       <div className="min-h-screen bg-black flex items-center justify-center">
         <img
           src="/logo.png"
@@ -35,7 +24,7 @@ const BlackHero = () => {
         />
       </div>
 
-      {/* Colored bar at the bottom */}
+      {/* ✅ Colored Bar */}
       <motion.div
         className="absolute bottom-0 left-0 right-0 flex h-1.5"
         initial={{ opacity: 0 }}
@@ -46,24 +35,18 @@ const BlackHero = () => {
         <div className="flex-1 bg-tipple-red"></div>
         <div className="flex-1 bg-tipple-purple"></div>
       </motion.div>
-    </>
-  );
-};
 
-// Main Page Content
-const Index = () => {
-  return (
-    <>
-      <BlackHero />
-      <main className="bg-black text-white">
-        <About />
-        <Work />
-        <Services />
-        <Contact />
-        <Shlok />
-        <VisionStatement />
-        <Footer />
-      </main>
+      {/* ✅ All original homepage sections below */}
+      <Navbar />
+      <Shlok />
+      <Hero />
+      <Clients />
+      <Services />
+      <Work />
+      <About />
+      <Industries />
+      <Contact />
+      <Footer />
     </>
   );
 };
