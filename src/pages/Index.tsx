@@ -49,18 +49,15 @@ import React from "react";
 
 const BlackHero = () => {
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center">
+    <div className="min-h-screen bg-black flex flex-col justify-center items-center">
       <img
         src="/logo.png"
         alt="Tipple Works Co. Logo"
         className="w-[280px] md:w-[380px] lg:w-[480px]"
       />
-    </div>
-  );
-};
-export default BlackHero;
+
       {/* Colored bar at the bottom */}
-      <motion.div 
+      <motion.div
         className="absolute bottom-0 left-0 right-0 flex h-1.5"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -70,9 +67,11 @@ export default BlackHero;
         <div className="flex-1 bg-tipple-red"></div>
         <div className="flex-1 bg-tipple-purple"></div>
       </motion.div>
-    </section>
+    </div>
   );
 };
+
+export default BlackHero;
 const WhiteContentSection = () => {
   return (
     <section className="py-20 px-6 md:px-10 bg-white text-black">
