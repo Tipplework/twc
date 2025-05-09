@@ -1,4 +1,3 @@
-
 import { ArrowUpRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -61,17 +60,6 @@ export const Services = () => {
       <div className="container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-y-8">
           <div className="md:col-span-3 md:col-start-1">
-            <motion.div 
-              className="flex gap-2 items-center mb-6 text-gray-400"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              <span>SERVICES @</span>
-              <span className="uppercase font-bold">TIPLEWORKSCO</span>
-            </motion.div>
-            
             <motion.h2 
               className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4"
               initial={{ opacity: 0, y: 20 }}
