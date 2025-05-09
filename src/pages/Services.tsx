@@ -106,7 +106,6 @@ const Services = () => {
 </motion.div>
       </div>
   </header> 
-      >
         <motion.h1 
           className="text-5xl md:text-7xl font-bold mb-4"
           initial={{ opacity: 0, y: 30 }}
