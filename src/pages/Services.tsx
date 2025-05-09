@@ -89,53 +89,51 @@ const Services = () => {
       }
     })
   };
+return (
+  <div className="bg-[#121212] text-white min-h-screen">
+    <CustomCursor />
+    <Navbar />
 
-  return (
-    <div className="bg-[#121212] text-white min-h-screen">
-      <CustomCursor />
-      <Navbar />
-      
-<main className="pt-32 pb-20" ref={containerRef}>
-  <header className="px-6 md:px-10 mb-20">
-    <div className="container mx-auto">
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }} 
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="flex gap-2 items-center mb-2 text-gray-400"
-</motion.div>
-      </div>
-  </header> 
-        <motion.h1 
-          className="text-5xl md:text-7xl font-bold mb-4"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          Our Services
-        </motion.h1>
+    <main className="pt-32 pb-20" ref={containerRef}>
+      <header className="px-6 md:px-10 mb-20">
+        <div className="container mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="flex gap-2 items-center mb-2 text-gray-400"
+          >
+            {/* You can move other animated elements here if needed */}
+          </motion.div>
 
-        <motion.p 
-          className="text-lg text-zinc-400 max-w-2xl"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-        >
-          We offer comprehensive creative marketing solutions tailored to your business goals.
-        </motion.p>
+          <motion.h1
+            className="text-5xl md:text-7xl font-bold mb-4"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            Our Services
+          </motion.h1>
 
-        {/* Decorative elements */}
-        <motion.div 
-          className="absolute top-40 right-10 md:right-40 hidden md:block"
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7, delay: 0.8 }}
-        >
-          <Star className="text-tipple-yellow w-12 h-12 opacity-40" />
-        </motion.div>
-      </motion.div>
-    </div>
-  </header>
+          <motion.p
+            className="text-lg text-zinc-400 max-w-2xl"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            We offer comprehensive creative marketing solutions tailored to your business goals.
+          </motion.p>
+
+          <motion.div
+            className="absolute top-40 right-10 md:right-40 hidden md:block"
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.8 }}
+          >
+            <Star className="text-tipple-yellow w-12 h-12 opacity-40" />
+          </motion.div>
+        </div>
+      </header>
         <div className="space-y-0">
           {servicesData.map((service) => (
             <motion.section 
