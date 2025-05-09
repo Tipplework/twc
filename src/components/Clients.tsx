@@ -12,7 +12,7 @@ export const Clients = () => {
     { 
       id: 1, 
       name: "SULA Vineyards", 
-      image: "/lovable-uploads/5408fbd0-c855-46c5-b4dc-ae4b5252431d.png",
+      image: "/lovable-uploads/SULA.png",
       category: "Beverages"
     },
     { 
