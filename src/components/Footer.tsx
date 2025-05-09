@@ -1,11 +1,8 @@
-
 import { Instagram, Linkedin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 export const Footer = () => {
-  const currentYear = new Date().getFullYear();
-  
   return (
     <footer className="py-12 px-6 md:px-10 bg-white border-t border-gray-100">
       <div className="container mx-auto">
@@ -13,7 +10,7 @@ export const Footer = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center mb-6 md:mb-0">
             <img 
-              src="/lovable-uploads/TWCLogoblack.png" 
+              src="/lovable-uploads/TWC%20Logoblack.png" 
               alt="Tipple Works Co." 
               className="h-10 w-auto"
             />
@@ -59,7 +56,7 @@ export const Footer = () => {
         </div>
         
         <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-gray-100 text-sm text-gray-400">
-          <p>© {currentYear} Tipple Works Private Limited. All rights reserved.</p>
+          <p>© 2025 Tipple Works Private Limited. All rights reserved.</p>
           <div className="flex gap-4 mt-4 md:mt-0">
             <a href="#" className="hover:text-black transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-black transition-colors">Terms of Service</a>
