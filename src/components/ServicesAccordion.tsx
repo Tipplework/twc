@@ -129,9 +129,6 @@ export const ServicesAccordion = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <span>SERVICES @</span>
-          <span className="uppercase font-bold">TIPPLEWORKSCO</span>
-        </motion.div>
         
         <div className="grid grid-cols-1 md:grid-cols-12 gap-y-12 md:gap-12">
           <div className="md:col-span-5">
