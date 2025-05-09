@@ -3,7 +3,6 @@ import React from "react";
 interface Project {
   id: number;
   title: string;
-  description?: string;
   image: string;
 }
 
@@ -12,27 +11,27 @@ export const FeaturedProjects = () => {
     {
       id: 1,
       title: "SulaFest 2025",
-      image: "/images/projects/SF25.webp",
+      image: "/lovable-uploads/SF25.webp",
     },
     {
       id: 2,
       title: "W-Power 2025",
-      image: "/images/projects/FORBES.webp",
+      image: "/lovable-uploads/FORBES.webp",
     },
     {
       id: 3,
       title: "Zomato",
-      image: "/images/projects/ZOMATO.webp",
+      image: "/lovable-uploads/ZOMATO.webp",
     },
     {
       id: 4,
       title: "Provogue",
-      image: "/images/projects/PROVOGUE.webp",
+      image: "/lovable-uploads/PROVOGUE.webp",
     },
     {
       id: 5,
-      title: "Paul and Mike Chocolates",
-      image: "/images/projects/PM.webp",
+      title: "Paul and Mike",
+      image: "/lovable-uploads/PM.webp",
     },
   ];
 
@@ -42,21 +41,20 @@ export const FeaturedProjects = () => {
         Selected Work
       </h2>
 
-      <div className="w-full max-w-screen-lg mx-auto overflow-hidden relative">
-        <div className="flex gap-4 overflow-x-auto snap-x scroll-smooth">
-          {projects.map((project) => (
-            <div
-              key={project.id}
-              className="flex-shrink-0 w-full snap-center rounded-lg overflow-hidden"
-            >
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-auto object-cover aspect-video rounded-lg"
-              />
-            </div>
-          ))}
-        </div>
+      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {projects.map((project) => (
+          <div
+            key={project.id}
+            className="w-full overflow-hidden rounded-lg shadow-lg"
+          >
+            <img
+              src={project.image}
+              alt={project.title}
+              className="w-full h-auto object-cover aspect-video"
+              loading="lazy"
+            />
+          </div>
+        ))}
       </div>
     </section>
   );
