@@ -103,6 +103,9 @@ const Services = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         className="flex gap-2 items-center mb-2 text-gray-400"
+</motion.div>
+      </div>
+  </header> 
       >
         <motion.h1 
           className="text-5xl md:text-7xl font-bold mb-4"
