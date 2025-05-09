@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
@@ -12,7 +11,6 @@ type Testimonial = {
 };
 
 export const Testimonials = () => {
-  // Sample testimonials data
   const testimonials: Testimonial[] = [
     {
       id: 1,
@@ -56,14 +54,12 @@ export const Testimonials = () => {
     setCurrent(current => (current === 0 ? testimonials.length - 1 : current - 1));
   };
 
-  // Handle autoplay
   useEffect(() => {
     if (autoplay) {
       timerRef.current = setInterval(() => {
         nextSlide();
       }, 6000);
     }
-    
     return () => {
       if (timerRef.current) {
         clearInterval(timerRef.current);
@@ -71,22 +67,14 @@ export const Testimonials = () => {
     };
   }, [autoplay, current]);
 
-  // Pause autoplay on hover
   const pauseAutoplay = () => setAutoplay(false);
   const resumeAutoplay = () => setAutoplay(true);
 
   return (
     <section className="py-20 px-6 md:px-10 bg-white" id="testimonials">
       <div className="container mx-auto">
-        <motion.div 
-          className="flex gap-2 items-center mb-6 text-gray-400"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
         <motion.h2 
-          className="text-3xl md:text-4xl lg:text-5xl font-bold mb-16 text-black"
+          className="text-3xl md:text-4xl lg:text-5xl font-bold mb-16 text-black text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -94,7 +82,7 @@ export const Testimonials = () => {
         >
           What Clients Say
         </motion.h2>
-        
+
         <div 
           className="relative max-w-4xl mx-auto"
           onMouseEnter={pauseAutoplay}
@@ -123,7 +111,7 @@ export const Testimonials = () => {
               </div>
             </motion.div>
           </div>
-          
+
           <div className="flex justify-center mt-12 gap-4">
             <button
               onClick={prevSlide}
@@ -132,7 +120,7 @@ export const Testimonials = () => {
             >
               <ChevronLeft className="w-5 h-5 text-black" />
             </button>
-            
+
             <div className="flex gap-2 items-center">
               {testimonials.map((_, index) => (
                 <button
@@ -145,7 +133,7 @@ export const Testimonials = () => {
                 />
               ))}
             </div>
-            
+
             <button
               onClick={nextSlide}
               className="p-2 border border-gray-300 rounded-full hover:bg-gray-100 transition-colors"
