@@ -85,10 +85,6 @@ export const Testimonials = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <span>TESTIMONIALS @</span>
-          <span className="uppercase font-bold">TIPPLEWORKSCO</span>
-        </motion.div>
-        
         <motion.h2 
           className="text-3xl md:text-4xl lg:text-5xl font-bold mb-16 text-black"
           initial={{ opacity: 0, y: 20 }}
