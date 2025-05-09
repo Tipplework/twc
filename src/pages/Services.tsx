@@ -104,10 +104,6 @@ const Services = () => {
               transition={{ duration: 0.5 }}
               className="flex gap-2 items-center mb-2 text-gray-400"
             >
-              <span>SERVICES OFFERED @</span>
-              <span className="uppercase font-bold">TIPLEWORKSCO</span>
-            </motion.div>
-
             <motion.h1 
               className="text-5xl md:text-7xl font-bold mb-4"
               initial={{ opacity: 0, y: 30 }}
