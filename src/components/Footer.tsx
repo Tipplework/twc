@@ -10,7 +10,7 @@ export const Footer = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center mb-6 md:mb-0">
             <img 
-              src="/lovable-uploads/TWC%20Logoblack.png" 
+              src="/lovable-uploads/TWCLogoblack.png" 
               alt="Tipple Works Co." 
               className="h-10 w-auto"
             />
