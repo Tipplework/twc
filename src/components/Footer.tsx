@@ -59,7 +59,7 @@ export const Footer = () => {
         </div>
         
         <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-gray-100 text-sm text-gray-400">
-          <p>© {currentYear} Tipple Works Co. All rights reserved.</p>
+          <p>© {currentYear} Tipple Works Private Limited. All rights reserved.</p>
           <div className="flex gap-4 mt-4 md:mt-0">
             <a href="#" className="hover:text-black transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-black transition-colors">Terms of Service</a>
