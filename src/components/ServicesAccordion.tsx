@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import {
   Briefcase,
@@ -129,7 +128,9 @@ export const ServicesAccordion = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-        
+          {/* Optional heading or icon could go here */}
+        </motion.div> {/* ✅ THIS LINE FIXES THE BUILD ERROR */}
+
         <div className="grid grid-cols-1 md:grid-cols-12 gap-y-12 md:gap-12">
           <div className="md:col-span-5">
             <motion.h2 
@@ -152,7 +153,7 @@ export const ServicesAccordion = () => {
               We offer strategic marketing solutions that drive impact and growth for brands across industries.
             </motion.p>
           </div>
-          
+
           <div className="md:col-span-7">
             <Accordion type="single" collapsible className="w-full">
               {serviceCategories.map((category, index) => (
@@ -194,7 +195,7 @@ export const ServicesAccordion = () => {
             </Accordion>
           </div>
         </div>
-        
+
         {/* Colored bar */}
         <div className="flex h-1.5 mt-16">
           <div className="flex-1 bg-tipple-yellow"></div>
