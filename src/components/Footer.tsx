@@ -12,7 +12,7 @@ export const Footer = () => {
             <img 
               src="/lovable-uploads/TWC Logoblack.png" 
               alt="Tipple Works Co." 
-              className="h-10 w-auto"
+              className="h-5 w-auto"
             />
           </Link>
           
