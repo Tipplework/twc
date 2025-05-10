@@ -17,7 +17,7 @@ const NavLink = ({
   <Link
     to={href}
     onClick={onClick}
-    className="text-2xl md:text-3xl font-medium text-black hover:text-neutral-500 transition-colors"
+    className="text-xl md:text-2xl font-semibold text-black hover:text-neutral-500 transition-colors"
   >
     {label}
   </Link>
@@ -40,7 +40,6 @@ export const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    // Close the menu when navigating
     closeMenu();
   }, [location]);
 
@@ -52,7 +51,6 @@ export const Navbar = () => {
       )}
     >
       <div className="flex justify-end items-center">
-        {/* Universal Hamburger Button (both desktop & mobile) */}
         <button
           className="z-50 text-black"
           onClick={toggleMenu}
@@ -62,17 +60,19 @@ export const Navbar = () => {
         </button>
       </div>
 
-      {/* Fullscreen Nav Menu */}
+      {/* Improved Drop Menu */}
       <div
-        className={`fixed inset-0 z-40 bg-white flex flex-col items-center justify-center space-y-10 text-center transition-all duration-300 ease-in-out ${
-          isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        className={`absolute top-full left-0 w-full bg-white shadow-md border-t transition-all duration-300 z-40 ${
+          isMenuOpen ? 'opacity-100 pointer-events-auto py-8' : 'opacity-0 pointer-events-none py-0'
         }`}
       >
-        <NavLink href="/" label="Home" onClick={closeMenu} />
-        <NavLink href="/about" label="About" onClick={closeMenu} />
-        <NavLink href="/work" label="Work" onClick={closeMenu} />
-        <NavLink href="/services" label="Services" onClick={closeMenu} />
-        <NavLink href="/contact" label="Contact" onClick={closeMenu} />
+        <div className="flex flex-col items-center space-y-6">
+          <NavLink href="/" label="Home" onClick={closeMenu} />
+          <NavLink href="/about" label="About" onClick={closeMenu} />
+          <NavLink href="/work" label="Work" onClick={closeMenu} />
+          <NavLink href="/services" label="Services" onClick={closeMenu} />
+          <NavLink href="/contact" label="Contact" onClick={closeMenu} />
+        </div>
       </div>
     </header>
   );
