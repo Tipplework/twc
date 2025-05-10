@@ -75,7 +75,7 @@ const projectsData = [
 const additionalClients = [
   { 
     name: "Paul & MIke", 
-    image: "/lovable-uploads/PM.webp.png",
+    image: "/lovable-uploads/PM.webp",
     category: "360 Marketing"
   },
   { 
