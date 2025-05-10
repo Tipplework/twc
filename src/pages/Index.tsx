@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { CustomCursor } from "@/components/CustomCursor";
-import { Contact } from "@/components/Contact";
+import Contact from "@/components/Contact";
 import { Testimonials } from "@/components/Testimonials";
 import { ProjectShowcase } from "@/components/ProjectShowcase";
 import { ServicesAccordion } from "@/components/ServicesAccordion";
