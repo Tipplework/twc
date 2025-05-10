@@ -1,16 +1,16 @@
-
 import { Instagram } from 'lucide-react';
 
 export const Contact = () => {
   return (
-    <section className="py-20 px-6 md:px-10 bg-black border-t border-zinc-900" id="contact">
-      <div className="container mx-auto">
+    <section className="py-20 px-4 sm:px-6 md:px-10 bg-black border-t border-zinc-900 overflow-hidden" id="contact">
+      <div className="container mx-auto max-w-screen-xl">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8">Let's Create Together</h2>
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8">Let's Create Together</h2>
           
-          <div className="grid md:grid-cols-2 gap-12 mt-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12">
+            {/* Contact Info */}
             <div>
-              <h3 className="text-xl font-semibold mb-4">Get in Touch</h3>
+              <h3 className="text-xl font-semibold text-white mb-4">Get in Touch</h3>
               <div className="space-y-4 text-zinc-300">
                 <p className="flex items-center">
                   <span className="w-24">Phone:</span>
@@ -36,29 +36,30 @@ export const Contact = () => {
                 </p>
               </div>
             </div>
-            
+
+            {/* Contact Form */}
             <div>
-              <h3 className="text-xl font-semibold mb-4">Send a Message</h3>
+              <h3 className="text-xl font-semibold text-white mb-4">Send a Message</h3>
               <form className="space-y-4">
                 <div>
                   <input 
                     type="text" 
                     placeholder="Name" 
-                    className="w-full p-3 bg-zinc-900 border border-zinc-800 rounded-md focus:outline-none focus:ring-1 focus:ring-white/30"
+                    className="w-full p-3 bg-zinc-900 border border-zinc-800 rounded-md focus:outline-none focus:ring-1 focus:ring-white/30 text-white placeholder-white/70"
                   />
                 </div>
                 <div>
                   <input 
                     type="email" 
                     placeholder="Email" 
-                    className="w-full p-3 bg-zinc-900 border border-zinc-800 rounded-md focus:outline-none focus:ring-1 focus:ring-white/30"
+                    className="w-full p-3 bg-zinc-900 border border-zinc-800 rounded-md focus:outline-none focus:ring-1 focus:ring-white/30 text-white placeholder-white/70"
                   />
                 </div>
                 <div>
                   <textarea 
                     placeholder="Message" 
                     rows={4}
-                    className="w-full p-3 bg-zinc-900 border border-zinc-800 rounded-md focus:outline-none focus:ring-1 focus:ring-white/30"
+                    className="w-full p-3 bg-zinc-900 border border-zinc-800 rounded-md focus:outline-none focus:ring-1 focus:ring-white/30 text-white placeholder-white/70"
                   ></textarea>
                 </div>
                 <div>
