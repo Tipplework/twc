@@ -18,8 +18,8 @@ export const Contact = () => {
                 </p>
                 <p className="flex items-center">
                   <span className="w-24">Email:</span>
-                  <a href="mailto:srishti.bhatia@tippeworks.com" className="hover-link">
-                    srishti.bhatia@tippeworks.com
+                  <a href="mailto:srishti.bhatia@tippleworks.com" className="hover-link">
+                    srishti.bhatia@tippleworks.com
                   </a>
                 </p>
                 <p className="flex items-center">
