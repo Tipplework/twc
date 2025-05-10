@@ -17,7 +17,7 @@ const NavLink = ({
   <Link
     to={href}
     onClick={onClick}
-    className="text-xl md:text-base font-medium text-black hover:text-neutral-500 transition-colors"
+    className="text-2xl md:text-3xl font-medium text-black hover:text-neutral-500 transition-colors"
   >
     {label}
   </Link>
@@ -40,7 +40,7 @@ export const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    // close menu on route change
+    // Close the menu when navigating
     closeMenu();
   }, [location]);
 
@@ -51,29 +51,20 @@ export const Navbar = () => {
         isScrolled ? 'bg-white/80 backdrop-blur-md shadow-sm' : 'bg-transparent'
       )}
     >
-      <div className="flex justify-between items-center">
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex gap-6 items-center">
-          <NavLink href="/" label="Home" />
-          <NavLink href="/about" label="About" />
-          <NavLink href="/work" label="Work" />
-          <NavLink href="/services" label="Services" />
-          <NavLink href="/contact" label="Contact" />
-        </nav>
-
-        {/* Mobile Menu Button */}
+      <div className="flex justify-end items-center">
+        {/* Universal Hamburger Button (both desktop & mobile) */}
         <button
-          className="md:hidden z-50 text-black"
+          className="z-50 text-black"
           onClick={toggleMenu}
-          aria-label="Toggle menu"
+          aria-label="Toggle navigation"
         >
           {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
-      {/* Mobile Fullscreen Menu */}
+      {/* Fullscreen Nav Menu */}
       <div
-        className={`fixed inset-0 z-40 bg-white flex flex-col items-center justify-center space-y-8 text-3xl font-semibold transition-all duration-300 ease-in-out ${
+        className={`fixed inset-0 z-40 bg-white flex flex-col items-center justify-center space-y-10 text-center transition-all duration-300 ease-in-out ${
           isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
       >
