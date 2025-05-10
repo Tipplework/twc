@@ -18,41 +18,41 @@ const projectsData = [
     id: 2,
     title: "YORK Winery",
     category: "Brand Design & Social Media",
-    image: "/lovable-uploads/0f8c023a-3265-40e5-b918-254a9a1b948a.png",
+    image: "/lovable-uploads/YORK.webp",
     fullWidth: false,
     description: "Digital-first approach for a boutique vineyard"
   },
   {
     id: 3,
     title: "RASA",
-    category: "Brand Identity & Packaging",
-    image: "/lovable-uploads/d49bc652-d8cb-4cb0-9248-920ffd4ceada.png",
+    category: "Photography & Collaterals",
+    image: "/lovable-uploads/RASA.webp",
     fullWidth: false,
-    description: "Typography-led identity for a fine dining establishment"
+    description: "Crafted Visuals, Curated Gifting"
   },
   {
     id: 4,
-    title: "ShakaCan",
-    category: "Brand Design",
-    image: "/lovable-uploads/f4515253-c44f-4b09-ad8c-45d8a5a212ba.png",
+    title: "provogue",
+    category: "360 Marketing",
+    image: "/lovable-uploads/PROVOGUE.webp",
     fullWidth: false,
-    description: "Bold typographic approach for a contemporary brand"
+    description: "360° marketing meets strategic launch"
   },
   {
     id: 5,
     title: "SPACE Coffee",
     category: "Product Design",
-    image: "/lovable-uploads/c811ded8-6624-4e26-8c62-9e1fb461d271.png",
+    image: "/lovable-uploads/SPACE.webp",
     fullWidth: true,
     description: "Minimalist design system for a premium coffee brand"
   },
   {
     id: 6,
     title: "The Source at Sula",
-    category: "Brand Identity",
-    image: "/lovable-uploads/958b04a5-593d-413d-b00f-3f744e36ba71.png",
+    category: "Brand Identity & 360 Marketing",
+    image: "/lovable-uploads/SOURCE.webp",
     fullWidth: false,
-    description: "Integrated destination branding for a winery restaurant"
+    description: "Integrated destination branding for India's first winery resort"
   },
   {
     id: 7,
@@ -60,48 +60,48 @@ const projectsData = [
     category: "Brand Identity & Packaging",
     image: "/lovable-uploads/d00b89d1-8228-4501-a953-df6b38da715c.png",
     fullWidth: false,
-    description: "Bold typographic identity for a modern restaurant"
+    description: "Fun packaging for Argentina’s favorite. "
   },
   {
     id: 8,
     title: "Estate Monkeys",
-    category: "Brand Identity & Digital",
-    image: "/lovable-uploads/01cc5927-55a8-440c-aebb-ae5d97e0495e.png",
+    category: "Brand Identity & Social Media",
+    image: "/lovable-uploads/EM.webp",
     fullWidth: false,
-    description: "Distinctive character design for real estate innovation"
+    description: "Distinctive character design for a bold coffee brand."
   }
 ];
 
 const additionalClients = [
   { 
-    name: "Farmers and Mike", 
-    image: "/lovable-uploads/f8dd037d-7f77-40ac-aeb6-a2b7e21288c8.png",
-    category: "Farm to Bar"
+    name: "Paul & MIke", 
+    image: "/lovable-uploads/PM.webp.png",
+    category: "360 Marketing"
   },
   { 
     name: "Kiddopia", 
     image: "/lovable-uploads/b8e2f36f-0193-4feb-9e85-339d2f7f5c04.png",
-    category: "Educational App"
+    category: "Performance Marketing"
   },
   { 
     name: "NAAR", 
-    image: "/lovable-uploads/dfb366cd-41c2-4366-9b46-9f769a614bad.png",
-    category: "Fashion"
+    image: "/lovable-uploads/NAAR.webp",
+    category: "Social Media"
   },
   { 
-    name: "BBQ Nation", 
+    name: "British Brewing Co", 
     image: "/lovable-uploads/c7f0031d-1d1d-4d10-9973-effe4da21829.png",
-    category: "Restaurant Chain"
+    category: "Social Media"
   },
   { 
     name: "Momoland", 
-    image: "/lovable-uploads/bcab1467-a3c6-4676-86ab-f083cdd37f61.png",
-    category: "Food Chain"
+    image: "/lovable-uploads/ML.webp",
+    category: "Brand Identity"
   },
   { 
     name: "Buns & Slices", 
-    image: "/lovable-uploads/e2931398-c00a-49cc-8292-c38e955e4797.png",
-    category: "Burger Joint"
+    image: "/lovable-uploads/BS.webp",
+    category: "Brand Identity"
   }
 ];
 
