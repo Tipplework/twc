@@ -3,7 +3,6 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { CustomCursor } from "@/components/CustomCursor";
-import Contact from "@/components/Contact";
 import { Testimonials } from "@/components/Testimonials";
 import { ProjectShowcase } from "@/components/ProjectShowcase";
 import { ServicesAccordion } from "@/components/ServicesAccordion";
@@ -48,18 +47,11 @@ const Index = () => {
           </motion.div>
         </div>
 
-        {/* ❌ This section is removed:
-        <section className="py-20 px-6 md:px-10 bg-white text-black">
-          ...
-        </section>
-        */}
-
         {/* ✅ Homepage Sections */}
         <FeaturedProjects />
         <Clients />
         <Testimonials />
         <ServicesAccordion />
-        <Contact />
       </main>
 
       <Footer />
