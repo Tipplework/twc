@@ -5,7 +5,6 @@ import { Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 
-// ✅ Move NavLink here instead of importing it
 interface NavLinkProps {
   href: string;
   label: string;
@@ -15,7 +14,7 @@ interface NavLinkProps {
 const NavLink = ({ href, label, onClick }: NavLinkProps) => (
   <Link 
     to={href} 
-    className="hover-link py-2 px-4 nav-item"
+    className="hover:text-tipple-yellow text-xl font-medium transition-colors duration-200"
     onClick={onClick}
   >
     {label}
@@ -31,26 +30,30 @@ export const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 50);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Prevent background scroll when menu is open
+  useEffect(() => {
+    document.body.style.overflow = isMenuOpen ? 'hidden' : 'auto';
+  }, [isMenuOpen]);
+
   return (
     <header 
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4 px-6 md:px-10",
-        isScrolled ? "bg-white/80 backdrop-blur-sm shadow-sm" : "bg-transparent"
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 py-4 md:px-10",
+        isScrolled ? "bg-white/80 backdrop-blur-md shadow-sm" : "bg-transparent"
       )}
     >
       <div className="flex justify-between items-center w-full">
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center space-x-6">
+        {/* Logo / Branding */}
+        <Link to="/" className="text-lg font-semibold text-black md:text-white">Tipple Works Co.</Link>
+
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center space-x-6 text-white">
           <NavLink href="/" label="Home" />
           <NavLink href="/about" label="About" />
           <NavLink href="/work" label="Work" />
@@ -60,21 +63,21 @@ export const Navbar = () => {
 
         {/* Mobile Menu Button */}
         <button 
-          className="md:hidden z-50 p-2" 
+          className="md:hidden text-black z-50 p-2" 
           onClick={toggleMenu} 
-          aria-label="Toggle menu"
+          aria-label="Toggle Menu"
         >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
-      {/* Mobile Navigation */}
+      {/* Mobile Menu Dropdown */}
       <div 
-        className={`fixed inset-0 bg-white flex flex-col items-center justify-center transition-all duration-300 ease-in-out ${
+        className={`fixed inset-0 top-0 z-40 flex flex-col items-center justify-center bg-white transition-all duration-300 md:hidden ${
           isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
       >
-        <nav className="flex flex-col items-center space-y-6 text-2xl">
+        <nav className="flex flex-col items-center space-y-6 text-black text-2xl font-medium">
           <NavLink href="/" label="Home" onClick={closeMenu} />
           <NavLink href="/about" label="About" onClick={closeMenu} />
           <NavLink href="/work" label="Work" onClick={closeMenu} />
