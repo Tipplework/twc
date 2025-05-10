@@ -1,3 +1,4 @@
+import FloatingSocials from '@/components/FloatingSocials';
 import React, { useEffect, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Navbar } from "@/components/Navbar";
@@ -53,7 +54,7 @@ const Index = () => {
         <Testimonials />
         <ServicesAccordion />
       </main>
-
+<FloatingSocials />
       <Footer />
     </div>
   );
