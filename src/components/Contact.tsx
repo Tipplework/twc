@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 
-export const Clients = () => {
+export const Contact = () => { ... };
   const [hoveredLogo, setHoveredLogo] = useState<number | null>(null);
   const [filter, setFilter] = useState<string>('all');
 
