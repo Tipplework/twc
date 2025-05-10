@@ -25,7 +25,7 @@ export const Contact = () => {
                 <p className="flex items-center">
                   <span className="w-24">Social:</span>
                   <a 
-                    href="https://instagram.com" 
+                    href="https://www.instagram.com/tippleworksco/" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="p-2 hover:bg-white/10 rounded-full transition-colors inline-flex"
