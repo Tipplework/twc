@@ -8,7 +8,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 const projectsData = [
   {
     id: 1,
-    title: "SULA Vineyards",
+    title: "Sula Vineyards",
     category: "Brand Identity & Packaging",
     image: "/lovable-uploads/1f3b3375-5b9b-4cf2-ba8a-d1bc5e3a203a.png",
     fullWidth: true,
