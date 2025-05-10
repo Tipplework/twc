@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { ArrowUpRight, Instagram, Twitter, Linkedin, Plus, Sparkles } from 'lucide-react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-
+import { motion } from 'framer-motion';
+import { FloatingSocials } from '@/components/ui/FloatingSocials';
 
 const workData = [
   {
