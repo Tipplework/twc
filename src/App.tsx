@@ -3,7 +3,7 @@ import Index from "./pages/Index";
 import About from "./pages/About";
 import Work from "./pages/Work";
 import Services from "./pages/Services";
-import Contact from "./pages/Contact";
+import Contact from "./pages/Contactinnerpage";
 import NotFound from "./pages/NotFound"; // Optional if you have a 404 page
 
 const App = () => {
