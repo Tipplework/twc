@@ -9,10 +9,10 @@ const projectsData = [
   {
     id: 1,
     title: "Sula Vineyards",
-    category: "Brand Identity & Packaging",
-    image: "/lovable-uploads/1f3b3375-5b9b-4cf2-ba8a-d1bc5e3a203a.png",
+    category: "360 Marketing ",
+    image: "/lovable-uploads/SULA.webp",
     fullWidth: true,
-    description: "Complete brand refresh for India's premier winery"
+    description: "End to End marketing for India's premier winery"
   },
   {
     id: 2,
