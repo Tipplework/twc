@@ -17,8 +17,8 @@ export const Clients = () => {
     },
     { 
       id: 2, 
-      name: "York Winery", 
-      image: "/lovable-uploads/York.png",
+      name: "YORK WINERY", 
+      image: "/lovable-uploads/YORK.png",
       category: "Alco-Bev" 
     },
     { 
@@ -30,7 +30,7 @@ export const Clients = () => {
     { 
       id: 4, 
       name: "SPACE", 
-      image: "/lovable-uploads/Space.png",
+      image: "/lovable-uploads/space.png",
       category: "F&B"
     },
     { 
@@ -114,7 +114,7 @@ export const Clients = () => {
     { 
       id: 17, 
       name: "BEYOND BY SULA", 
-      image: "/lovable-uploads/37b7ee37-f9c1-48f0-86aa-67d8263b7df8.png",
+      image: "/lovable-uploads/Beyond.png",
       category: "Hospitality" 
     },
     
