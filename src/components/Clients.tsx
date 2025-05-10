@@ -11,105 +11,105 @@ export const Clients = () => {
     // Row 1 - Top tier brands
     { 
       id: 1, 
-      name: "SULA Vineyards", 
+      name: "Sula Vineyards", 
       image: "/lovable-uploads/SULA.png",
-      category: "Beverages"
+      category: "Alco-Bev"
     },
     { 
       id: 2, 
-      name: "YORK Winery", 
-      image: "/lovable-uploads/e3dd22eb-407e-4098-af8a-9a1f9763da8f.png",
-      category: "Beverages" 
+      name: "York Winery", 
+      image: "/lovable-uploads/York.png",
+      category: "Alco-Bev" 
     },
     { 
       id: 3, 
-      name: "RASA", 
-      image: "/lovable-uploads/cb05f2c8-dee5-429f-b303-7fcab94aa530.png",
-      category: "Restaurants"
+      name: "Rasa", 
+      image: "/lovable-uploads/RASA.png",
+      category: "Alco-Bev"
     },
     { 
       id: 4, 
       name: "SPACE", 
-      image: "/lovable-uploads/d22f10d9-d5e3-4506-96ab-e87d32c37f71.png",
-      category: "Beverages"
+      image: "/lovable-uploads/Space.png",
+      category: "F&B"
     },
     { 
       id: 5, 
       name: "ELAAN", 
-      image: "/lovable-uploads/49dfd6d5-5a40-4ba1-b080-34a7a0ed8d00.png",
-      category: "Restaurants"
+      image: "/lovable-uploads/elaan.png",
+      category: "Alco-Bev"
     },
     
     // Row 2 - Featured partnerships
     { 
       id: 6, 
       name: "MATERO", 
-      image: "/lovable-uploads/c0e9e3ac-d51a-4c12-81cf-e458eb0e2664.png",
-      category: "Food & Beverage" 
+      image: "/lovable-uploads/matero.png",
+      category: "F&B" 
     },
     { 
       id: 7, 
       name: "Estate Monkeys", 
-      image: "/lovable-uploads/0231f590-ace6-4ce6-9e07-b2c4b379f6b1.png",
-      category: "Real Estate" 
+      image: "/lovable-uploads/estatemonkey.png",
+      category: "F&B" 
     },
     { 
       id: 8, 
       name: "ShakaCan", 
-      image: "/lovable-uploads/720f08fe-787e-45a3-8ffd-7c235ff5d8aa.png",
-      category: "Food & Beverage" 
+      image: "/lovable-uploads/shakacan.png",
+      category: "Alco-Bev" 
     },
     { 
       id: 9, 
       name: "The Source", 
-      image: "/lovable-uploads/526b39b7-c3e5-42f9-92ee-145e0dddce99.png",
-      category: "Hospitality" 
+      image: "/lovable-uploads/thesource.png",
+      category: "Alco-Bev" 
     },
     
     // Row 3 - Additional partnerships
     { 
       id: 10, 
-      name: "FARMERS AND MIKE", 
-      image: "/lovable-uploads/b246673d-6bf9-4339-9091-9da121b4de83.png",
-      category: "Food & Beverage" 
+      name: "Paul & Mike", 
+      image: "/lovable-uploads/paulandmike.png",
+      category: "F&B" 
     },
     { 
       id: 11, 
       name: "KIDDOPIA", 
-      image: "/lovable-uploads/5de0c8fc-2168-4598-b582-6d65f001d55f.png",
-      category: "Education" 
+      image: "/lovable-uploads/kiddopia.png",
+      category: "Lifestyle" 
     },
     { 
       id: 12, 
       name: "NAAR", 
-      image: "/lovable-uploads/3c82352b-919d-4df9-b9b9-b425780e5cfb.png",
-      category: "Fashion" 
+      image: "/lovable-uploads/Naar.png",
+      category: "Hospitality" 
     },
     { 
       id: 13, 
-      name: "BBQ NATION", 
-      image: "/lovable-uploads/64878f2c-fc9e-46f9-9944-b6c3ad06bb79.png",
-      category: "Restaurants" 
+      name: "British Brewing Co", 
+      image: "/lovable-uploads/Britishbrewingcompany.png",
+      category: "Hospitality" 
     },
     
     // Row 4 - More partnerships
     { 
       id: 14, 
       name: "MOMOLAND", 
-      image: "/lovable-uploads/967f7f59-47b4-46fb-8867-2a57e12f4bc0.png",
-      category: "Food & Beverage" 
+      image: "/lovable-uploads/momoland.png",
+      category: "Hospitality" 
     },
     { 
       id: 15, 
-      name: "BUNS & SLICES", 
-      image: "/lovable-uploads/eb7e8ed5-eba1-4e3f-a8e5-69f08e9656f5.png",
-      category: "Food & Beverage" 
+      name: "Buns & Slices", 
+      image: "/lovable-uploads/bunsandslices.png",
+      category: "Hospitality" 
     },
     { 
       id: 16, 
-      name: "COPPER GRILLHOUSE", 
-      image: "/lovable-uploads/2221dfaf-39fe-4883-9240-2e7193e36385.png",
-      category: "Restaurants" 
+      name: "COPPER Grillhouse", 
+      image: "/lovable-uploads/coppergrillhouse.png",
+      category: "Hospitality" 
     },
     { 
       id: 17, 
@@ -122,20 +122,20 @@ export const Clients = () => {
     { 
       id: 18, 
       name: "SPRIG", 
-      image: "/lovable-uploads/bc381b7c-b452-41ea-9f62-8ace06f7bbe5.png",
-      category: "Health & Wellness" 
+      image: "/lovable-uploads/sprig.png",
+      category: "F&B" 
     },
     { 
       id: 19, 
-      name: "PROVOQUE", 
-      image: "/lovable-uploads/959b4b1a-1841-4d59-a367-6c83e6e8952d.png",
-      category: "Fashion" 
+      name: "provogue", 
+      image: "/lovable-uploads/provogue.png",
+      category: "Lifestyle" 
     },
     { 
       id: 20, 
       name: "DSG", 
-      image: "/lovable-uploads/d8e77c41-59c5-4b13-a24b-e665a3caa146.png",
-      category: "Business" 
+      image: "/lovable-uploads/DSG.png",
+      category: "Event IP's" 
     }
   ];
 
