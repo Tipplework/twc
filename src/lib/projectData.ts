@@ -18,8 +18,8 @@ export const projectData: Project[] = [
     image: "/lovable-uploads/SF25.webp",
     category: "Event Strategy & Activation",
     description: "SulaFest 2025 was an immersive blend of music, culture, and creativity at India’s iconic vineyard destination. Our team led the full activation strategy, spatial design, and identity across the festival experience.",
-    videoUrl: "https://player.vimeo.com/video/123456789",
-    gallery: ["/lovable-uploads/SF25.webp", "/lovable-uploads/FORBES.webp", "/lovable-uploads/ZOMATO.webp"]
+    videoUrl: "https://www.youtube.com/watch?v=r1rluY4SiRY",
+    gallery: ["/lovable-uploads/SF25.webp", "/lovable-uploads/SF25.webp", "/lovable-uploads/SF25.webp"]
   },
   {
     slug: "forbes-wpower",
@@ -28,7 +28,7 @@ export const projectData: Project[] = [
     category: "Event Identity",
     description: "Celebrating the power of women leaders across India, this annual Forbes summit demanded bold, clean visuals and a commanding stage design. Our work created a statement experience.",
     videoUrl: "https://player.vimeo.com/video/987654321",
-    gallery: ["/lovable-uploads/FORBES.webp", "/lovable-uploads/ZOMATO.webp"]
+    gallery: ["/lovable-uploads/FORBES.webp", "/lovable-uploads/FORBES.webp"]
   },
   {
     slug: "zomato",
@@ -37,7 +37,7 @@ export const projectData: Project[] = [
     category: "Campaign Activations",
     description: "For Zomato’s city-wide dining campaign, we turned high streets into food runways. OOH creative, influencer zones, and curated micro-events were part of this buzz-heavy activation.",
     videoUrl: "https://player.vimeo.com/video/111222333",
-    gallery: ["/lovable-uploads/ZOMATO.webp", "/lovable-uploads/PROVOGUE.webp"]
+    gallery: ["/lovable-uploads/ZOMATO.webp", "/lovable-uploads/ZOMATO.webp"]
   },
   {
     slug: "provogue",
@@ -62,11 +62,11 @@ export const projectData: Project[] = [
   {
     slug: "sula-vineyards",
     title: "Sula Vineyards",
-    image: "/lovable-uploads/SULA.png",
+    image: "/lovable-uploads/SULA.webp",
     category: "Alco-Bev",
     description: "Brand world design for one of India’s most loved vineyards.",
     videoUrl: "https://player.vimeo.com/video/000001",
-    gallery: ["/lovable-uploads/SULA.png"]
+    gallery: ["/lovable-uploads/SULA.webp"]
   },
   {
     slug: "york-winery",
