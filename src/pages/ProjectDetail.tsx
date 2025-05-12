@@ -1,9 +1,13 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import Navbar from '../components/ui/Navbar';
-import Footer from '../components/ui/Footer';
+import { Navbar } from '../components/Navbar';
+import { Footer } from '../components/Footer';
 
-const projects: Record<string, { title: string; image: string; description: string }> = {
+const projects: Record<string, {
+  title: string;
+  image: string;
+  description: string;
+}> = {
   'sula-fest': {
     title: 'SulaFest 2025',
     image: '/lovable-uploads/sulafest.png',
@@ -24,16 +28,23 @@ const projects: Record<string, { title: string; image: string; description: stri
     image: '/lovable-uploads/paulandmike.png',
     description: 'Luxury chocolate packaging and story building for this artisanal brand.',
   },
+  'provogue': {
+    title: 'Provogue',
+    image: '/lovable-uploads/provogue.png',
+    description: 'Brand activation for iconic fashion & lifestyle label.',
+  },
 };
 
 const ProjectDetail = () => {
-  const { slug } = useParams();
+  const { slug } = useParams<{ slug: string }>();
   const project = slug ? projects[slug] : null;
 
   if (!project) {
     return (
-      <div className="text-center mt-32">
-        <h1 className="text-2xl font-semibold">Project not found</h1>
+      <div className="min-h-screen bg-white text-black p-10">
+        <Navbar />
+        <h1 className="text-3xl font-bold">Project Not Found</h1>
+        <Footer />
       </div>
     );
   }
@@ -41,16 +52,10 @@ const ProjectDetail = () => {
   return (
     <div className="min-h-screen bg-white text-black">
       <Navbar />
-      <main className="pt-32 pb-20 px-6 md:px-10">
-        <div className="max-w-5xl mx-auto">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">{project.title}</h1>
-          <p className="text-lg text-zinc-700 mb-10">{project.description}</p>
-          <img
-            src={project.image}
-            alt={project.title}
-            className="w-full rounded-lg shadow-md"
-          />
-        </div>
+      <main className="max-w-4xl mx-auto py-20 px-6">
+        <h1 className="text-5xl font-bold mb-6">{project.title}</h1>
+        <img src={project.image} alt={project.title} className="w-full h-auto mb-8 rounded" />
+        <p className="text-lg text-gray-700">{project.description}</p>
       </main>
       <Footer />
     </div>
