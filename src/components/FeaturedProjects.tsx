@@ -25,7 +25,7 @@ export const FeaturedProjects = () => {
     <section className="py-16 px-4 bg-white text-black overflow-hidden">
       {/* ✅ Original heading style restored */}
       <h2 className="text-3xl md:text-4xl font-bold text-center mb-10">
-        Selected Work
+        Featured Work
       </h2>
 
       <div className="relative max-w-4xl mx-auto h-[280px] md:h-[400px] overflow-hidden rounded-xl flex justify-center">
