@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import FloatingSocials from '../components/ui/FloatingSocials';
 import Navbar from '/components/ui/Navbar';
 import Footer from '/components/ui/Footer';
 
