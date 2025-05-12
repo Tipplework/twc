@@ -1,93 +1,78 @@
 import { useEffect, useRef, useState } from 'react';
-import { projectData } from '../lib/projectData';
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { projectData } from '../lib/projectData';
 
 export const FeaturedProjects = () => {
-  const scrollContainer = useRef<HTMLDivElement>(null);
-  const [scrollIndex, setScrollIndex] = useState(0);
-  const scrollIntervalRef = useRef<NodeJS.Timeout | null>(null);
-
-  const visibleProjects = projectData.slice(0, 10); // Adjust as needed
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const [current, setCurrent] = useState(0);
+  const slides = projectData.slice(0, 6); // Adjust how many you want visible
+  const slideCount = slides.length;
 
   useEffect(() => {
-    startAutoScroll();
-    return () => stopAutoScroll();
-  }, [scrollIndex]);
-
-  const scrollByIndex = (index: number) => {
-    const container = scrollContainer.current;
-    if (!container) return;
-    const child = container.children[index] as HTMLElement;
-    if (child) child.scrollIntoView({ behavior: 'smooth', inline: 'center' });
-  };
-
-  const startAutoScroll = () => {
-    stopAutoScroll();
-    scrollIntervalRef.current = setInterval(() => {
-      setScrollIndex((prev) => (prev + 1) % visibleProjects.length);
+    const interval = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % slideCount);
     }, 3000);
-  };
-
-  const stopAutoScroll = () => {
-    if (scrollIntervalRef.current) clearInterval(scrollIntervalRef.current);
-  };
-
-  const handleArrowClick = (direction: 'left' | 'right') => {
-    stopAutoScroll();
-    setScrollIndex((prev) =>
-      direction === 'left'
-        ? (prev - 1 + visibleProjects.length) % visibleProjects.length
-        : (prev + 1) % visibleProjects.length
-    );
-  };
+    return () => clearInterval(interval);
+  }, [slideCount]);
 
   useEffect(() => {
-    scrollByIndex(scrollIndex);
-  }, [scrollIndex]);
+    const carousel = carouselRef.current;
+    if (carousel) {
+      carousel.scrollTo({
+        left: carousel.offsetWidth * current,
+        behavior: 'smooth',
+      });
+    }
+  }, [current]);
+
+  const handlePrev = () => {
+    setCurrent((prev) => (prev === 0 ? slideCount - 1 : prev - 1));
+  };
+
+  const handleNext = () => {
+    setCurrent((prev) => (prev + 1) % slideCount);
+  };
 
   return (
-    <section className="relative w-full bg-white overflow-hidden">
-      <div className="relative">
-        {/* Carousel container */}
-        <div
-          ref={scrollContainer}
-          className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar"
-        >
-          {visibleProjects.map((project, idx) => (
-            <Link
-              key={project.slug}
-              to={`/project/${project.slug}`}
-              className="min-w-full flex-shrink-0 snap-center relative"
-            >
-              <motion.img
+    <section className="relative bg-white">
+      <div
+        ref={carouselRef}
+        className="flex overflow-x-hidden w-full scroll-smooth"
+        style={{ scrollBehavior: 'smooth' }}
+      >
+        {slides.map((project) => (
+          <Link
+            key={project.slug}
+            to={`/project/${project.slug}`}
+            className="min-w-full h-[75vh] md:h-screen relative group"
+          >
+            <div className="w-full h-full overflow-hidden">
+              <img
                 src={project.image}
                 alt={project.title}
-                className="w-full h-screen object-cover"
-                initial={{ scale: 1 }}
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.6 }}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
               />
-            </Link>
-          ))}
-        </div>
-
-        {/* Left arrow */}
-        <button
-          onClick={() => handleArrowClick('left')}
-          className="absolute top-1/2 left-4 transform -translate-y-1/2 z-10 bg-black/50 text-white p-3 rounded-full hover:bg-black transition"
-        >
-          &#8592;
-        </button>
-
-        {/* Right arrow */}
-        <button
-          onClick={() => handleArrowClick('right')}
-          className="absolute top-1/2 right-4 transform -translate-y-1/2 z-10 bg-black/50 text-white p-3 rounded-full hover:bg-black transition"
-        >
-          &#8594;
-        </button>
+            </div>
+          </Link>
+        ))}
       </div>
+
+      {/* Navigation arrows */}
+      <button
+        onClick={handlePrev}
+        className="absolute top-1/2 left-4 -translate-y-1/2 z-10 bg-white/70 hover:bg-white text-black rounded-full p-2 shadow"
+        aria-label="Previous slide"
+      >
+        &#8592;
+      </button>
+      <button
+        onClick={handleNext}
+        className="absolute top-1/2 right-4 -translate-y-1/2 z-10 bg-white/70 hover:bg-white text-black rounded-full p-2 shadow"
+        aria-label="Next slide"
+      >
+        &#8594;
+      </button>
     </section>
   );
 };
