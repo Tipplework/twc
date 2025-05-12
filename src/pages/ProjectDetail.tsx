@@ -1,9 +1,15 @@
+// src/pages/ProjectDetail.tsx
+
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { Navbar } from '@/components/Navbar';
-import { Footer } from '@/components/Footer';
+import { Navbar } from '@/components/ui/Navbar';
+import { Footer } from '@/components/ui/Footer';
 
-const projects = {
+const projects: Record<string, {
+  title: string;
+  image: string;
+  description: string;
+}> = {
   'sula-fest': {
     title: 'SulaFest 2025',
     image: '/lovable-uploads/sulafest.png',
@@ -28,24 +34,19 @@ const projects = {
 
 export default function ProjectDetail() {
   const { slug } = useParams();
-  const project = projects[slug as keyof typeof projects];
+  const project = projects[slug ?? ''];
 
-  if (!project) {
-    return (
-      <div className="text-center py-32">
-        <h1 className="text-3xl font-bold">Project not found.</h1>
-      </div>
-    );
-  }
+  if (!project) return <div className="text-center mt-20">Project not found.</div>;
 
   return (
-    <div className="bg-white text-black">
-      <FloatingSocials />
+    <div className="bg-white text-black min-h-screen">
       <Navbar />
-      <main className="px-6 md:px-10 pt-32 pb-20 max-w-5xl mx-auto">
-        <h1 className="text-5xl font-bold mb-6">{project.title}</h1>
-        <img src={project.image} alt={project.title} className="mb-8 w-full rounded-lg" />
-        <p className="text-lg text-gray-700">{project.description}</p>
+      <main className="pt-32 px-6 md:px-10">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-4xl font-bold mb-6">{project.title}</h1>
+          <img src={project.image} alt={project.title} className="mb-8 rounded-xl w-full object-cover" />
+          <p className="text-lg leading-relaxed">{project.description}</p>
+        </div>
       </main>
       <Footer />
     </div>
