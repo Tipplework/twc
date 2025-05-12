@@ -1,60 +1,37 @@
+// twc/src/pages/Work.tsx
+
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
-
-const workData = [
-  {
-    slug: 'sula-fest',
-    name: 'SulaFest 2025',
-    image: '/lovable-uploads/sulafest.png',
-    category: 'Event Strategy & Activation',
-  },
-  {
-    slug: 'forbes-wpower',
-    name: 'W-Power 2025',
-    image: '/lovable-uploads/forbes.png',
-    category: 'Event Identity',
-  },
-  {
-    slug: 'zomato',
-    name: 'Zomato',
-    image: '/lovable-uploads/zomato.png',
-    category: 'Campaign Activations',
-  },
-  {
-    slug: 'provogue',
-    name: 'Provogue',
-    image: '/lovable-uploads/provogue.png',
-    category: 'Retail',
-  },
-  {
-    slug: 'paul-and-mike',
-    name: 'Paul & Mike',
-    image: '/lovable-uploads/paulandmike.png',
-    category: 'Packaging',
-  },
-];
+import { projectData } from '../lib/projectData';
 
 export default function Work() {
   const [filter, setFilter] = useState('all');
-  const categories = Array.from(new Set(workData.map(p => p.category)));
+  const categories = Array.from(
+    new Set(projectData.map((p) => p.category))
+  );
 
-  const filteredProjects = filter === 'all'
-    ? workData
-    : workData.filter(p => p.category === filter);
+  const filteredProjects =
+    filter === 'all'
+      ? projectData
+      : projectData.filter((p) => p.category === filter);
 
   return (
     <div className="bg-black text-white min-h-screen px-6 md:px-10 py-20">
       <Navbar />
 
       <div className="text-center mb-12">
-        <h1 className="text-4xl md:text-6xl font-bold mb-6">Selected Work</h1>
+        <h1 className="text-4xl md:text-6xl font-bold mb-6">
+          Selected Work
+        </h1>
         <div className="flex flex-wrap justify-center gap-3">
           <button
             className={`px-4 py-1 rounded-full border ${
-              filter === 'all' ? 'bg-white text-black' : 'text-white border-white'
+              filter === 'all'
+                ? 'bg-white text-black'
+                : 'text-white border-white'
             }`}
             onClick={() => setFilter('all')}
           >
@@ -64,7 +41,9 @@ export default function Work() {
             <button
               key={cat}
               className={`px-4 py-1 rounded-full border ${
-                filter === cat ? 'bg-white text-black' : 'text-white border-white'
+                filter === cat
+                  ? 'bg-white text-black'
+                  : 'text-white border-white'
               }`}
               onClick={() => setFilter(cat)}
             >
@@ -83,12 +62,14 @@ export default function Work() {
             >
               <img
                 src={project.image}
-                alt={project.name}
+                alt={project.title}
                 className="w-full h-64 object-cover"
               />
               <div className="p-4">
-                <h2 className="text-lg font-bold">{project.name}</h2>
-                <p className="text-sm text-gray-700">{project.category}</p>
+                <h2 className="text-lg font-bold">{project.title}</h2>
+                <p className="text-sm text-gray-700">
+                  {project.category}
+                </p>
               </div>
             </motion.div>
           </Link>
