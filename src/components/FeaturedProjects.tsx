@@ -6,7 +6,7 @@ export const FeaturedProjects = () => {
   const [current, setCurrent] = useState(0);
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
-  const projects = projectData.slice(0, 6); // Adjust count as needed
+  const projects = projectData.slice(0, 6);
 
   useEffect(() => {
     if (!isMobile) return;
@@ -26,9 +26,7 @@ export const FeaturedProjects = () => {
 
   return (
     <section
-      className={`relative ${
-        isMobile ? 'pt-0 -mt-10' : 'py-16 px-4'
-      } bg-white text-black`}
+      className={`relative ${isMobile ? 'pt-0 -mt-10 pb-4' : 'py-16 px-4'} bg-white text-black`}
       id="featured"
     >
       {!isMobile && (
@@ -38,8 +36,10 @@ export const FeaturedProjects = () => {
       )}
 
       <div
-        className={`relative max-w-6xl mx-auto transition-all duration-500 ease-in-out ${
-          isMobile ? 'w-full h-[60vh] overflow-hidden' : 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6'
+        className={`relative max-w-6xl mx-auto ${
+          isMobile
+            ? 'w-full h-[60vh] overflow-hidden flex items-center justify-center mb-4'
+            : 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6'
         }`}
       >
         {projects.map((project, index) => {
@@ -51,23 +51,25 @@ export const FeaturedProjects = () => {
               className={`block rounded-lg overflow-hidden relative ${
                 isMobile && !show ? 'hidden' : ''
               }`}
+              style={{
+                width: isMobile ? '90%' : undefined,
+                margin: isMobile ? '0 auto' : undefined,
+              }}
             >
               <img
                 src={project.image}
                 alt={project.title}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain"
                 loading="lazy"
+                style={{
+                  maxHeight: isMobile ? '100%' : 'auto',
+                  aspectRatio: isMobile ? '16/9' : undefined,
+                }}
               />
-              {isMobile && (
-                <div className="absolute inset-0 bg-black/30 flex items-center justify-center text-white text-2xl font-semibold">
-                  {project.title}
-                </div>
-              )}
             </Link>
           );
         })}
 
-        {/* Arrows - Mobile only */}
         {isMobile && (
           <>
             <button
