@@ -1,8 +1,3 @@
-import { Link } from 'react-router-dom';
-import { projectData } from '@/lib/projectData';
-
-...
-
 {filteredClients.map((client) => {
   const matchedProject = projectData.find(p => p.image === client.image);
 
