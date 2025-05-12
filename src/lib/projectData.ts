@@ -71,128 +71,74 @@ export const projectData: Project[] = [
   {
     slug: "york-winery",
     title: "YORK WINERY",
-    image: "/lovable-uploads/YORK.png",
+    image: "/lovable-uploads/YORK.webp",
     category: "Alco-Bev",
     description: "A beautiful exploration of York Winery's identity and brand story.",
     videoUrl: "https://player.vimeo.com/video/000002",
-    gallery: ["/lovable-uploads/YORK.png"]
+    gallery: ["/lovable-uploads/YORK.webp"]
   },
   {
     slug: "rasa",
     title: "Rasa",
-    image: "/lovable-uploads/RASA.png",
+    image: "/lovable-uploads/RASA.webp",
     category: "Alco-Bev",
     description: "Visual storytelling and branding for Rasa’s unique wine culture.",
     videoUrl: "https://player.vimeo.com/video/000003",
-    gallery: ["/lovable-uploads/RASA.png"]
+    gallery: ["/lovable-uploads/RASA.webp"]
   },
   {
     slug: "space",
     title: "SPACE",
-    image: "/lovable-uploads/space.png",
+    image: "/lovable-uploads/SPACE.webp",
     category: "F&B",
     description: "Minimalist aesthetics and design systems for SPACE’s food concept.",
     videoUrl: "https://player.vimeo.com/video/000004",
-    gallery: ["/lovable-uploads/space.png"]
-  },
-  {
-    slug: "elaan",
-    title: "ELAAN",
-    image: "/lovable-uploads/elaan.png",
-    category: "Alco-Bev",
-    description: "Premium branding and activation touchpoints for ELAAN beverages.",
-    videoUrl: "https://player.vimeo.com/video/000005",
-    gallery: ["/lovable-uploads/elaan.png"]
-  },
-  {
-    slug: "matero",
-    title: "MATERO",
-    image: "/lovable-uploads/matero.png",
-    category: "F&B",
-    description: "Go-to-market packaging & positioning design for MATERO.",
-    videoUrl: "https://player.vimeo.com/video/000006",
-    gallery: ["/lovable-uploads/matero.png"]
+    gallery: ["/lovable-uploads/SPACE.webp"]
   },
   {
     slug: "estate-monkeys",
     title: "Estate Monkeys",
-    image: "/lovable-uploads/estatemonkey.png",
+    image: "/lovable-uploads/EM.webp",
     category: "F&B",
     description: "Visual systems and storytelling for the estate coffee brand.",
     videoUrl: "https://player.vimeo.com/video/000007",
-    gallery: ["/lovable-uploads/estatemonkey.png"]
-  },
-  {
-    slug: "shakacan",
-    title: "ShakaCan",
-    image: "/lovable-uploads/shakacan.png",
-    category: "Alco-Bev",
-    description: "Funky canned cocktail brand brought to life through quirky visuals.",
-    videoUrl: "https://player.vimeo.com/video/000008",
-    gallery: ["/lovable-uploads/shakacan.png"]
+    gallery: ["/lovable-uploads/EM.webp"]
   },
   {
     slug: "the-source",
     title: "The Source",
-    image: "/lovable-uploads/thesource.png",
+    image: "/lovable-uploads/SOURCE.webp",
     category: "Alco-Bev",
     description: "Brand articulation for The Source at Sula, blending leisure & luxury.",
     videoUrl: "https://player.vimeo.com/video/000009",
-    gallery: ["/lovable-uploads/thesource.png"]
-  },
-  {
-    slug: "kiddopia",
-    title: "KIDDOPIA",
-    image: "/lovable-uploads/kiddopia.png",
-    category: "Lifestyle",
-    description: "Playful and educational branded visuals for KIDDOPIA.",
-    videoUrl: "https://player.vimeo.com/video/000010",
-    gallery: ["/lovable-uploads/kiddopia.png"]
+    gallery: ["/lovable-uploads/SOURCE.webp"]
   },
   {
     slug: "naar",
     title: "NAAR",
-    image: "/lovable-uploads/Naar.png",
+    image: "/lovable-uploads/NAAR.webp",
     category: "Hospitality",
     description: "Creating a distinctive luxe hospitality vibe for NAAR.",
     videoUrl: "https://player.vimeo.com/video/000011",
-    gallery: ["/lovable-uploads/Naar.png"]
-  },
-  {
-    slug: "british-brewing-co",
-    title: "British Brewing Co",
-    image: "/lovable-uploads/Britishbrewingcompany.png",
-    category: "Hospitality",
-    description: "Craft beer heritage and hip pub aesthetic fused for BBC.",
-    videoUrl: "https://player.vimeo.com/video/000012",
-    gallery: ["/lovable-uploads/Britishbrewingcompany.png"]
+    gallery: ["/lovable-uploads/NAAR.webp"]
   },
   {
     slug: "momoland",
     title: "MOMOLAND",
-    image: "/lovable-uploads/momoland.png",
+    image: "/lovable-uploads/ML.webp",
     category: "Hospitality",
     description: "Street food reimagined with MOMOLAND’s experiential concept.",
     videoUrl: "https://player.vimeo.com/video/000013",
-    gallery: ["/lovable-uploads/momoland.png"]
+    gallery: ["/lovable-uploads/ML.webp"]
   },
   {
     slug: "buns-and-slices",
     title: "Buns & Slices",
-    image: "/lovable-uploads/bunsandslices.png",
+    image: "/lovable-uploads/BS.webp",
     category: "Hospitality",
     description: "Quirky interiors and identity work for this cafe brand.",
     videoUrl: "https://player.vimeo.com/video/000014",
-    gallery: ["/lovable-uploads/bunsandslices.png"]
-  },
-  {
-    slug: "copper-grillhouse",
-    title: "COPPER Grillhouse",
-    image: "/lovable-uploads/coppergrillhouse.png",
-    category: "Hospitality",
-    description: "Elegant fusion dining experience branding for COPPER.",
-    videoUrl: "https://player.vimeo.com/video/000015",
-    gallery: ["/lovable-uploads/coppergrillhouse.png"]
+    gallery: ["/lovable-uploads/BS.webp"]
   },
   {
     slug: "beyond-by-sula",
@@ -206,19 +152,10 @@ export const projectData: Project[] = [
   {
     slug: "sprig",
     title: "SPRIG",
-    image: "/lovable-uploads/sprig.png",
+    image: "/lovable-uploads/SPRIG.webp",
     category: "F&B",
     description: "Refreshed identity and pack design for SPRIG’s gourmet offerings.",
     videoUrl: "https://player.vimeo.com/video/000017",
-    gallery: ["/lovable-uploads/sprig.png"]
+    gallery: ["/lovable-uploads/SPRIG.webp"]
   },
-  {
-    slug: "dsg",
-    title: "DSG",
-    image: "/lovable-uploads/DSG.png",
-    category: "Event IP's",
-    description: "Complete creative direction and stage identity for DSG event IP.",
-    videoUrl: "https://player.vimeo.com/video/000018",
-    gallery: ["/lovable-uploads/DSG.png"]
-  }
 ];
