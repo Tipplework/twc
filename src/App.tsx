@@ -5,7 +5,7 @@ import About from "./pages/About";
 import Work from "./pages/Work";
 import Services from "./pages/Services";
 import Contact from "./pages/Contactinnerpage";
-import NotFound from "./pages/NotFound"; // Optional if you have a 404 page
+import NotFound from "./pages/NotFound";
 
 const App = () => {
   return (
@@ -17,7 +17,7 @@ const App = () => {
         <Route path="/services" element={<Services />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/project/:slug" element={<ProjectDetail />} />
-        <Route path="*" element={<NotFound />} /> {/* Optional fallback */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
