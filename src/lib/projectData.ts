@@ -6,190 +6,98 @@ export interface Project {
   image: string;
   category: string;
   description?: string;
-  role?: string[];
+  videoUrl?: string;
   gallery?: string[];
-  video?: string;
 }
 
 export const projectData: Project[] = [
+  // Featured Work
+  {
+    slug: "sula-fest",
+    title: "SulaFest 2025",
+    image: "/lovable-uploads/SF25.webp",
+    category: "Event Strategy & Activation",
+    description: "SulaFest 2025 was an immersive blend of music, culture, and creativity at India’s iconic vineyard destination. Our team led the full activation strategy, spatial design, and identity across the festival experience.",
+    videoUrl: "https://player.vimeo.com/video/123456789", // dummy video
+    gallery: [
+      "/lovable-uploads/SF25.webp",
+      "/lovable-uploads/FORBES.webp",
+      "/lovable-uploads/ZOMATO.webp",
+      "/lovable-uploads/PM.webp"
+    ]
+  },
+  {
+    slug: "forbes-wpower",
+    title: "W-Power 2025",
+    image: "/lovable-uploads/FORBES.webp",
+    category: "Event Identity",
+    description: "Celebrating the power of women leaders across India, this annual Forbes summit demanded bold, clean visuals and a commanding stage design. Our work created a statement experience.",
+    videoUrl: "https://player.vimeo.com/video/987654321",
+    gallery: [
+      "/lovable-uploads/FORBES.webp",
+      "/lovable-uploads/ZOMATO.webp"
+    ]
+  },
+  {
+    slug: "zomato",
+    title: "Zomato",
+    image: "/lovable-uploads/ZOMATO.webp",
+    category: "Campaign Activations",
+    description: "For Zomato’s city-wide dining campaign, we turned high streets into food runways. OOH creative, influencer zones, and curated micro-events were part of this buzz-heavy activation.",
+    videoUrl: "https://player.vimeo.com/video/111222333",
+    gallery: [
+      "/lovable-uploads/ZOMATO.webp",
+      "/lovable-uploads/PROVOGUE.webp"
+    ]
+  },
+  {
+    slug: "provogue",
+    title: "Provogue",
+    image: "/lovable-uploads/PROVOGUE.webp",
+    category: "Retail",
+    description: "We reimagined Provogue’s retail windows and launch visuals for a younger fashion-forward audience. From minimal palettes to statement typography, this revamp turned heads.",
+    videoUrl: "https://player.vimeo.com/video/444555666",
+    gallery: [
+      "/lovable-uploads/PROVOGUE.webp",
+      "/lovable-uploads/PM.webp"
+    ]
+  },
+  {
+    slug: "paul-and-mike",
+    title: "Paul & Mike",
+    image: "/lovable-uploads/PM.webp",
+    category: "Packaging",
+    description: "Packaging design for Paul & Mike’s artisanal chocolate line, balancing flavor-forward expression with eco-conscious storytelling.",
+    videoUrl: "https://player.vimeo.com/video/777888999",
+    gallery: [
+      "/lovable-uploads/PM.webp",
+      "/lovable-uploads/SF25.webp"
+    ]
+  },
+
+  // Clients (reused entries)
   {
     slug: "sula-vineyards",
     title: "Sula Vineyards",
     image: "/lovable-uploads/SULA.png",
-    category: "Alco-Bev",
-    description: "Dummy page for Sula Vineyards project.",
-    role: ["Brand Identity", "Activation"],
-    gallery: ["/lovable-uploads/SULA.png"],
+    category: "Alco-Bev"
   },
   {
-    slug: "york-winery",
-    title: "YORK WINERY",
-    image: "/lovable-uploads/YORK.png",
-    category: "Alco-Bev",
-    description: "Dummy page for YORK WINERY.",
-    role: ["Design System", "Packaging"],
-    gallery: ["/lovable-uploads/YORK.png"],
+    slug: "paul-and-mike-client",
+    title: "Paul & Mike (Client)",
+    image: "/lovable-uploads/paulandmike.png",
+    category: "F&B"
   },
   {
-    slug: "rasa",
-    title: "Rasa",
-    image: "/lovable-uploads/RASA.png",
-    category: "Alco-Bev",
-    description: "Dummy page for Rasa.",
-    role: ["Visual Strategy"],
-    gallery: ["/lovable-uploads/RASA.png"],
-  },
-  {
-    slug: "space",
-    title: "SPACE",
-    image: "/lovable-uploads/space.png",
-    category: "F&B",
-    description: "Dummy page for SPACE.",
-    role: ["Brand Strategy"],
-    gallery: ["/lovable-uploads/space.png"],
-  },
-  {
-    slug: "elaan",
-    title: "ELAAN",
-    image: "/lovable-uploads/elaan.png",
-    category: "Alco-Bev",
-    description: "Dummy page for ELAAN.",
-    role: ["Retail Collateral"],
-    gallery: ["/lovable-uploads/elaan.png"],
-  },
-  {
-    slug: "matero",
-    title: "MATERO",
-    image: "/lovable-uploads/matero.png",
-    category: "F&B",
-    description: "Dummy page for MATERO.",
-    role: ["Visual Language"],
-    gallery: ["/lovable-uploads/matero.png"],
-  },
-  {
-    slug: "estate-monkeys",
-    title: "Estate Monkeys",
-    image: "/lovable-uploads/estatemonkey.png",
-    category: "F&B",
-    description: "Dummy page for Estate Monkeys.",
-    role: ["Digital Branding"],
-    gallery: ["/lovable-uploads/estatemonkey.png"],
+    slug: "provogue-client",
+    title: "Provogue (Client)",
+    image: "/lovable-uploads/provogue.png",
+    category: "Lifestyle"
   },
   {
     slug: "shakacan",
     title: "ShakaCan",
     image: "/lovable-uploads/shakacan.png",
-    category: "Alco-Bev",
-    description: "Dummy page for ShakaCan.",
-    role: ["Packaging"],
-    gallery: ["/lovable-uploads/shakacan.png"],
-  },
-  {
-    slug: "the-source",
-    title: "The Source",
-    image: "/lovable-uploads/thesource.png",
-    category: "Alco-Bev",
-    description: "Dummy page for The Source.",
-    role: ["Space Branding"],
-    gallery: ["/lovable-uploads/thesource.png"],
-  },
-  {
-    slug: "paul-and-mike",
-    title: "Paul & Mike",
-    image: "/lovable-uploads/paulandmike.png",
-    category: "F&B",
-    description: "Dummy page for Paul & Mike.",
-    role: ["Brand Identity", "Packaging"],
-    gallery: ["/lovable-uploads/paulandmike.png"],
-  },
-  {
-    slug: "kiddopia",
-    title: "KIDDOPIA",
-    image: "/lovable-uploads/kiddopia.png",
-    category: "Lifestyle",
-    description: "Dummy page for KIDDOPIA.",
-    role: ["Campaign Development"],
-    gallery: ["/lovable-uploads/kiddopia.png"],
-  },
-  {
-    slug: "naar",
-    title: "NAAR",
-    image: "/lovable-uploads/Naar.png",
-    category: "Hospitality",
-    description: "Dummy page for NAAR.",
-    role: ["Visual Storytelling"],
-    gallery: ["/lovable-uploads/Naar.png"],
-  },
-  {
-    slug: "british-brewing-co",
-    title: "British Brewing Co",
-    image: "/lovable-uploads/Britishbrewingcompany.png",
-    category: "Hospitality",
-    description: "Dummy page for British Brewing Co.",
-    role: ["Brand Expansion"],
-    gallery: ["/lovable-uploads/Britishbrewingcompany.png"],
-  },
-  {
-    slug: "momoland",
-    title: "MOMOLAND",
-    image: "/lovable-uploads/momoland.png",
-    category: "Hospitality",
-    description: "Dummy page for MOMOLAND.",
-    role: ["Naming", "Brand Design"],
-    gallery: ["/lovable-uploads/momoland.png"],
-  },
-  {
-    slug: "buns-and-slices",
-    title: "Buns & Slices",
-    image: "/lovable-uploads/bunsandslices.png",
-    category: "Hospitality",
-    description: "Dummy page for Buns & Slices.",
-    role: ["Social Media Design"],
-    gallery: ["/lovable-uploads/bunsandslices.png"],
-  },
-  {
-    slug: "copper-grillhouse",
-    title: "COPPER Grillhouse",
-    image: "/lovable-uploads/coppergrillhouse.png",
-    category: "Hospitality",
-    description: "Dummy page for COPPER Grillhouse.",
-    role: ["Creative Strategy"],
-    gallery: ["/lovable-uploads/coppergrillhouse.png"],
-  },
-  {
-    slug: "beyond-by-sula",
-    title: "BEYOND BY SULA",
-    image: "/lovable-uploads/Beyond.png",
-    category: "Hospitality",
-    description: "Dummy page for BEYOND BY SULA.",
-    role: ["Web Experience"],
-    gallery: ["/lovable-uploads/Beyond.png"],
-  },
-  {
-    slug: "sprig",
-    title: "SPRIG",
-    image: "/lovable-uploads/sprig.png",
-    category: "F&B",
-    description: "Dummy page for SPRIG.",
-    role: ["Packaging", "Print"],
-    gallery: ["/lovable-uploads/sprig.png"],
-  },
-  {
-    slug: "provogue",
-    title: "provogue",
-    image: "/lovable-uploads/provogue.png",
-    category: "Lifestyle",
-    description: "Dummy page for provogue.",
-    role: ["Retail Activation"],
-    gallery: ["/lovable-uploads/provogue.png"],
-  },
-  {
-    slug: "dsg",
-    title: "DSG",
-    image: "/lovable-uploads/DSG.png",
-    category: "Event IP's",
-    description: "Dummy page for DSG.",
-    role: ["Event IP Branding"],
-    gallery: ["/lovable-uploads/DSG.png"],
+    category: "Alco-Bev"
   }
 ];
