@@ -1,79 +1,94 @@
-// twc/src/pages/ProjectDetail.tsx
-
 import { useParams } from 'react-router-dom';
 import { projectData } from '../lib/projectData';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 export default function ProjectDetail() {
   const { slug } = useParams<{ slug: string }>();
-  const project = projectData.find((p) => p.slug === slug);
-  const [showFullText, setShowFullText] = useState(false);
+  const project = projectData.find(p => p.slug === slug);
+  const [showFullDescription, setShowFullDescription] = useState(false);
 
   if (!project) {
     return <div className="text-center py-20">Project not found.</div>;
   }
 
+  const shortDescription = project.description?.slice(0, 160) ?? '';
+
   return (
     <div className="bg-white text-black min-h-screen">
       <Navbar />
+      <div className="max-w-6xl mx-auto px-4 py-16 space-y-16">
+        {/* Main Hero Section */}
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <img
+            src={project.image}
+            alt={project.title}
+            className="w-full rounded-lg shadow-lg"
+          />
+          <div>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">{project.title}</h1>
+            <p className="text-gray-700 mb-4">
+              {showFullDescription ? project.description : `${shortDescription}...`}
+              {project.description && project.description.length > 160 && (
+                <button
+                  onClick={() => setShowFullDescription(!showFullDescription)}
+                  className="text-blue-500 ml-2 text-sm underline"
+                >
+                  {showFullDescription ? 'Show less' : 'Read more'}
+                </button>
+              )}
+            </p>
 
-      <div className="max-w-5xl mx-auto px-4 py-16">
-        {/* Project Title */}
-        <h1 className="text-4xl font-bold mb-6">{project.title}</h1>
+            {project.role && (
+              <div className="flex flex-wrap gap-2 mb-4">
+                {project.role.map((r, i) => (
+                  <span
+                    key={i}
+                    className="bg-black text-white px-3 py-1 rounded-full text-sm"
+                  >
+                    {r}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+        </motion.div>
 
-        {/* Video if exists */}
+        {/* Video Embed */}
         {project.videoUrl && (
-          <div className="w-full aspect-video mb-10">
+          <div className="aspect-video max-w-5xl mx-auto">
             <iframe
               src={project.videoUrl}
-              title={project.title}
-              className="w-full h-full rounded"
+              title="Project video"
+              className="w-full h-full rounded-lg shadow"
               allowFullScreen
-            ></iframe>
+            />
           </div>
         )}
 
-        {/* Description */}
-        {project.description && (
-          <div className="text-lg text-gray-700 leading-relaxed mb-10 transition-all duration-300">
-            <p className={`${showFullText ? 'line-clamp-none' : 'line-clamp-3'}`}>
-              {project.description}
-            </p>
-            <button
-              className="mt-2 text-sm text-black underline"
-              onClick={() => setShowFullText(!showFullText)}
-            >
-              {showFullText ? 'Show Less' : 'Read More'}
-            </button>
-          </div>
-        )}
-
-        {/* Role tags */}
-        {project.category && (
-          <div className="mb-10">
-            <span className="bg-black text-white px-4 py-2 rounded-full text-sm">
-              {project.category}
-            </span>
-          </div>
-        )}
-
-        {/* Gallery */}
-        {project.gallery && project.gallery.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
-            {project.gallery.map((src, index) => (
-              <img
-                key={index}
+        {/* Gallery Section */}
+        {project.gallery && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-5xl mx-auto">
+            {project.gallery.map((src, i) => (
+              <motion.img
+                key={i}
                 src={src}
-                alt={`Gallery image ${index + 1}`}
-                className="w-full rounded shadow-md hover:scale-105 transition-transform duration-300"
+                alt={`Gallery ${i + 1}`}
+                className="rounded-lg shadow-md"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
               />
             ))}
           </div>
         )}
       </div>
-
       <Footer />
     </div>
   );
