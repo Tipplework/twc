@@ -2,7 +2,6 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
-import { FloatingSocials } from '@/components/ui/FloatingSocials';
 
 const projects = {
   'sula-fest': {
