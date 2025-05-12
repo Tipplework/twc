@@ -7,7 +7,7 @@ import { CustomCursor } from "@/components/CustomCursor";
 import { Testimonials } from "@/components/Testimonials";
 import { ProjectShowcase } from "@/components/ProjectShowcase";
 import { ServicesAccordion } from "@/components/ServicesAccordion";
-import { Clients } from "@/components/Clients";
+import Clients from "@/components/Clients";
 import { FeaturedProjects } from "@/components/FeaturedProjects";
 
 const Index = () => {
