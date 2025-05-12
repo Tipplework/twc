@@ -23,7 +23,12 @@ export const FeaturedProjects = () => {
 
   return (
     <section className="py-16 px-4 bg-white text-black overflow-hidden">
-      <div className="relative max-w-4xl mx-auto h-[280px] md:h-[400px] overflow-hidden rounded-xl">
+      {/* ✅ Original heading style restored */}
+      <h2 className="text-3xl md:text-4xl font-bold text-center mb-10">
+        Selected Work
+      </h2>
+
+      <div className="relative max-w-4xl mx-auto h-[280px] md:h-[400px] overflow-hidden rounded-xl flex justify-center">
         <AnimatePresence initial={false} custom={direction}>
           <motion.div
             key={projects[index].slug}
@@ -32,22 +37,22 @@ export const FeaturedProjects = () => {
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: direction < 0 ? 300 : -300, opacity: 0 }}
             transition={{ duration: 0.6 }}
-            className="absolute top-0 left-0 w-full h-full"
+            className="absolute top-0 left-0 w-full h-full flex justify-center"
           >
-            <Link to={`/project/${projects[index].slug}`} className="block w-full h-full relative group">
+            <Link to={`/project/${projects[index].slug}`} className="block w-full h-full relative group max-w-3xl">
               <motion.img
                 src={projects[index].image}
                 alt={projects[index].title}
-                className="w-full h-full object-cover rounded-xl shadow-md"
+                className="w-full h-full object-cover object-center rounded-xl shadow-md"
                 whileHover={{ scale: 1.06 }}
-                whileTap={{ scale: 1.06 }} // works on mobile tap
+                whileTap={{ scale: 1.06 }} // works on mobile tap too
                 transition={{ duration: 0.3 }}
               />
             </Link>
           </motion.div>
         </AnimatePresence>
 
-        {/* Arrows (only on desktop) */}
+        {/* Arrows (desktop only) */}
         <button
           onClick={() => paginate(-1)}
           className="absolute top-1/2 -translate-y-1/2 left-2 bg-white/80 text-black rounded-full p-2 shadow hover:bg-white transition hidden md:block"
