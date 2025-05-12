@@ -1,85 +1,92 @@
-// twc/src/components/FeaturedProjects.tsx
-
-import { useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
 import { projectData } from '../lib/projectData';
-
-declare global {
-  interface Window {
-    gsap: any;
-    ScrollTrigger: any;
-  }
-}
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 export const FeaturedProjects = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const scrollContainer = useRef<HTMLDivElement>(null);
+  const [scrollIndex, setScrollIndex] = useState(0);
+  const scrollIntervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  const visibleProjects = projectData.slice(0, 10); // Adjust as needed
 
   useEffect(() => {
-    const loadGSAP = async () => {
-      if (!window.gsap) {
-        const script1 = document.createElement('script');
-        script1.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js';
-        document.body.appendChild(script1);
+    startAutoScroll();
+    return () => stopAutoScroll();
+  }, [scrollIndex]);
 
-        const script2 = document.createElement('script');
-        script2.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js';
-        document.body.appendChild(script2);
+  const scrollByIndex = (index: number) => {
+    const container = scrollContainer.current;
+    if (!container) return;
+    const child = container.children[index] as HTMLElement;
+    if (child) child.scrollIntoView({ behavior: 'smooth', inline: 'center' });
+  };
 
-        await new Promise((resolve) => {
-          script2.onload = resolve;
-        });
-      }
+  const startAutoScroll = () => {
+    stopAutoScroll();
+    scrollIntervalRef.current = setInterval(() => {
+      setScrollIndex((prev) => (prev + 1) % visibleProjects.length);
+    }, 3000);
+  };
 
-      if (window.gsap && window.ScrollTrigger) {
-        window.gsap.registerPlugin(window.ScrollTrigger);
+  const stopAutoScroll = () => {
+    if (scrollIntervalRef.current) clearInterval(scrollIntervalRef.current);
+  };
 
-        const elems = sectionRef.current?.querySelectorAll('.project-tile');
-        if (elems) {
-          elems.forEach((el: any, i: number) => {
-            window.gsap.fromTo(
-              el,
-              { y: 50, opacity: 0 },
-              {
-                y: 0,
-                opacity: 1,
-                duration: 1,
-                delay: i * 0.15,
-                scrollTrigger: {
-                  trigger: el,
-                  start: 'top 85%',
-                  toggleActions: 'play none none reverse',
-                },
-              }
-            );
-          });
-        }
-      }
-    };
+  const handleArrowClick = (direction: 'left' | 'right') => {
+    stopAutoScroll();
+    setScrollIndex((prev) =>
+      direction === 'left'
+        ? (prev - 1 + visibleProjects.length) % visibleProjects.length
+        : (prev + 1) % visibleProjects.length
+    );
+  };
 
-    loadGSAP();
-  }, []);
-
-  const topProjects = projectData.slice(0, 5);
+  useEffect(() => {
+    scrollByIndex(scrollIndex);
+  }, [scrollIndex]);
 
   return (
-    <section className="py-16 px-4 bg-white text-black" ref={sectionRef}>
-      <h2 className="text-3xl md:text-4xl font-bold text-center mb-10">Selected Work</h2>
+    <section className="relative w-full bg-white overflow-hidden">
+      <div className="relative">
+        {/* Carousel container */}
+        <div
+          ref={scrollContainer}
+          className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar"
+        >
+          {visibleProjects.map((project, idx) => (
+            <Link
+              key={project.slug}
+              to={`/project/${project.slug}`}
+              className="min-w-full flex-shrink-0 snap-center relative"
+            >
+              <motion.img
+                src={project.image}
+                alt={project.title}
+                className="w-full h-screen object-cover"
+                initial={{ scale: 1 }}
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.6 }}
+              />
+            </Link>
+          ))}
+        </div>
 
-      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {topProjects.map((project) => (
-          <Link
-            key={project.slug}
-            to={`/project/${project.slug}`}
-            className="project-tile block overflow-hidden rounded-lg shadow hover:shadow-xl transition-transform hover:scale-105"
-          >
-            <img
-              src={project.image}
-              alt={project.title}
-              className="w-full h-auto object-cover aspect-video"
-              loading="lazy"
-            />
-          </Link>
-        ))}
+        {/* Left arrow */}
+        <button
+          onClick={() => handleArrowClick('left')}
+          className="absolute top-1/2 left-4 transform -translate-y-1/2 z-10 bg-black/50 text-white p-3 rounded-full hover:bg-black transition"
+        >
+          &#8592;
+        </button>
+
+        {/* Right arrow */}
+        <button
+          onClick={() => handleArrowClick('right')}
+          className="absolute top-1/2 right-4 transform -translate-y-1/2 z-10 bg-black/50 text-white p-3 rounded-full hover:bg-black transition"
+        >
+          &#8594;
+        </button>
       </div>
     </section>
   );
