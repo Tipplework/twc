@@ -1,13 +1,9 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { Navbar } from '../components/ui/Navbar';
-import { Footer } from '../components/ui/Footer';
+import Navbar from '../components/ui/Navbar';
+import Footer from '../components/ui/Footer';
 
-const projects: Record<string, {
-  title: string;
-  image: string;
-  description: string;
-}> = {
+const projects: Record<string, { title: string; image: string; description: string }> = {
   'sula-fest': {
     title: 'SulaFest 2025',
     image: '/lovable-uploads/sulafest.png',
@@ -30,23 +26,35 @@ const projects: Record<string, {
   },
 };
 
-export default function ProjectDetail() {
+const ProjectDetail = () => {
   const { slug } = useParams();
-  const project = projects[slug ?? ''];
+  const project = slug ? projects[slug] : null;
 
-  if (!project) return <div className="text-center mt-20">Project not found.</div>;
+  if (!project) {
+    return (
+      <div className="text-center mt-32">
+        <h1 className="text-2xl font-semibold">Project not found</h1>
+      </div>
+    );
+  }
 
   return (
-    <div className="bg-white text-black min-h-screen">
+    <div className="min-h-screen bg-white text-black">
       <Navbar />
-      <main className="pt-32 px-6 md:px-10">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl font-bold mb-6">{project.title}</h1>
-          <img src={project.image} alt={project.title} className="mb-8 rounded-xl w-full object-cover" />
-          <p className="text-lg leading-relaxed">{project.description}</p>
+      <main className="pt-32 pb-20 px-6 md:px-10">
+        <div className="max-w-5xl mx-auto">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">{project.title}</h1>
+          <p className="text-lg text-zinc-700 mb-10">{project.description}</p>
+          <img
+            src={project.image}
+            alt={project.title}
+            className="w-full rounded-lg shadow-md"
+          />
         </div>
       </main>
       <Footer />
     </div>
   );
-}
+};
+
+export default ProjectDetail;
