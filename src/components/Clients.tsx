@@ -1,31 +1,32 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom'; // ✅ import Link
 
 export const Clients = () => {
   const [hoveredLogo, setHoveredLogo] = useState<number | null>(null);
   const [filter, setFilter] = useState<string>('all');
 
   const clientData = [
-    { id: 1, name: "Sula Vineyards", image: "/lovable-uploads/SULA.png", category: "Alco-Bev" },
-    { id: 2, name: "YORK WINERY", image: "/lovable-uploads/YORK.png", category: "Alco-Bev" },
-    { id: 3, name: "Rasa", image: "/lovable-uploads/RASA.png", category: "Alco-Bev" },
-    { id: 4, name: "SPACE", image: "/lovable-uploads/space.png", category: "F&B" },
-    { id: 5, name: "ELAAN", image: "/lovable-uploads/elaan.png", category: "Alco-Bev" },
-    { id: 6, name: "MATERO", image: "/lovable-uploads/matero.png", category: "F&B" },
-    { id: 7, name: "Estate Monkeys", image: "/lovable-uploads/estatemonkey.png", category: "F&B" },
-    { id: 8, name: "ShakaCan", image: "/lovable-uploads/shakacan.png", category: "Alco-Bev" },
-    { id: 9, name: "The Source", image: "/lovable-uploads/thesource.png", category: "Alco-Bev" },
-    { id: 10, name: "Paul & Mike", image: "/lovable-uploads/paulandmike.png", category: "F&B" },
-    { id: 11, name: "KIDDOPIA", image: "/lovable-uploads/kiddopia.png", category: "Lifestyle" },
-    { id: 12, name: "NAAR", image: "/lovable-uploads/Naar.png", category: "Hospitality" },
-    { id: 13, name: "British Brewing Co", image: "/lovable-uploads/Britishbrewingcompany.png", category: "Hospitality" },
-    { id: 14, name: "MOMOLAND", image: "/lovable-uploads/momoland.png", category: "Hospitality" },
-    { id: 15, name: "Buns & Slices", image: "/lovable-uploads/bunsandslices.png", category: "Hospitality" },
-    { id: 16, name: "COPPER Grillhouse", image: "/lovable-uploads/coppergrillhouse.png", category: "Hospitality" },
-    { id: 17, name: "BEYOND BY SULA", image: "/lovable-uploads/Beyond.png", category: "Hospitality" },
-    { id: 18, name: "SPRIG", image: "/lovable-uploads/sprig.png", category: "F&B" },
-    { id: 19, name: "provogue", image: "/lovable-uploads/provogue.png", category: "Lifestyle" },
-    { id: 20, name: "DSG", image: "/lovable-uploads/DSG.png", category: "Event IP's" }
+    { id: 1, name: "Sula Vineyards", image: "/lovable-uploads/SULA.png", category: "Alco-Bev", slug: "sula-fest" },
+    { id: 2, name: "YORK WINERY", image: "/lovable-uploads/YORK.png", category: "Alco-Bev", slug: "york-winery" },
+    { id: 3, name: "Rasa", image: "/lovable-uploads/RASA.png", category: "Alco-Bev", slug: "rasa" },
+    { id: 4, name: "SPACE", image: "/lovable-uploads/space.png", category: "F&B", slug: "space" },
+    { id: 5, name: "ELAAN", image: "/lovable-uploads/elaan.png", category: "Alco-Bev", slug: "elaan" },
+    { id: 6, name: "MATERO", image: "/lovable-uploads/matero.png", category: "F&B", slug: "matero" },
+    { id: 7, name: "Estate Monkeys", image: "/lovable-uploads/estatemonkey.png", category: "F&B", slug: "estate-monkeys" },
+    { id: 8, name: "ShakaCan", image: "/lovable-uploads/shakacan.png", category: "Alco-Bev", slug: "shakacan" },
+    { id: 9, name: "The Source", image: "/lovable-uploads/thesource.png", category: "Alco-Bev", slug: "the-source" },
+    { id: 10, name: "Paul & Mike", image: "/lovable-uploads/paulandmike.png", category: "F&B", slug: "paul-and-mike" },
+    { id: 11, name: "KIDDOPIA", image: "/lovable-uploads/kiddopia.png", category: "Lifestyle", slug: "kiddopia" },
+    { id: 12, name: "NAAR", image: "/lovable-uploads/Naar.png", category: "Hospitality", slug: "naar" },
+    { id: 13, name: "British Brewing Co", image: "/lovable-uploads/Britishbrewingcompany.png", category: "Hospitality", slug: "british-brewing-co" },
+    { id: 14, name: "MOMOLAND", image: "/lovable-uploads/momoland.png", category: "Hospitality", slug: "momoland" },
+    { id: 15, name: "Buns & Slices", image: "/lovable-uploads/bunsandslices.png", category: "Hospitality", slug: "buns-and-slices" },
+    { id: 16, name: "COPPER Grillhouse", image: "/lovable-uploads/coppergrillhouse.png", category: "Hospitality", slug: "copper-grillhouse" },
+    { id: 17, name: "BEYOND BY SULA", image: "/lovable-uploads/Beyond.png", category: "Hospitality", slug: "beyond-by-sula" },
+    { id: 18, name: "SPRIG", image: "/lovable-uploads/sprig.png", category: "F&B", slug: "sprig" },
+    { id: 19, name: "provogue", image: "/lovable-uploads/provogue.png", category: "Lifestyle", slug: "provogue" },
+    { id: 20, name: "DSG", image: "/lovable-uploads/DSG.png", category: "Event IP's", slug: "dsg" }
   ];
 
   const categories = Array.from(new Set(clientData.map(c => c.category.trim())));
@@ -119,36 +120,37 @@ export const Clients = () => {
                 animate="show"
               >
                 {filteredClients.map((client) => (
-                  <motion.div
-                    key={client.id}
-                    className={`relative bg-white rounded-lg transition-all duration-300 border border-gray-100 hover:border-black overflow-hidden ${
-                      hoveredLogo === client.id ? 'scale-105 shadow-md' : 'scale-100'
-                    }`}
-                    onMouseEnter={() => setHoveredLogo(client.id)}
-                    onMouseLeave={() => setHoveredLogo(null)}
-                    variants={itemVariants}
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    <div className="aspect-square flex items-center justify-center p-6 overflow-hidden">
-                      <img
-                        src={client.image}
-                        alt={client.name}
-                        className={`w-auto h-auto max-h-full object-contain transition-all duration-500 ${
-                          hoveredLogo === client.id ? 'filter-none' : 'grayscale opacity-60'
-                        }`}
-                      />
-                    </div>
-                    <div
-                      className={`absolute inset-0 flex items-end p-3 bg-gradient-to-t from-black/50 to-transparent transition-opacity duration-300 ${
-                        hoveredLogo === client.id ? 'opacity-100' : 'opacity-0'
+                  <Link to={`/project/${client.slug}`} key={client.id}>
+                    <motion.div
+                      className={`relative bg-white rounded-lg transition-all duration-300 border border-gray-100 hover:border-black overflow-hidden ${
+                        hoveredLogo === client.id ? 'scale-105 shadow-md' : 'scale-100'
                       }`}
+                      onMouseEnter={() => setHoveredLogo(client.id)}
+                      onMouseLeave={() => setHoveredLogo(null)}
+                      variants={itemVariants}
+                      whileHover={{ scale: 1.05 }}
                     >
-                      <div>
-                        <p className="text-sm text-white font-medium">{client.name}</p>
-                        <p className="text-xs text-white/80">{client.category}</p>
+                      <div className="aspect-square flex items-center justify-center p-6 overflow-hidden">
+                        <img
+                          src={client.image}
+                          alt={client.name}
+                          className={`w-auto h-auto max-h-full object-contain transition-all duration-500 ${
+                            hoveredLogo === client.id ? 'filter-none' : 'grayscale opacity-60'
+                          }`}
+                        />
                       </div>
-                    </div>
-                  </motion.div>
+                      <div
+                        className={`absolute inset-0 flex items-end p-3 bg-gradient-to-t from-black/50 to-transparent transition-opacity duration-300 ${
+                          hoveredLogo === client.id ? 'opacity-100' : 'opacity-0'
+                        }`}
+                      >
+                        <div>
+                          <p className="text-sm text-white font-medium">{client.name}</p>
+                          <p className="text-xs text-white/80">{client.category}</p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </Link>
                 ))}
               </motion.div>
             )}
