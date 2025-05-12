@@ -1,9 +1,7 @@
-// src/pages/ProjectDetail.tsx
-
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { Navbar } from '@/components/ui/Navbar';
-import { Footer } from '@/components/ui/Footer';
+import { Navbar } from '../components/ui/Navbar';
+import { Footer } from '../components/ui/Footer';
 
 const projects: Record<string, {
   title: string;
