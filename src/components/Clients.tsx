@@ -7,7 +7,7 @@ export const Clients = () => {
   const [filter, setFilter] = useState<string>('all');
 
   const clientData = [
-    { id: 1, name: "Sula Vineyards", image: "/lovable-uploads/SULA.png", category: "Alco-Bev", slug: "sula-fest" },
+    { id: 1, name: "Sula Vineyards", image: "/lovable-uploads/SULA.png", category: "Alco-Bev", slug: "sula-vineyards" },
     { id: 2, name: "YORK WINERY", image: "/lovable-uploads/YORK.png", category: "Alco-Bev", slug: "york-winery" },
     { id: 3, name: "Rasa", image: "/lovable-uploads/RASA.png", category: "Alco-Bev", slug: "rasa" },
     { id: 4, name: "SPACE", image: "/lovable-uploads/space.png", category: "F&B", slug: "space" },
