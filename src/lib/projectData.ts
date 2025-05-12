@@ -8,6 +8,7 @@ export interface Project {
 }
 
 export const projectData: Project[] = [
+  // Featured Work
   {
     slug: "sula-fest",
     title: "SulaFest 2025",
@@ -38,6 +39,8 @@ export const projectData: Project[] = [
     image: "/lovable-uploads/PM.webp",
     category: "Packaging",
   },
+
+  // Client Logos (shared with Featured Work if applicable)
   {
     slug: "sula-vineyards",
     title: "Sula Vineyards",
@@ -50,5 +53,16 @@ export const projectData: Project[] = [
     image: "/lovable-uploads/paulandmike.png",
     category: "F&B",
   },
-  // Add more shared entries here
+  {
+    slug: "provogue-client",
+    title: "Provogue (Client)",
+    image: "/lovable-uploads/provogue.png",
+    category: "Lifestyle",
+  },
+  {
+    slug: "shakacan",
+    title: "ShakaCan",
+    image: "/lovable-uploads/shakacan.png",
+    category: "Alco-Bev",
+  },
 ];
