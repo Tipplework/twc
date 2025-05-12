@@ -59,13 +59,20 @@ export const FeaturedProjects = () => {
               <img
                 src={project.image}
                 alt={project.title}
-                className="w-full h-full object-contain"
+                className={`w-full h-full ${
+                  isMobile ? 'object-contain' : 'object-cover'
+                }`}
                 loading="lazy"
                 style={{
                   maxHeight: isMobile ? '100%' : 'auto',
                   aspectRatio: isMobile ? '16/9' : undefined,
                 }}
               />
+              {!isMobile && (
+                <div className="absolute bottom-0 left-0 w-full text-white bg-black/60 px-4 py-2 text-lg font-semibold">
+                  {project.title}
+                </div>
+              )}
             </Link>
           );
         })}
