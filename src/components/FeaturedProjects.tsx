@@ -31,7 +31,7 @@ export const FeaturedProjects = () => {
     >
       {!isMobile && (
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-10">
-          Selected Work
+          
         </h2>
       )}
 
