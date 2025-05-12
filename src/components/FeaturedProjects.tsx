@@ -3,82 +3,98 @@ import { Link } from 'react-router-dom';
 import { projectData } from '../lib/projectData';
 
 export const FeaturedProjects = () => {
-  const isMobile = window.innerWidth < 768;
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
   const carouselRef = useRef<HTMLDivElement>(null);
-  const [current, setCurrent] = useState(0);
-  const slides = projectData.slice(0, 6);
-  const slideCount = slides.length;
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Auto scroll every 3s
+  const slides = projectData.slice(0, 6); // Adjust number of featured items
+
+  // Auto-scroll every 3s on mobile only
   useEffect(() => {
+    if (!isMobile) return;
+
     const interval = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % slideCount);
+      setCurrentIndex((prev) => (prev + 1) % slides.length);
     }, 3000);
-    return () => clearInterval(interval);
-  }, [slideCount]);
 
-  // Scroll to current index
+    return () => clearInterval(interval);
+  }, [isMobile, slides.length]);
+
+  // Scroll on index change
   useEffect(() => {
-    const carousel = carouselRef.current;
-    if (carousel) {
-      carousel.scrollTo({
-        left: carousel.offsetWidth * current,
-        behavior: 'smooth',
-      });
-    }
-  }, [current]);
+    if (!isMobile || !carouselRef.current) return;
+
+    const scrollTo = carouselRef.current.offsetWidth * currentIndex;
+    carouselRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
+  }, [currentIndex, isMobile]);
 
   const handlePrev = () => {
-    setCurrent((prev) => (prev === 0 ? slideCount - 1 : prev - 1));
+    setCurrentIndex((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
   };
 
   const handleNext = () => {
-    setCurrent((prev) => (prev + 1) % slideCount);
+    setCurrentIndex((prev) => (prev + 1) % slides.length);
   };
 
   return (
     <section className={`relative bg-white ${isMobile ? 'pt-0' : 'py-16 px-4'}`} id="featured">
-      <div
-        ref={carouselRef}
-        className={`flex overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar ${
-          isMobile ? 'h-[100dvh]' : 'max-w-6xl mx-auto gap-6'
-        }`}
-      >
-        {slides.map((project, i) => (
-          <Link
-            to={`/project/${project.slug}`}
-            key={project.slug}
-            className={`relative flex-shrink-0 ${
-              isMobile ? 'w-screen h-full snap-center' : 'w-full sm:w-[48%] md:w-[32%] aspect-video rounded-lg overflow-hidden'
-            }`}
+      {isMobile ? (
+        // --------- MOBILE: HORIZONTAL FULLSCREEN SCROLL ---------
+        <div className="relative overflow-hidden">
+          <div
+            ref={carouselRef}
+            className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar w-screen h-[100dvh]"
           >
-            <img
-              src={project.image}
-              alt={project.title}
-              className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-              loading="lazy"
-            />
-          </Link>
-        ))}
-      </div>
+            {slides.map((project) => (
+              <Link
+                key={project.slug}
+                to={`/project/${project.slug}`}
+                className="w-full flex-shrink-0 snap-center relative"
+              >
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </Link>
+            ))}
+          </div>
 
-      {/* Arrows for Desktop only */}
-      {!isMobile && (
-        <>
+          {/* Arrows */}
           <button
             onClick={handlePrev}
-            className="absolute top-1/2 left-4 -translate-y-1/2 z-10 bg-white/70 hover:bg-white text-black rounded-full p-2 shadow"
-            aria-label="Previous slide"
+            className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/70 text-black rounded-full p-2"
           >
             &#8592;
           </button>
           <button
             onClick={handleNext}
-            className="absolute top-1/2 right-4 -translate-y-1/2 z-10 bg-white/70 hover:bg-white text-black rounded-full p-2 shadow"
-            aria-label="Next slide"
+            className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/70 text-black rounded-full p-2"
           >
             &#8594;
           </button>
+        </div>
+      ) : (
+        // --------- DESKTOP: GRID DISPLAY (NO SCROLL) ---------
+        <>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-10">Selected Work</h2>
+          <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {slides.map((project) => (
+              <Link
+                key={project.slug}
+                to={`/project/${project.slug}`}
+                className="block overflow-hidden rounded-lg shadow hover:shadow-lg transition"
+              >
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-auto object-cover aspect-video"
+                  loading="lazy"
+                />
+              </Link>
+            ))}
+          </div>
         </>
       )}
     </section>
