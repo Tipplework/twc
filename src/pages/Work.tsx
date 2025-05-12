@@ -47,7 +47,6 @@ export default function Work() {
 
   return (
     <div className="bg-black text-white min-h-screen px-6 md:px-10 py-20">
-      <FloatingSocials />
       <Navbar />
 
       <div className="text-center mb-12">
