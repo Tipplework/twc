@@ -18,85 +18,89 @@ export default function ProjectDetail() {
     );
   }
 
-  // ✅ ULTRA-MODERN LAYOUT FOR SULA VINEYARDS
+  // 🟡 ULTRA-MODERN LAYOUT FOR SULA VINEYARDS
   if (slug === 'sula-vineyards') {
     return (
       <div className="bg-white text-black font-sans scroll-smooth">
         <Navbar />
 
-        {/* Hero Image with Overlay */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          className="w-full h-[60vh] overflow-hidden relative"
-        >
-          <img
-            src={project.image}
-            alt="Sula Hero"
-            className="w-full h-full object-cover object-center"
-          />
-          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm flex items-end p-6 sm:p-12">
-            <h1 className="text-4xl sm:text-6xl font-bold text-white drop-shadow-md">
+        {/* Split Hero Section */}
+        <section className="max-w-7xl mx-auto px-6 py-24 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <img
+              src={project.image}
+              alt="Sula Vineyards"
+              className="rounded-2xl shadow-xl w-full object-cover"
+            />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="space-y-6"
+          >
+            <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
               {project.title}
             </h1>
-          </div>
-        </motion.div>
-
-        {/* Introduction Section */}
-        <section className="max-w-5xl mx-auto px-4 py-16 space-y-6">
-          <p className="text-xl text-neutral-700 leading-relaxed">
-            {project.description}
-          </p>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-6 border-t text-sm text-gray-600">
-            <div>
-              <span className="block font-medium text-black">Client</span>
-              Sula Vineyards
+            <p className="text-lg text-gray-600 leading-relaxed">
+              {project.description}
+            </p>
+            <div className="grid grid-cols-2 gap-4 text-sm text-gray-500 pt-6 border-t">
+              <div>
+                <span className="font-semibold text-black block mb-1">Client</span>Sula Vineyards
+              </div>
+              <div>
+                <span className="font-semibold text-black block mb-1">Sector</span>Wine, Hospitality
+              </div>
+              <div>
+                <span className="font-semibold text-black block mb-1">Discipline</span>Brand Identity, Campaigns, Systems
+              </div>
+              <div>
+                <span className="font-semibold text-black block mb-1">Year</span>2023–2025
+              </div>
             </div>
-            <div>
-              <span className="block font-medium text-black">Sector</span>
-              Wine, Hospitality
-            </div>
-            <div>
-              <span className="block font-medium text-black">Discipline</span>
-              Brand Identity, Design System, Campaigns
-            </div>
-            <div>
-              <span className="block font-medium text-black">Year</span>
-              2023–2025
-            </div>
-          </div>
+          </motion.div>
         </section>
 
-        {/* Animated Gallery Grid */}
-        <section className="max-w-6xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {project.gallery.map((img, i) => (
-            <motion.div
-              key={i}
-              whileInView={{ opacity: 1, y: 0 }}
-              initial={{ opacity: 0, y: 30 }}
-              transition={{ duration: 0.4, delay: i * 0.1 }}
-            >
-              <img
-                src={img}
-                alt={`Sula View ${i + 1}`}
-                className="rounded-xl shadow-md object-cover hover:scale-[1.01] transition-transform"
-              />
-            </motion.div>
-          ))}
-        </section>
+        {/* Horizontal Scroll Gallery */}
+        {project.gallery && (
+          <section className="overflow-x-auto whitespace-nowrap scrollbar-hide px-6 pb-12">
+            <div className="flex gap-6 w-max">
+              {project.gallery.map((img, i) => (
+                <motion.img
+                  key={i}
+                  src={img}
+                  alt={`Sula Image ${i + 1}`}
+                  className="h-[480px] rounded-xl object-cover shadow-lg inline-block"
+                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, y: 30 }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                />
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* Embedded Video Section */}
         {project.videoUrl && (
-          <section className="max-w-5xl mx-auto px-4 py-20">
-            <div className="aspect-video rounded-xl overflow-hidden shadow-lg bg-black">
+          <section className="max-w-6xl mx-auto px-6 py-16">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 1 }}
+              className="aspect-video rounded-2xl overflow-hidden shadow-xl"
+            >
               <iframe
                 src={project.videoUrl}
                 title="Sula Video"
                 className="w-full h-full"
                 allowFullScreen
               />
-            </div>
+            </motion.div>
           </section>
         )}
 
@@ -105,14 +109,13 @@ export default function ProjectDetail() {
     );
   }
 
-  // ✅ DEFAULT LAYOUT FOR ALL OTHER PROJECTS
+  // 🧱 DEFAULT LAYOUT FOR ALL OTHER PROJECTS
   const shortDescription = project.description?.slice(0, 160) ?? '';
 
   return (
     <div className="bg-white text-black min-h-screen">
       <Navbar />
       <div className="max-w-6xl mx-auto px-4 py-16 space-y-16">
-        {/* Default Hero Section */}
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center"
           initial={{ opacity: 0, y: 30 }}
@@ -153,7 +156,6 @@ export default function ProjectDetail() {
           </div>
         </motion.div>
 
-        {/* Default Video */}
         {project.videoUrl && (
           <div className="aspect-video max-w-5xl mx-auto">
             <iframe
@@ -165,7 +167,6 @@ export default function ProjectDetail() {
           </div>
         )}
 
-        {/* Default Gallery */}
         {project.gallery && (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-5xl mx-auto">
             {project.gallery.map((src, i) => (
