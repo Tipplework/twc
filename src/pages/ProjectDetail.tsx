@@ -18,83 +18,78 @@ export default function ProjectDetail() {
     );
   }
 
-  // ✨ CUSTOM DESIGNER LAYOUT FOR SULA VINEYARDS
+  // ✅ ULTRA-MODERN LAYOUT FOR SULA VINEYARDS
   if (slug === 'sula-vineyards') {
     return (
-      <div className="bg-white text-black min-h-screen font-sans">
+      <div className="bg-white text-black font-sans scroll-smooth">
         <Navbar />
-        <main className="pt-28 pb-32 px-4 md:px-16">
-          {/* Full Hero Image */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="overflow-hidden rounded-2xl shadow-xl"
-          >
-            <img
-              src={project.image}
-              alt="Sula Vineyards"
-              className="w-full h-auto object-cover"
-            />
-          </motion.div>
 
-          {/* Project Text */}
-          <div className="max-w-5xl mx-auto mt-16 space-y-6">
-            <h1 className="text-5xl md:text-6xl font-bold tracking-tight leading-tight">
-              Sula Vineyards
+        {/* Hero Image with Overlay */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          className="w-full h-[60vh] overflow-hidden relative"
+        >
+          <img
+            src={project.image}
+            alt="Sula Hero"
+            className="w-full h-full object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm flex items-end p-6 sm:p-12">
+            <h1 className="text-4xl sm:text-6xl font-bold text-white drop-shadow-md">
+              {project.title}
             </h1>
-            <p className="text-xl text-neutral-600 leading-relaxed">
-              Brand world design for one of India’s most iconic vineyards — uniting architecture,
-              packaging, hospitality and experience into a cohesive identity.
-            </p>
           </div>
+        </motion.div>
 
-          {/* Meta Info */}
-          <div className="grid md:grid-cols-2 gap-12 mt-20 max-w-6xl mx-auto">
-            <div className="space-y-4 text-base text-gray-700 leading-relaxed">
-              <p>
-                From logo applications across property signages to wine labels, event campaigns, and even
-                resort experiences — the Sula brand language was developed with warmth, earthiness, and
-                celebration at its core.
-              </p>
+        {/* Introduction Section */}
+        <section className="max-w-5xl mx-auto px-4 py-16 space-y-6">
+          <p className="text-xl text-neutral-700 leading-relaxed">
+            {project.description}
+          </p>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-6 border-t text-sm text-gray-600">
+            <div>
+              <span className="block font-medium text-black">Client</span>
+              Sula Vineyards
             </div>
-            <div className="text-sm text-gray-500 space-y-1 border-t md:border-t-0 md:border-l pl-0 md:pl-6 border-gray-200 pt-6 md:pt-0">
-              <div>
-                <span className="font-semibold text-black">Client:</span> Sula Vineyards
-              </div>
-              <div>
-                <span className="font-semibold text-black">Sector:</span> Wine, Hospitality
-              </div>
-              <div>
-                <span className="font-semibold text-black">Discipline:</span> Brand Identity, Design
-                System, Campaigns
-              </div>
-              <div>
-                <span className="font-semibold text-black">Year:</span> 2023–2025
-              </div>
+            <div>
+              <span className="block font-medium text-black">Sector</span>
+              Wine, Hospitality
+            </div>
+            <div>
+              <span className="block font-medium text-black">Discipline</span>
+              Brand Identity, Design System, Campaigns
+            </div>
+            <div>
+              <span className="block font-medium text-black">Year</span>
+              2023–2025
             </div>
           </div>
+        </section>
 
-          {/* Gallery */}
-          {project.gallery && (
-            <div className="grid md:grid-cols-3 gap-6 mt-24 max-w-6xl mx-auto">
-              {project.gallery.map((img, i) => (
-                <motion.img
-                  key={i}
-                  src={img}
-                  alt={`Sula view ${i + 1}`}
-                  className="rounded-xl shadow-md hover:scale-[1.02] transition-transform duration-300"
-                  whileInView={{ opacity: 1, y: 0 }}
-                  initial={{ opacity: 0, y: 20 }}
-                  viewport={{ once: true }}
-                />
-              ))}
-            </div>
-          )}
+        {/* Animated Gallery Grid */}
+        <section className="max-w-6xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {project.gallery.map((img, i) => (
+            <motion.div
+              key={i}
+              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              transition={{ duration: 0.4, delay: i * 0.1 }}
+            >
+              <img
+                src={img}
+                alt={`Sula View ${i + 1}`}
+                className="rounded-xl shadow-md object-cover hover:scale-[1.01] transition-transform"
+              />
+            </motion.div>
+          ))}
+        </section>
 
-          {/* Video */}
-          {project.videoUrl && (
-            <div className="aspect-video max-w-5xl mx-auto mt-20 rounded-xl overflow-hidden shadow-lg">
+        {/* Embedded Video Section */}
+        {project.videoUrl && (
+          <section className="max-w-5xl mx-auto px-4 py-20">
+            <div className="aspect-video rounded-xl overflow-hidden shadow-lg bg-black">
               <iframe
                 src={project.videoUrl}
                 title="Sula Video"
@@ -102,8 +97,9 @@ export default function ProjectDetail() {
                 allowFullScreen
               />
             </div>
-          )}
-        </main>
+          </section>
+        )}
+
         <Footer />
       </div>
     );
@@ -116,7 +112,7 @@ export default function ProjectDetail() {
     <div className="bg-white text-black min-h-screen">
       <Navbar />
       <div className="max-w-6xl mx-auto px-4 py-16 space-y-16">
-        {/* Main Hero Section */}
+        {/* Default Hero Section */}
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center"
           initial={{ opacity: 0, y: 30 }}
@@ -157,7 +153,7 @@ export default function ProjectDetail() {
           </div>
         </motion.div>
 
-        {/* Video Embed */}
+        {/* Default Video */}
         {project.videoUrl && (
           <div className="aspect-video max-w-5xl mx-auto">
             <iframe
@@ -169,7 +165,7 @@ export default function ProjectDetail() {
           </div>
         )}
 
-        {/* Gallery Section */}
+        {/* Default Gallery */}
         {project.gallery && (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-5xl mx-auto">
             {project.gallery.map((src, i) => (
