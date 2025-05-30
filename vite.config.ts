@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 
 // Optional: Only load componentTarget in dev
-import componentTarget from 'lovable-targets';
+// import componentTarget from 'lovable-targets';
 
 export default defineConfig(({ mode }) => ({
   server: {
@@ -12,7 +12,7 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react(),
-    ...(mode === 'development' && componentTarget ? [componentTarget()] : []),
+    // ...(mode === 'development' && componentTarget ? [componentTarget()] : []),
   ],
   resolve: {
     alias: {
