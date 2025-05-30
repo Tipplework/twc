@@ -58,15 +58,19 @@ export const projectData: Project[] = [
     gallery: ["/lovable-uploads/PM.webp"]
   },
 
-  // 🧠 Clients (with dummy project pages)
+  // 🧠 Clients (with updated sula-vineyards)
   {
     slug: "sula-vineyards",
     title: "Sula Vineyards",
     image: "/lovable-uploads/SULA.webp",
     category: "Alco-Bev",
-    description: "Brand world design for one of India’s most loved vineyards.",
-    videoUrl: "https://player.vimeo.com/video/000001",
-    gallery: ["/lovable-uploads/SULA.webp"]
+    description: "Brand world design for one of India’s most iconic vineyards — uniting architecture, packaging, hospitality and experience into a cohesive identity. From logo applications across property signages to wine labels, event campaigns, and even resort experiences — the Sula brand language was developed with warmth, earthiness, and celebration at its core.",
+    videoUrl: "https://player.vimeo.com/video/000001", // Replace with valid link or null
+    gallery: [
+      "/lovable-uploads/SULA.webp",
+      "/lovable-uploads/SULA1.webp",
+      "/lovable-uploads/SULA2.webp"
+    ]
   },
   {
     slug: "york-winery",
@@ -157,5 +161,5 @@ export const projectData: Project[] = [
     description: "Refreshed identity and pack design for SPRIG’s gourmet offerings.",
     videoUrl: "https://player.vimeo.com/video/000017",
     gallery: ["/lovable-uploads/SPRIG.webp"]
-  },
+  }
 ];
