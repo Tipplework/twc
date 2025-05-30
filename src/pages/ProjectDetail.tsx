@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { projectData } from "@/lib/projectData";
-import Navbar from "@/components/Navbar";
+import { Navbar } from '@/components/Navbar';
 import Footer from "@/components/Footer";
 import { Separator } from "@/components/ui/separator";
 
