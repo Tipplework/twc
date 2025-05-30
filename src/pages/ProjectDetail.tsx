@@ -14,6 +14,74 @@ export default function ProjectDetail() {
     return <div className="text-center py-20">Project not found.</div>;
   }
 
+  // 🔥 CUSTOM DESIGNER LAYOUT FOR COLLIER AWARD
+  if (slug === 'collier-award') {
+    return (
+      <div className="bg-white text-black min-h-screen font-sans">
+        <Navbar />
+        <main className="pt-28 pb-32 px-4 md:px-16">
+          {/* Full Hero Image */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+            className="overflow-hidden rounded-2xl shadow-xl"
+          >
+            <img
+              src="/case/collier-award-hero.jpg"
+              alt="Collier Award Hero"
+              className="w-full h-auto object-cover"
+            />
+          </motion.div>
+
+          {/* Project Text */}
+          <div className="max-w-5xl mx-auto mt-16 space-y-6">
+            <h1 className="text-5xl md:text-6xl font-bold tracking-tight leading-tight">
+              Peter F. Collier Award
+            </h1>
+            <p className="text-xl text-neutral-600 leading-relaxed">
+              A typographic and industrial award design commissioned by New York University — symbolizing truth, permanence, and design clarity in journalism.
+            </p>
+          </div>
+
+          {/* Meta Info */}
+          <div className="grid md:grid-cols-2 gap-12 mt-20 max-w-6xl mx-auto">
+            <div className="space-y-4 text-base text-gray-700 leading-relaxed">
+              <p>
+                The form evokes a gold-leafed book, sandblasted and milled to perfection. 
+                The award is both sculptural and symbolic — standing upright in support of ethical journalism.
+              </p>
+            </div>
+            <div className="text-sm text-gray-500 space-y-1 border-t md:border-t-0 md:border-l pl-0 md:pl-6 border-gray-200 pt-6 md:pt-0">
+              <div><span className="font-semibold text-black">Client:</span> New York University</div>
+              <div><span className="font-semibold text-black">Sector:</span> Education</div>
+              <div><span className="font-semibold text-black">Discipline:</span> Industrial & Product Design</div>
+              <div><span className="font-semibold text-black">Team:</span> Tipple Works Co, Daniel Ford</div>
+              <div><span className="font-semibold text-black">Year:</span> 2025</div>
+            </div>
+          </div>
+
+          {/* Gallery */}
+          <div className="grid md:grid-cols-3 gap-6 mt-24 max-w-6xl mx-auto">
+            {['1', '2', '3'].map((img, i) => (
+              <motion.img
+                key={i}
+                src={`/case/collier-award-${img}.jpg`}
+                alt={`Collier View ${img}`}
+                className="rounded-xl shadow-md hover:scale-[1.02] transition-transform duration-300"
+                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 20 }}
+                viewport={{ once: true }}
+              />
+            ))}
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  // ✅ DEFAULT LAYOUT FOR ALL OTHER PROJECTS
   const shortDescription = project.description?.slice(0, 160) ?? '';
 
   return (
