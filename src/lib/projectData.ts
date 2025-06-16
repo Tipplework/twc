@@ -154,8 +154,8 @@ export const projectData: Project[] = [
     title: "SPRIG",
     image: "/lovable-uploads/SPRIG.webp",
     category: "F&B",
-    description: "Refreshed identity and pack design for SPRIG’s gourmet offerings.",
+    description: "Tipple Works Co. is proud to lead the entire 360° marketing strategy for Sprig. From brand storytelling and packaging design to social media, campaign shoots, performance marketing, influencer collaborations, and marketplace strategy, we’re building a bold, premium identity for one of India’s most innovative gourmet brands.With a growing product portfolio across vanilla, yuzu, seasonings, and hot sauces, Sprig is redefining everyday cooking with global flair — and we’re driving that vision, end to end.",
     videoUrl: "https://player.vimeo.com/video/000017",
-    gallery: ["/lovable-uploads/SPRIG.webp"]
+    gallery: ["/lovable-uploads/Sprig.webp"]
   }
 ];
