@@ -32,7 +32,7 @@ const Index = () => {
         {/* ✅ Hero Section with Logo */}
         <div className="min-h-screen bg-black flex flex-col justify-center items-center">
           <img
-            src="/logo.png"
+            src="/twc-logo.png"
             alt="Tipple Works Co. Logo"
             className="w-[280px] md:w-[380px] lg:w-[480px]"
           />
