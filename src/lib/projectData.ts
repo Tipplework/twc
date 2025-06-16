@@ -53,9 +53,9 @@ export const projectData: Project[] = [
     title: "Paul & Mike",
     image: "/lovable-uploads/PM.webp",
     category: "Packaging",
-    description: "Packaging design for Paul & Mike’s artisanal chocolate line, balancing flavor-forward expression with eco-conscious storytelling.",
+    description: "Tipple Works Co. is proud to lead the entire 360° marketing strategy for Paul & Mike Chocolates. From brand storytelling and creative direction to social media management, campaign shoots, influencer activations, and high-impact launches, we’re building a bold, modern identity that reflects the brand’s premium craft and global ambition.With award-winning campaigns, distinctive packaging, and a strong digital and offline presence, Paul & Mike continues to set new standards in Indian chocolate — and we’re driving it, end to end.",
     videoUrl: "https://player.vimeo.com/video/777888999",
-    gallery: ["/lovable-uploads/PM.webp"]
+    gallery: ["/lovable-uploads/Paulandmike.webp"]
   },
 
   // 🧠 Clients (with updated sula-vineyards)
