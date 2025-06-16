@@ -5,10 +5,10 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { CustomCursor } from "@/components/CustomCursor";
 import { Testimonials } from "@/components/Testimonials";
+import { ProjectShowcase } from "@/components/ProjectShowcase";
 import { ServicesAccordion } from "@/components/ServicesAccordion";
 import { Clients } from "@/components/Clients";
-import { Link } from "react-router-dom";
-import { projects } from "@/lib/projectData";
+import { FeaturedProjects } from "@/components/FeaturedProjects";
 
 const Index = () => {
   useEffect(() => {
@@ -48,33 +48,9 @@ const Index = () => {
           </motion.div>
         </div>
 
-        {/* ✅ Featured Projects */}
-        {/* Mobile carousel version */}
-        <div className="flex overflow-x-auto gap-4 px-4 py-8 md:hidden snap-x snap-mandatory">
-          {projects.map((project) => (
-            <Link
-              key={project.slug}
-              to={`/project/${project.slug}`}
-              className="min-w-[85%] snap-start bg-black rounded-xl overflow-hidden shadow-lg"
-            >
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-4">
-                <h3 className="text-white text-xl font-bold">{project.title}</h3>
-                <p className="text-gray-400 text-sm">{project.category}</p>
-              </div>
-            </Link>
-          ))}
-        </div>
-
-        {/* Desktop grid version */}
-        <div className="hidden md:block">
-          <FeaturedProjects />
-        </div>
-
+        {/* ✅ Homepage Sections */}
+        <FeaturedProjects />
+        <ProjectShowcase /> {/* ✅ Phone-friendly gallery or featured block */}
         <Clients />
         <Testimonials />
         <ServicesAccordion />
