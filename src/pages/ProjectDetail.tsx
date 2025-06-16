@@ -42,19 +42,39 @@ export default function ProjectDetail() {
             />
             <div>
               <h1 className="text-4xl font-bold mb-4">{project.title}</h1>
-              <p className="text-lg text-muted-foreground">
-                {isMobile && !showFullText
-                  ? `${project.description?.slice(0, 220)}...`
-                  : project.description}
-              </p>
-              {isMobile && (
+              <div className="relative">
+                <p className="text-lg text-muted-foreground">
+                  {showFullText
+                    ? project.description
+                    : `${project.description?.slice(0, 220)}...`}
+                </p>
                 <button
                   onClick={() => setShowFullText(!showFullText)}
-                  className="mt-2 text-blue-600 text-sm underline"
+                  className="mt-4 inline-block bg-orange-500 text-white text-sm font-medium py-2 px-4 rounded-full hover:bg-orange-600 transition"
                 >
                   {showFullText ? "Read Less" : "Read More"}
                 </button>
-              )}
+
+                <div className="mt-4">
+                  <button
+                    onClick={() => {
+                      if (navigator.share) {
+                        navigator.share({
+                          title: project.title,
+                          text: project.description?.slice(0, 150),
+                          url: window.location.href,
+                        });
+                      } else {
+                        alert("Sharing not supported in this browser.");
+                      }
+                    }}
+                    className="inline-block border border-gray-300 px-4 py-2 text-sm rounded-full text-gray-700 hover:bg-gray-100 transition"
+                  >
+                    Share this Project
+                  </button>
+                </div>
+              </div>
+
               <div className="grid grid-cols-2 gap-4 text-sm text-muted-foreground mt-6">
                 <div>
                   <p className="font-semibold text-black">Client</p>
