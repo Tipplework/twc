@@ -15,7 +15,7 @@ export const projectData: Project[] = [
   {
     slug: "sula-fest",
     title: "SulaFest 2025",
-    image: "/lovable-uploads/Sulafest.webp",
+    image: "/lovable-uploads/SF25.webp",
     category: "Event Strategy & Activation",
     description: "SulaFest is India’s most iconic vineyard music festival — a celebration of music, wine, food, and culture held at the legendary Sula Vineyards. For the 2025 edition, Tipple Works Co. was at the helm of the entire brand and event rollout.We led the overall festival strategy, curating the creative direction and campaign narrative that defined the experience. Our team managed end-to-end creative production, brand partnerships, performance and social marketing, influencer activations, and coordinated photo and video teams for both pre-event buzz and real-time coverage.We also spearheaded on-ground social media management, sponsorship integrations, and ensured consistent brand engagement across digital and physical touchpoints. The result was a high-impact, multi-platform campaign that brought SulaFest 2025 to life like never before.",
     videoUrl: "https://www.youtube.com/results?search_query=sulafest+2025",
