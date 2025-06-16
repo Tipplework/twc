@@ -23,7 +23,7 @@ export const FeaturedProjects = () => {
         {projects.map((project, index) => (
           <div
             key={index}
-            className="relative w-full h-[300px] sm:h-[340px] md:h-[400px] overflow-hidden group"
+            className="relative w-full h-[380px] md:h-[450px] overflow-hidden group"
           >
             <img
               src={project.image}
@@ -31,22 +31,38 @@ export const FeaturedProjects = () => {
               className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
               loading="lazy"
             />
-            <div className="absolute inset-0 bg-black/40 z-10" />
+            <div className="absolute inset-0 bg-black/50 z-10" />
 
-            {/* Overlay Text */}
-            <div className="relative z-20 w-full h-full flex flex-col justify-center items-center text-center text-white px-4">
-              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-1">
-                {project.title}
-              </h3>
-              <p className="text-sm sm:text-base md:text-lg opacity-90 mb-4">
-                {project.category}
-              </p>
-              <Link
-                to={`/project/${project.slug}`}
-                className="border border-white px-4 py-1.5 text-xs md:text-sm uppercase tracking-wider hover:bg-white hover:text-black transition-all duration-300"
-              >
-                View
-              </Link>
+            <div className="relative z-20 w-full h-full flex flex-col justify-between text-white px-5 py-6">
+              {/* Top Left Title + Subheading */}
+              <div>
+                <h3 className="text-2xl md:text-3xl font-semibold">{project.title}</h3>
+                {project.description && (
+                  <p className="text-sm md:text-base text-white/80 mt-1">
+                    {project.description}
+                  </p>
+                )}
+              </div>
+
+              {/* Bottom Left Tags + View */}
+              <div>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.tags?.map((tag, i) => (
+                    <span
+                      key={i}
+                      className="text-xs md:text-sm px-3 py-1 border border-white rounded-full"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <Link
+                  to={`/project/${project.slug}`}
+                  className="inline-block border border-white px-5 py-1.5 text-xs md:text-sm uppercase tracking-wider hover:bg-white hover:text-black transition-all duration-300"
+                >
+                  View
+                </Link>
+              </div>
             </div>
           </div>
         ))}
