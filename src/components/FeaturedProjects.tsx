@@ -3,38 +3,54 @@ import React from 'react';
 import { projectData } from '../lib/projectData';
 import { Link } from 'react-router-dom';
 
+const selectedSlugs = [
+  'sula-fest',
+  'provogue',
+  'paul-and-mike',
+  'sula-vineyards',
+  'zomato',
+  'forbes-w-power',
+];
+
 export const FeaturedProjects = () => {
+  const projects = projectData.filter((project) =>
+    selectedSlugs.includes(project.slug)
+  );
+
   return (
     <section id="featured" className="w-full bg-white text-black">
-      {projectData.map((project, index) => (
-        <div
-          key={index}
-          className="relative h-screen w-full flex items-center justify-center overflow-hidden group"
-        >
-          {/* Fullscreen Background Image */}
-          <img
-            src={project.image}
-            alt={project.title}
-            className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 ease-in-out group-hover:scale-105"
-            loading="lazy"
-          />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1 md:gap-3">
+        {projects.map((project, index) => (
+          <div
+            key={index}
+            className="relative w-full h-[300px] sm:h-[340px] md:h-[400px] overflow-hidden group"
+          >
+            <img
+              src={project.image}
+              alt={project.title}
+              className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-black/40 z-10" />
 
-          {/* Overlay Gradient */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10" />
-
-          {/* Text Content */}
-          <div className="relative z-20 text-white text-center px-6 max-w-3xl">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">{project.title}</h2>
-            <p className="text-lg md:text-xl mb-6">{project.category}</p>
-            <Link
-              to={`/project/${project.slug}`}
-              className="inline-block border border-white px-6 py-2 text-sm uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300"
-            >
-              View
-            </Link>
+            {/* Overlay Text */}
+            <div className="relative z-20 w-full h-full flex flex-col justify-center items-center text-center text-white px-4">
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-1">
+                {project.title}
+              </h3>
+              <p className="text-sm sm:text-base md:text-lg opacity-90 mb-4">
+                {project.category}
+              </p>
+              <Link
+                to={`/project/${project.slug}`}
+                className="border border-white px-4 py-1.5 text-xs md:text-sm uppercase tracking-wider hover:bg-white hover:text-black transition-all duration-300"
+              >
+                View
+              </Link>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </section>
   );
 };
