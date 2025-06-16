@@ -35,9 +35,9 @@ export const projectData: Project[] = [
     title: "Zomato",
     image: "/lovable-uploads/ZOMATO.webp",
     category: "Campaign Activations",
-    description: "For Zomato’s city-wide dining campaign, we turned high streets into food runways. OOH creative, influencer zones, and curated micro-events were part of this buzz-heavy activation.",
+    description: "Zomato’s BTL push across Maharashtra called for high-impact, offer-led creatives designed for instant customer engagement — and Tipple Works Co. delivered.We developed visually bold creatives promoting Zomato’s latest offers and discounts, tailored specifically for on-ground visibility across multiple cities in Maharashtra. From designing print-ready artwork to coordinating widespread distribution and placement, we ensured that every piece landed on time, on brand, and in the right hands.This project highlighted our ability to turn rapid creative execution into measurable on-ground presence, supporting Zomato’s regional growth strategy.",
     videoUrl: "https://player.vimeo.com/video/111222333",
-    gallery: ["/lovable-uploads/ZOMATO.webp", "/lovable-uploads/ZOMATO.webp"]
+    gallery: ["/lovable-uploads/Zomato.webp"]
   },
   {
     slug: "provogue",
