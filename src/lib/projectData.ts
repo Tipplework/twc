@@ -64,13 +64,9 @@ export const projectData: Project[] = [
     title: "Sula Vineyards",
     image: "/lovable-uploads/SULA.webp",
     category: "Alco-Bev",
-    description: "Brand world design for one of India’s most iconic vineyards — uniting architecture, packaging, hospitality and experience into a cohesive identity. From logo applications across property signages to wine labels, event campaigns, and even resort experiences — the Sula brand language was developed with warmth, earthiness, and celebration at its core.",
+    description: "Tipple Works Co. is proud to be the creative and strategic partner behind Sula Vineyards’ ever-evolving brand journey. From campaign planning and visual storytelling to social media, influencer integrations, content production, and experiential rollouts, we’ve been instrumental in shaping the voice and presence of India’s most loved wine brand.With striking visuals, consistent digital engagement, and on-ground brand experiences, Sula continues to lead the wine revolution in India — and we’re right there, driving the momentum every step of the way.",
     videoUrl: "https://player.vimeo.com/video/000001", // Replace with valid link or null
-    gallery: [
-      "/lovable-uploads/SULA.webp",
-      "/lovable-uploads/SULA1.webp",
-      "/lovable-uploads/SULA2.webp"
-    ]
+    gallery: ["/lovable-uploads/Sula.webp"]
   },
   {
     slug: "york-winery",
