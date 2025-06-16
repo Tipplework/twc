@@ -106,12 +106,12 @@ export const projectData: Project[] = [
   },
   {
     slug: "the-source",
-    title: "The Source",
+    title: "The Source At Sula",
     image: "/lovable-uploads/SOURCE.webp",
-    category: "Alco-Bev",
-    description: "Brand articulation for The Source at Sula, blending leisure & luxury.",
+    category: "Resort & Hotels",
+    description: "Tipple Works Co. leads the complete creative and marketing mandate for The Source at Sula — Sula Vineyards’ flagship resort.From visual identity and digital creatives to on-ground signage, in-room collaterals, event branding, and performance marketing, we ensure every touchpoint reflects the resort’s premium, vineyard-side charm.Whether it’s building seasonal campaigns, designing wine tourism experiences, or driving bookings through targeted digital ads, our work brings The Source to life — visually, experientially, and commercially.",
     videoUrl: "https://player.vimeo.com/video/000009",
-    gallery: ["/lovable-uploads/SOURCE.webp"]
+    gallery: ["/lovable-uploads/Thesourceatsula.webp"]
   },
   {
     slug: "naar",
