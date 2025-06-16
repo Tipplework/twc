@@ -44,9 +44,9 @@ export const projectData: Project[] = [
     title: "Provogue",
     image: "/lovable-uploads/PROVOGUE.webp",
     category: "Retail",
-    description: "We reimagined Provogue’s retail windows and launch visuals for a younger fashion-forward audience. From minimal palettes to statement typography, this revamp turned heads.",
+    description: "Provogue, the legendary fashion brand that once defined urban style in India, is back — this time with a bold new step into the world of luggage.Tipple Works Co. is proud to lead the entire 360° marketing strategy for Provogue’s relaunch. From brand storytelling and creative direction to social media management, campaign shoots, influencer activations, and high-impact launch events, we’re building a refreshed identity that speaks to a new generation while honoring Provogue’s iconic legacy.With fresh designs, bold visuals, and a strong digital and offline presence, the Provogue luggage comeback is positioned to make waves — and we’re driving it, end to end.",
     videoUrl: "https://player.vimeo.com/video/444555666",
-    gallery: ["/lovable-uploads/PROVOGUE.webp"]
+    gallery: ["/lovable-uploads/Provogue.webp"]
   },
   {
     slug: "paul-and-mike",
