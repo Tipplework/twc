@@ -23,47 +23,23 @@ export const FeaturedProjects = () => {
         {projects.map((project, index) => (
           <div
             key={index}
-            className="relative w-full h-[380px] md:h-[450px] overflow-hidden group"
+            className="relative w-full h-[500px] overflow-hidden group"
           >
+            {/* Full Image Background */}
             <img
               src={project.image}
               alt={project.title}
-              className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+              className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
               loading="lazy"
             />
-            <div className="absolute inset-0 bg-black/50 z-10" />
 
-            <div className="relative z-20 w-full h-full flex flex-col justify-between text-white px-5 py-6">
-              {/* Top Left Title + Subheading */}
-              <div>
-                <h3 className="text-2xl md:text-3xl font-semibold">{project.title}</h3>
-                {project.description && (
-                  <p className="text-sm md:text-base text-white/80 mt-1">
-                    {project.description}
-                  </p>
-                )}
-              </div>
-
-              {/* Bottom Left Tags + View */}
-              <div>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags?.map((tag, i) => (
-                    <span
-                      key={i}
-                      className="text-xs md:text-sm px-3 py-1 border border-white rounded-full"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <Link
-                  to={`/project/${project.slug}`}
-                  className="inline-block border border-white px-5 py-1.5 text-xs md:text-sm uppercase tracking-wider hover:bg-white hover:text-black transition-all duration-300"
-                >
-                  View
-                </Link>
-              </div>
-            </div>
+            {/* Premium Orange Curved View Button */}
+            <Link
+              to={`/project/${project.slug}`}
+              className="absolute bottom-5 left-1/2 -translate-x-1/2 bg-[#FFA336] text-white px-6 py-2 text-sm rounded-full tracking-wide shadow-md hover:scale-105 transition-transform duration-300 z-10"
+            >
+              View
+            </Link>
           </div>
         ))}
       </div>
