@@ -52,18 +52,16 @@ export default function ProjectDetail() {
 
         <Separator className="my-6" />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {project.gallery?.map((img, i) => (
-            <div key={i} className="overflow-hidden rounded-xl">
-              <img
-                src={img}
-                alt={`${project.title} Image ${i + 1}`}
-                className="w-full h-auto rounded-xl transition duration-300 hover:scale-105"
-                loading="lazy"
-              />
-            </div>
-          ))}
-        </div>
+        {project.gallery?.map((img, i) => (
+          <div key={i} className="w-full flex justify-center my-12">
+            <img
+              src={img}
+              alt={`${project.title} Visual ${i + 1}`}
+              className="w-full max-w-screen-lg h-auto rounded-xl shadow-lg"
+              loading="lazy"
+            />
+          </div>
+        ))}
       </div>
       <Footer />
     </>
