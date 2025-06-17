@@ -25,7 +25,7 @@ export const projectData: Project[] = [
     gallery: ["/lovable-uploads/Sulafest.webp"],
     client: "Sula Vineyards",
     sector: "Wine, Events",
-    discipline: "Event Identity, Campaigns, Social Media",
+    discipline: "360° Marketing",
     year: "2025"
   },
   {
@@ -50,9 +50,9 @@ export const projectData: Project[] = [
     videoUrl: "https://player.vimeo.com/video/111222333",
     gallery: ["/lovable-uploads/Zomato.webp"],
     client: "Zomato",
-    sector: "F&B, Delivery",
+    sector: "F&B",
     discipline: "BTL, Print, Regional Strategy",
-    year: "2024"
+    year: "2025"
   },
   {
     slug: "provogue",
@@ -64,20 +64,20 @@ export const projectData: Project[] = [
     gallery: ["/lovable-uploads/Provogue.webp"],
     client: "Provogue",
     sector: "Retail, Fashion",
-    discipline: "360° Marketing, Creative Direction, Social Media",
-    year: "2024–2025"
+    discipline: "360° Marketing",
+    year: "2025"
   },
   {
     slug: "paul-and-mike",
     title: "Paul & Mike",
     image: "/lovable-uploads/PM.webp",
-    category: "Packaging",
+    category: "FMCG",
     description: "Tipple Works Co. is proud to lead the entire 360° marketing strategy for Paul & Mike Chocolates. From brand storytelling and creative direction to social media management, campaign shoots, influencer activations, and high-impact launches, we’re building a bold, modern identity that reflects the brand’s premium craft and global ambition.With award-winning campaigns, distinctive packaging, and a strong digital and offline presence, Paul & Mike continues to set new standards in Indian chocolate — and we’re driving it, end to end.",
     videoUrl: "https://player.vimeo.com/video/777888999",
     gallery: ["/lovable-uploads/Paulandmike.webp"],
     client: "Paul & Mike",
-    sector: "FMCG, Gourmet",
-    discipline: "Packaging, Brand Identity, Campaigns",
+    sector: "Gourmet Chocolates",
+    discipline: "360° Marketing",
     year: "2023–2025"
   },
   {
@@ -103,7 +103,7 @@ export const projectData: Project[] = [
     gallery: ["/lovable-uploads/Sula.webp"],
     client: "Sula Vineyards",
     sector: "Wine",
-    discipline: "Social Media, Strategy, Visual Identity",
+    discipline: "360° Marketing",
     year: "2023–2025"
   },
   {
@@ -116,8 +116,8 @@ export const projectData: Project[] = [
     gallery: ["/lovable-uploads/YORK.webp"],
     client: "York Winery",
     sector: "Wine",
-    discipline: "Brand Storytelling, Visual Design",
-    year: "2023"
+    discipline: "360° Marketing",
+    year: "2023-2025"
   },
   {
     slug: "rasa",
@@ -129,46 +129,46 @@ export const projectData: Project[] = [
     gallery: ["/lovable-uploads/RASA.webp"],
     client: "Rasa",
     sector: "Wine",
-    discipline: "Visual Design, Brand Identity",
-    year: "2024"
+    discipline: "360° Marketing",
+    year: "2024-2025"
   },
   {
     slug: "space",
     title: "SPACE",
     image: "/lovable-uploads/SPACE.webp",
-    category: "F&B",
+    category: "FMCG",
     description: "Tipple Works Co. partners with Space Coffee to build a bold, visually striking brand across every platform.From packaging design and creative direction to digital content, social media management, and lifestyle photoshoots, we help Space stand out with a futuristic, design-first approach. Every asset is crafted to reflect the brand’s unique identity — sleek, minimal, and made for the modern consumer.",
     videoUrl: "https://player.vimeo.com/video/000004",
     gallery: ["/lovable-uploads/SPACE.webp"],
     client: "SPACE",
-    sector: "F&B, Hospitality",
-    discipline: "Design Systems, Aesthetic Branding",
-    year: "2023"
+    sector: "Coffee, D2C",
+    discipline: "Social Media,Design Systems,Brand Identity",
+    year: "2025"
   },
   {
     slug: "estate-monkeys",
     title: "Estate Monkeys",
     image: "/lovable-uploads/EM.webp",
-    category: "F&B",
+    category: "FMCG",
     description: "For Estate Monkey, Tipple Works Co. handles the complete creative and digital stack — bringing craft coffee to life visually and culturally.From brand storytelling, packaging design, and product photography to social media strategy and digital creatives, we’re building a vibrant, design-forward coffee brand rooted in authenticity and taste. Our goal: make every scroll, sip, and shelf moment feel unforgettable.",
     videoUrl: "https://player.vimeo.com/video/000007",
     gallery: ["/lovable-uploads/EM.webp"],
     client: "Estate Monkeys",
     sector: "Coffee, D2C",
-    discipline: "Branding, Content, Packaging",
-    year: "2024"
+    discipline: "Branding, Social Media, Packaging",
+    year: "2025"
   },
   {
     slug: "the-source",
     title: "The Source At Sula",
     image: "/lovable-uploads/SOURCE.webp",
-    category: "Resort & Hotels",
+    category: "Hospitality",
     description: "Tipple Works Co. leads the complete creative and marketing mandate for The Source at Sula — Sula Vineyards’ flagship resort.From visual identity and digital creatives to on-ground signage, in-room collaterals, event branding, and performance marketing, we ensure every touchpoint reflects the resort’s premium, vineyard-side charm.Whether it’s building seasonal campaigns, designing wine tourism experiences, or driving bookings through targeted digital ads, our work brings The Source to life — visually, experientially, and commercially.",
     videoUrl: "https://player.vimeo.com/video/000009",
     gallery: ["/lovable-uploads/Thesourceatsula.webp"],
     client: "Sula Vineyards",
-    sector: "Hospitality",
-    discipline: "Performance Marketing, Visual Identity, On-ground",
+    sector: "Resort and Hotels",
+    discipline: "360° Marketing",
     year: "2023–2025"
   },
   {
@@ -180,9 +180,9 @@ export const projectData: Project[] = [
     videoUrl: "https://player.vimeo.com/video/000011",
     gallery: ["/lovable-uploads/NAAR.webp"],
     client: "NAAR",
-    sector: "Hospitality",
-    discipline: "Design, Interiors, Brand Vibe",
-    year: "2024"
+    sector: "Restaurant",
+    discipline: "Social Media",
+    year: "2024-2025"
   },
   {
     slug: "momoland",
@@ -193,8 +193,8 @@ export const projectData: Project[] = [
     videoUrl: "https://player.vimeo.com/video/000013",
     gallery: ["/lovable-uploads/ML.webp"],
     client: "MOMOLAND",
-    sector: "QSR, Street Food",
-    discipline: "Experience Design, Branding",
+    sector: "QSR, Restaurant",
+    discipline: "Brand Idenity,Brand Kit",
     year: "2024"
   },
   {
@@ -206,8 +206,8 @@ export const projectData: Project[] = [
     videoUrl: "https://player.vimeo.com/video/000014",
     gallery: ["/lovable-uploads/BS.webp"],
     client: "Buns & Slices",
-    sector: "Café",
-    discipline: "Interiors, Logo, Branding",
+    sector: "QSR, Restaurant",
+    discipline: "Brand Idenity,Brand Kit",
     year: "2024"
   },
   {
@@ -219,21 +219,21 @@ export const projectData: Project[] = [
     videoUrl: "https://player.vimeo.com/video/000016",
     gallery: ["/lovable-uploads/Beyond.png"],
     client: "Sula Vineyards",
-    sector: "Resorts",
-    discipline: "Branding, Content, Art Direction",
+    sector: "Resort and Hotels",
+    discipline: "360° Marketing",
     year: "2024–2025"
   },
   {
     slug: "sprig",
     title: "SPRIG",
     image: "/lovable-uploads/SPRIG.webp",
-    category: "F&B",
+    category: "FMCG",
     description: "Tipple Works Co. is proud to lead the entire 360° marketing strategy for Sprig. From brand positioning and packaging design to social media, performance marketing, content shoots, influencer collaborations, and marketplace strategy, we manage every aspect of the brand’s creative and growth journey.Whether it’s launching global ingredients like Vanilla, Yuzu, and Chipotle or building category-first products in India, we function as Sprig’s end-to-end creative and marketing partner — ensuring every campaign is premium, purposeful, and built to perform.",
     videoUrl: "https://player.vimeo.com/video/000017",
     gallery: ["/lovable-uploads/Sprig.webp"],
     client: "Sprig",
-    sector: "FMCG, Gourmet",
-    discipline: "Packaging, Digital, Performance Marketing",
+    sector: "Gourmet packaged foods",
+    discipline: "360° Marketing",
     year: "2023–2025"
   }
 ];
