@@ -51,7 +51,7 @@ const Contact = () => {
                     <div>
                       <p className="text-lg font-medium">Location</p>
                       <p className="text-zinc-400">
-                        New Delhi, India
+                        Mumbai, India
                       </p>
                     </div>
                   </div>
