@@ -76,22 +76,30 @@ export default function ProjectDetail() {
               </div>
 
               <div className="grid grid-cols-2 gap-4 text-sm text-muted-foreground mt-6">
-                <div>
-                  <p className="font-semibold text-black">Client</p>
-                  <p>{project.title}</p>
-                </div>
-                <div>
-                  <p className="font-semibold text-black">Sector</p>
-                  <p>Wine, Hospitality</p>
-                </div>
-                <div>
-                  <p className="font-semibold text-black">Discipline</p>
-                  <p>Brand Identity, Campaigns, Systems</p>
-                </div>
-                <div>
-                  <p className="font-semibold text-black">Year</p>
-                  <p>2023–2025</p>
-                </div>
+                {project.client && (
+                  <div>
+                    <p className="font-semibold text-black">Client</p>
+                    <p>{project.client}</p>
+                  </div>
+                )}
+                {project.sector && (
+                  <div>
+                    <p className="font-semibold text-black">Sector</p>
+                    <p>{project.sector}</p>
+                  </div>
+                )}
+                {project.discipline && (
+                  <div>
+                    <p className="font-semibold text-black">Discipline</p>
+                    <p>{project.discipline}</p>
+                  </div>
+                )}
+                {project.year && (
+                  <div>
+                    <p className="font-semibold text-black">Year</p>
+                    <p>{project.year}</p>
+                  </div>
+                )}
               </div>
             </div>
           </div>
