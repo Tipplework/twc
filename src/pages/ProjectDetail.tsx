@@ -44,16 +44,23 @@ export default function ProjectDetail() {
               <h1 className="text-4xl font-bold mb-4">{project.title}</h1>
               <div className="relative">
                 <p className="text-lg text-muted-foreground">
-                  {showFullText
-                    ? project.description
-                    : `${project.description?.slice(0, 220)}...`}
+                  {project.description && project.description.length > 220 ? (
+                    showFullText
+                      ? project.description
+                      : `${project.description.slice(0, 220)}...`
+                  ) : (
+                    project.description
+                  )}
                 </p>
-                <button
-                  onClick={() => setShowFullText(!showFullText)}
-                  className="mt-4 inline-block bg-orange-500 text-white text-sm font-medium py-2 px-4 rounded-full hover:bg-orange-600 transition"
-                >
-                  {showFullText ? "Read Less" : "Read More"}
-                </button>
+
+                {project.description && project.description.length > 220 && (
+                  <button
+                    onClick={() => setShowFullText(!showFullText)}
+                    className="mt-4 inline-block bg-orange-500 text-white text-sm font-medium py-2 px-4 rounded-full hover:bg-orange-600 transition"
+                  >
+                    {showFullText ? "Read Less" : "Read More"}
+                  </button>
+                )}
 
                 <div className="mt-4">
                   <button
