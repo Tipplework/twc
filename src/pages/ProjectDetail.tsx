@@ -44,13 +44,11 @@ export default function ProjectDetail() {
               <h1 className="text-4xl font-bold mb-4">{project.title}</h1>
               <div className="relative">
                 <p className="text-lg text-muted-foreground">
-                  {project.description && project.description.length > 220 ? (
-                    showFullText
-                      ? project.description
-                      : `${project.description.slice(0, 220)}...`
-                  ) : (
-                    project.description
-                  )}
+                  {showFullText || !project.description
+                    ? project.description
+                    : `${project.description.slice(0, 220)}${
+                        project.description.length > 220 ? "..." : ""
+                      }`}
                 </p>
 
                 {project.description && project.description.length > 220 && (
