@@ -57,6 +57,15 @@ export const projectData: Project[] = [
     videoUrl: "https://player.vimeo.com/video/777888999",
     gallery: ["/lovable-uploads/Paulandmike.webp"]
   },
+   {
+    slug: "forbes-w-power",
+    title: "Forbes-w-power",
+    image: "/lovable-uploads/FORBES.webp",
+    category: "Event Identity",
+    description: "The Forbes W-Power Awards celebrate India’s most influential women leaders across business, entrepreneurship, and impact. For this landmark event, Tipple Works Co. was entrusted with creating the complete visual and creative identity.We developed a fresh, modern event identity rooted in empowerment and elegance — aligning seamlessly with the Forbes brand while elevating the W-Power platform. From design strategy to execution, our team delivered all key creative assets across digital, print, and on-ground formats, bringing a bold new look and feel to one of India's most prestigious recognition platforms.",
+    videoUrl: "https://player.vimeo.com/video/777888999",
+    gallery: ["/lovable-uploads/Forbes.webp"]
+  },
 
   // 🧠 Clients (with updated sula-vineyards)
   {
