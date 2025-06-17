@@ -29,8 +29,7 @@ export default function ProjectDetail() {
     );
   }
 
-  const shouldTruncate =
-    project.description && project.description.length > 220;
+  const shouldShowButton = project.description && project.description.length > 100;
 
   return (
     <>
@@ -47,12 +46,12 @@ export default function ProjectDetail() {
               <h1 className="text-4xl font-bold mb-4">{project.title}</h1>
               <div className="relative">
                 <p className="text-lg text-muted-foreground">
-                  {showFullText || !shouldTruncate
+                  {showFullText || !shouldShowButton
                     ? project.description
-                    : `${project.description?.slice(0, 220).trim()}...`}
+                    : `${project.description.slice(0, 220).trim()}...`}
                 </p>
 
-                {shouldTruncate && (
+                {shouldShowButton && (
                   <button
                     onClick={() => setShowFullText(!showFullText)}
                     className="mt-4 inline-block bg-orange-500 text-white text-sm font-medium py-2 px-4 rounded-full hover:bg-orange-600 transition"
