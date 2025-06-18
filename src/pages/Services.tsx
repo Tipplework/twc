@@ -1,44 +1,25 @@
 import React from "react";
-import { motion } from "framer-motion";
-import { ShareButton } from "@/components/ShareButton"; // Reuse from ProjectDetail
-import { Navbar } from "@/components/Navbar";
-import Footer from "@/components/Footer";
 
 const Services = () => {
   return (
-    <>
-      <Navbar />
+    <section className="min-h-screen bg-black flex flex-col items-center justify-center text-white text-center px-6 py-20">
+      {/* Tipple Works Logo */}
+      <img
+        src="/lovable-uploads/twc-logo.png" // ✅ Make sure this path is correct
+        alt="Tipple Works Logo"
+        className="h-16 mb-10"
+      />
 
-      <section className="bg-black text-white min-h-screen flex flex-col justify-center items-center relative overflow-hidden px-6">
-        <img
-          src="/lovable-uploads/TWC-LOGO.png"
-          alt="Tipple Works Co."
-          className="h-10 md:h-12 mb-6"
-        />
-
-        <h1 className="text-3xl md:text-5xl font-bold text-center">
-          tipple works co.
-        </h1>
-
-        <motion.div
-          className="mt-10"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-        >
-          <ShareButton
-            url="https://example.com/tippleworks-deck.pdf" // Replace with your actual deck link
-            label="View Our Deck"
-            variant="light"
-          />
-        </motion.div>
-
-        {/* Optional: yellow dot like homepage */}
-        <span className="absolute bottom-16 right-16 w-5 h-5 rounded-full bg-yellow-400 animate-pulse"></span>
-      </section>
-
-      <Footer />
-    </>
+      {/* Call to Action Button */}
+      <a
+        href="https://example.com/tippleworks-deck.pdf" // ✅ Replace with your actual deck URL
+        target="_blank"
+        rel="noopener noreferrer"
+        className="bg-white text-black px-8 py-3 rounded-full text-base font-semibold hover:bg-gray-100 transition"
+      >
+        View Our Deck
+      </a>
+    </section>
   );
 };
 
