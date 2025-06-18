@@ -5,7 +5,7 @@ const Services = () => {
     <section className="min-h-screen bg-black flex flex-col items-center justify-center text-white text-center px-6 py-20">
       {/* Tipple Works Logo */}
       <img
-        src="/lovable-uploads/twc-logo.png" // ✅ Make sure this path is correct
+        src="/public/twc-logo.png" // ✅ Make sure this path is correct
         alt="Tipple Works Logo"
         className="h-16 mb-10"
       />
