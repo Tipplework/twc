@@ -6,6 +6,7 @@ import Work from "./pages/Work";
 import Services from "./pages/Services";
 import Contact from "./pages/Contactinnerpage";
 import NotFound from "./pages/NotFound";
+import ScrollToTop from "./components/ScrollToTop";
 
 const App = () => {
   return (
