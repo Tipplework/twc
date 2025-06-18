@@ -50,15 +50,25 @@ const About = () => {
         </div>
       </motion.section>
 
-      {/* Team Section */}
+      {/* Team Heading */}
       <motion.section
-        className="bg-white py-20 px-6 text-center"
+        className="bg-white text-black text-center py-10"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
         variants={fadeInUp}
       >
-        <h2 className="text-4xl md:text-5xl font-bold mb-12">Meet the Team!</h2>
+        <h2 className="text-4xl md:text-5xl font-bold mb-8">Meet the Team!</h2>
+      </motion.section>
+
+      {/* Team Grid */}
+      <motion.section
+        className="bg-white py-6 px-6 text-center -mt-8"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={fadeInUp}
+      >
         <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {/* Rohan */}
           <div className="relative rounded-xl overflow-hidden group shadow-md">
@@ -123,7 +133,7 @@ const About = () => {
 
       {/* Join Our Team CTA */}
       <motion.section
-        className="bg-[#F5F5F5] text-black py-20 px-6 text-center mb-0"
+        className="bg-[#F5F5F5] text-black py-20 px-6 text-center"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
@@ -141,10 +151,7 @@ const About = () => {
         </a>
       </motion.section>
 
-      {/* Footer */}
-      <div className="!mt-0">
-        <Footer />
-      </div>
+      <Footer />
     </>
   );
 };
