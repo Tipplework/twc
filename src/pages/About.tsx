@@ -38,16 +38,13 @@ const About = () => {
           <div>
             <h2 className="text-2xl font-semibold mb-4">Our Philosophy</h2>
             <p className="text-base md:text-lg leading-relaxed">
-              Tipple Works Co. is a creative-led marketing agency built for ambitious brands. We’re
-              passionate about storytelling, strategy, and design that doesn’t just look good—but
-              delivers real results.
+              Tipple Works Co. is a creative-led marketing agency built for ambitious brands. We’re passionate about storytelling, strategy, and design that doesn’t just look good—but delivers real results.
             </p>
           </div>
           <div>
             <h2 className="text-2xl font-semibold mb-4">How We Work</h2>
             <p className="text-base md:text-lg leading-relaxed">
-              From strategy and identity to campaigns and content—we believe in sharp thinking,
-              clean execution, and working as an extension of your team to bring your brand to life.
+              From strategy and identity to campaigns and content—we believe in sharp thinking, clean execution, and working as an extension of your team to bring your brand to life.
             </p>
           </div>
         </div>
@@ -80,7 +77,7 @@ const About = () => {
         </div>
       </motion.section>
 
-      {/* Mission Section */}
+      {/* Our Mission - Updated */}
       <motion.section
         className="bg-[#F5F5F5] py-20 px-6"
         initial="hidden"
@@ -88,20 +85,18 @@ const About = () => {
         viewport={{ once: true }}
         variants={fadeInUp}
       >
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-          <div>
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div className="w-full h-[300px] md:h-[400px] overflow-hidden rounded-xl shadow-lg">
             <img
               src="/images/mission.jpg"
               alt="Our Mission"
-              className="w-full h-auto rounded-xl shadow-lg object-cover"
+              className="w-full h-full object-cover"
             />
           </div>
-          <div>
-            <h2 className="text-3xl font-bold mb-4">Our Mission</h2>
+          <div className="text-black">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Mission</h2>
             <p className="text-base md:text-lg leading-relaxed">
-              Our goal is to help brands break through the noise. Whether you're building a new
-              identity or scaling what you already have, we’re here to make sure your story is seen,
-              heard, and remembered.
+              Our goal is to help brands break through the noise. Whether you're building a new identity or scaling what you already have, we’re here to make sure your story is seen, heard, and remembered.
             </p>
           </div>
         </div>
