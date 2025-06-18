@@ -108,7 +108,7 @@ export const projectData: Project[] = [
   },
   {
     slug: "york-winery",
-    title: "YORK WINERY",
+    title: "York Winery",
     image: "/lovable-uploads/YORK.webp",
     category: "Alco-Bev",
     description: "Tipple Works Co. leads the digital and creative strategy for York Winery, a hidden gem in Nashik’s wine country.From influencer-led campaigns and social media management to creative direction and content production, we’re helping York craft a distinctive voice that reflects its boutique charm and award-winning wines.With engaging visuals, local storytelling, and curated creator experiences, we’re building York’s presence as a must-visit destination — both online and on the vineyard.",
