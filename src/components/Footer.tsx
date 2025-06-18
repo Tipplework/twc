@@ -1,68 +1,83 @@
-import { Instagram, Linkedin } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import React from "react";
+import { Navbar } from "../components/Navbar";
+import { Footer } from "../components/Footer";
 
-export const Footer = () => {
+export default function About() {
   return (
-    <footer className="py-12 px-6 md:px-10 bg-white border-t border-gray-100">
-      <div className="container mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12">
-          {/* Logo */}
-          <Link to="/" className="flex items-center mb-6 md:mb-0">
-            <img 
-              src="/lovable-uploads/TWC Logoblack.png" 
-              alt="Tipple Works Co." 
-              className="h-5 w-auto"
-            />
-          </Link>
-          
-          {/* Navigation */}
-          <div className="flex flex-col md:flex-row gap-6 md:gap-12">
-            <div className="space-y-3">
-              <p className="text-sm text-gray-400">Navigation</p>
-              <div className="space-y-2">
-                <Link to="/" className="block text-gray-600 hover:text-black transition-colors">Home</Link>
-                <Link to="/about" className="block text-gray-600 hover:text-black transition-colors">About</Link>
-                <Link to="/work" className="block text-gray-600 hover:text-black transition-colors">Work</Link>
-                <Link to="/services" className="block text-gray-600 hover:text-black transition-colors">Services</Link>
-                <Link to="/contact" className="block text-gray-600 hover:text-black transition-colors">Contact</Link>
-              </div>
-            </div>
-            
-            <div className="space-y-3">
-              <p className="text-sm text-gray-400">Connect</p>
-              <div className="flex space-x-4">
-                <a 
-                  href="https://www.instagram.com/tippleworksco/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="p-2 hover:bg-gray-100 rounded-full transition-colors inline-flex"
-                  aria-label="Instagram"
-                >
-                  <Instagram size={20} />
-                </a>
-                <a 
-                  href="https://www.linkedin.com/company/tippleworksco/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="p-2 hover:bg-gray-100 rounded-full transition-colors inline-flex"
-                  aria-label="LinkedIn"
-                >
-                  <Linkedin size={20} />
-                </a>
-              </div>
-            </div>
-          </div>
+    <div className="bg-white text-black">
+      <Navbar />
+
+      {/* Hero personality line */}
+      <section className="bg-[#4F00FF] text-white py-28 px-6 text-center">
+        <h1 className="text-4xl md:text-6xl font-light leading-snug max-w-5xl mx-auto">
+          Straightforward. Warm. Curious. Electric.
+        </h1>
+      </section>
+
+      {/* Big ideas intro */}
+      <section className="py-20 px-6 max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-start">
+        <h2 className="text-7xl font-light text-[#4F00FF]">BIG<span className="text-black">ideas.</span></h2>
+        <div className="text-lg space-y-6">
+          <p>In a chaotic world, great brands can be ignored. We’re here to help.</p>
+          <p>
+            We switch brands on by understanding how they connect with people. Some call it research; we call it rigorous naivety. Exploring without arrogance or assumption to build a genuine picture of the real world.
+          </p>
+          <p>So we can unearth insights that help awaken brand potential.</p>
         </div>
-        
-        <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-gray-100 text-sm text-gray-400">
-          <p>© 2025 Tipple Works Private Limited. All rights reserved.</p>
-          <div className="flex gap-4 mt-4 md:mt-0">
-            <a href="#" className="hover:text-black transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-black transition-colors">Terms of Service</a>
-          </div>
+      </section>
+
+      {/* Mission section */}
+      <section className="py-20 px-6 max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+        <div>
+          <h2 className="text-5xl font-light mb-6">Our mission is to <span className="font-normal">awaken potential.</span></h2>
+          <p className="text-lg text-gray-700 mb-4">
+            Our creativity ignites powerful brand ideas. Helping great brands to be seen and heard. To become and remain relevant for generations to come.
+          </p>
+          <p className="text-lg text-gray-700">
+            We bring brilliant brands closer to their audience by hiring great people. Letting them flourish. Giving them the freedom to unleash their own potential.
+          </p>
         </div>
-      </div>
-    </footer>
+        <img
+          src="/lovable-uploads/people-talking.jpg" // replace with your actual team image
+          alt="Team collaborating"
+          className="rounded-xl shadow-xl"
+        />
+      </section>
+
+      {/* Team Grid */}
+      <section className="py-20 px-6 max-w-7xl mx-auto">
+        <h2 className="text-center text-4xl font-semibold mb-12">Meet Our Team</h2>
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 place-items-center">
+          {[
+            { name: "Rohan Dhirwani", role: "Founder & CEO", image: "/lovable-uploads/team-rohan.png" },
+            { name: "John Doe", role: "Creative Lead", image: "/lovable-uploads/team-john.png" },
+            { name: "Jane Smith", role: "Head of Strategy", image: "/lovable-uploads/team-jane.png" },
+            { name: "Alicia", role: "Senior Designer", image: "/lovable-uploads/team-alicia.png" },
+          ].map((person, idx) => (
+            <div key={idx} className="text-center">
+              <img
+                src={person.image}
+                alt={person.name}
+                className="w-40 h-40 object-cover rounded-full mb-4 shadow-md"
+              />
+              <h3 className="text-lg font-medium text-[#4F00FF]">{person.name}</h3>
+              <p className="text-sm text-gray-600">{person.role}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA Footer */}
+      <section className="py-20 px-6 text-center">
+        <button className="inline-flex items-center border border-[#4F00FF] text-[#4F00FF] rounded-full px-8 py-4 text-lg font-medium hover:bg-[#4F00FF] hover:text-white transition">
+          Come join the team
+          <span className="bg-[#4F00FF] text-white rounded-full w-10 h-10 flex items-center justify-center ml-4">
+            →
+          </span>
+        </button>
+      </section>
+
+      <Footer />
+    </div>
   );
-};
+}
