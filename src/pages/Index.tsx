@@ -2,7 +2,7 @@ import FloatingSocials from '@/components/FloatingSocials';
 import React, { useEffect, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
+import Footer from "@/components/Footer";
 import { CustomCursor } from "@/components/CustomCursor";
 import { Testimonials } from "@/components/Testimonials";
 import { ServicesAccordion } from "@/components/ServicesAccordion";
