@@ -1,83 +1,56 @@
-import React from "react";
-import { Navbar } from "../components/Navbar";
-import { Footer } from "../components/Footer";
+// twc/src/components/Footer.tsx
 
-export default function About() {
+import { Instagram, Linkedin } from "lucide-react";
+import { Link } from "react-router-dom";
+
+const Footer = () => {
   return (
-    <div className="bg-white text-black">
-      <Navbar />
-
-      {/* Hero personality line */}
-      <section className="bg-[#4F00FF] text-white py-28 px-6 text-center">
-        <h1 className="text-4xl md:text-6xl font-light leading-snug max-w-5xl mx-auto">
-          Straightforward. Warm. Curious. Electric.
-        </h1>
-      </section>
-
-      {/* Big ideas intro */}
-      <section className="py-20 px-6 max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-start">
-        <h2 className="text-7xl font-light text-[#4F00FF]">BIG<span className="text-black">ideas.</span></h2>
-        <div className="text-lg space-y-6">
-          <p>In a chaotic world, great brands can be ignored. We’re here to help.</p>
-          <p>
-            We switch brands on by understanding how they connect with people. Some call it research; we call it rigorous naivety. Exploring without arrogance or assumption to build a genuine picture of the real world.
-          </p>
-          <p>So we can unearth insights that help awaken brand potential.</p>
+    <footer className="bg-white text-black mt-24">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 flex flex-col lg:flex-row justify-between items-start">
+        {/* Left: Logo */}
+        <div className="mb-8 lg:mb-0">
+          <img src="/lovable-uploads/TWC-LOGO.png" alt="Tipple Works Logo" className="h-8" />
         </div>
-      </section>
 
-      {/* Mission section */}
-      <section className="py-20 px-6 max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
-        <div>
-          <h2 className="text-5xl font-light mb-6">Our mission is to <span className="font-normal">awaken potential.</span></h2>
-          <p className="text-lg text-gray-700 mb-4">
-            Our creativity ignites powerful brand ideas. Helping great brands to be seen and heard. To become and remain relevant for generations to come.
-          </p>
-          <p className="text-lg text-gray-700">
-            We bring brilliant brands closer to their audience by hiring great people. Letting them flourish. Giving them the freedom to unleash their own potential.
-          </p>
-        </div>
-        <img
-          src="/lovable-uploads/people-talking.jpg" // replace with your actual team image
-          alt="Team collaborating"
-          className="rounded-xl shadow-xl"
-        />
-      </section>
+        {/* Right: Links and Social */}
+        <div className="grid grid-cols-2 gap-8 sm:grid-cols-2 lg:grid-cols-2">
+          {/* Navigation */}
+          <div>
+            <h3 className="text-sm font-semibold text-gray-500 tracking-wider uppercase">Navigation</h3>
+            <ul className="mt-4 space-y-4">
+              <li><Link to="/" className="text-base text-gray-700 hover:text-black">Home</Link></li>
+              <li><Link to="/about" className="text-base text-gray-700 hover:text-black">About</Link></li>
+              <li><Link to="/work" className="text-base text-gray-700 hover:text-black">Work</Link></li>
+              <li><Link to="/services" className="text-base text-gray-700 hover:text-black">Services</Link></li>
+              <li><Link to="/contact" className="text-base text-gray-700 hover:text-black">Contact</Link></li>
+            </ul>
+          </div>
 
-      {/* Team Grid */}
-      <section className="py-20 px-6 max-w-7xl mx-auto">
-        <h2 className="text-center text-4xl font-semibold mb-12">Meet Our Team</h2>
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 place-items-center">
-          {[
-            { name: "Rohan Dhirwani", role: "Founder & CEO", image: "/lovable-uploads/team-rohan.png" },
-            { name: "John Doe", role: "Creative Lead", image: "/lovable-uploads/team-john.png" },
-            { name: "Jane Smith", role: "Head of Strategy", image: "/lovable-uploads/team-jane.png" },
-            { name: "Alicia", role: "Senior Designer", image: "/lovable-uploads/team-alicia.png" },
-          ].map((person, idx) => (
-            <div key={idx} className="text-center">
-              <img
-                src={person.image}
-                alt={person.name}
-                className="w-40 h-40 object-cover rounded-full mb-4 shadow-md"
-              />
-              <h3 className="text-lg font-medium text-[#4F00FF]">{person.name}</h3>
-              <p className="text-sm text-gray-600">{person.role}</p>
+          {/* Connect */}
+          <div>
+            <h3 className="text-sm font-semibold text-gray-500 tracking-wider uppercase">Connect</h3>
+            <div className="mt-4 flex space-x-6">
+              <a href="https://www.instagram.com/tippleworksco" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-black">
+                <Instagram className="h-5 w-5" />
+              </a>
+              <a href="https://www.linkedin.com/company/tippleworksco" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-black">
+                <Linkedin className="h-5 w-5" />
+              </a>
             </div>
-          ))}
+          </div>
         </div>
-      </section>
+      </div>
 
-      {/* CTA Footer */}
-      <section className="py-20 px-6 text-center">
-        <button className="inline-flex items-center border border-[#4F00FF] text-[#4F00FF] rounded-full px-8 py-4 text-lg font-medium hover:bg-[#4F00FF] hover:text-white transition">
-          Come join the team
-          <span className="bg-[#4F00FF] text-white rounded-full w-10 h-10 flex items-center justify-center ml-4">
-            →
-          </span>
-        </button>
-      </section>
-
-      <Footer />
-    </div>
+      {/* Bottom Footer */}
+      <div className="border-t border-gray-200 py-6 text-center text-sm text-gray-500">
+        <p>© 2025 Tipple Works Private Limited. All rights reserved.</p>
+        <div className="mt-2">
+          <Link to="/privacy" className="text-gray-500 hover:text-black mr-4">Privacy Policy</Link>
+          <Link to="/terms" className="text-gray-500 hover:text-black">Terms of Service</Link>
+        </div>
+      </div>
+    </footer>
   );
-}
+};
+
+export default Footer;
