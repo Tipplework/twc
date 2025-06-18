@@ -26,7 +26,7 @@ export const Clients = () => {
     { id: 17, name: "BEYOND BY SULA", image: "/lovable-uploads/Beyond.png", category: "Hospitality", slug: "beyond-by-sula" },
     { id: 18, name: "SPRIG", image: "/lovable-uploads/sprig.png", category: "F&B", slug: "sprig" },
     { id: 19, name: "provogue", image: "/lovable-uploads/provogue.png", category: "Lifestyle", slug: "provogue" },
-    { id: 20, name: "DSG", image: "/lovable-uploads/DSG.png", category: "Event IP's", slug: "DSG" }
+    { id: 20, name: "DSG", image: "/lovable-uploads/DSG.png", category: "Event IP's", slug: "DSG" },
     { id: 21, name: "Zealo", image: "/lovable-uploads/ZEALO.png", category: "F&B", slug: "Zealo" }
     ];
 
