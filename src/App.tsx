@@ -10,6 +10,7 @@ import NotFound from "./pages/NotFound";
 const App = () => {
   return (
     <BrowserRouter>
+      <ScrollToTop /> 
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/about" element={<About />} />
