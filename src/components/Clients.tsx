@@ -30,7 +30,7 @@ export const Clients = () => {
     { id: 21, name: "Zealo", image: "/lovable-uploads/ZEALO.png", category: "F&B", slug: "Zealo" },
     { id: 22, name: "VLIV", image: "/lovable-uploads/VLIV.png", category: "Hospitality", slug: "VLIV" },
     { id: 23, name: "SULAFEST", image: "/lovable-uploads/SULAFEST.png", category: "Event IP's", slug: "sula-fest" },
-    { id: 24, name: "FORBES", image: "/lovable-uploads/FORBES.png", category: "Event IP's", slug: "forbes-wpower" },
+    { id: 24, name: "FORBES", image: "/lovable-uploads/FORBES.png", category: "Event IP's", slug: "forbes-w-power" },
     { id: 24, name: "ZOMATO", image: "/lovable-uploads/ZOMATO.png", category: "Hospitality", slug: "zomato" }
     ];
 
