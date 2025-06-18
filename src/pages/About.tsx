@@ -26,7 +26,7 @@ const About = () => {
         </h1>
       </motion.section>
 
-      {/* Philosophy + How We Work (No Image) */}
+      {/* Philosophy Section */}
       <motion.section
         className="bg-[#F5F5F5] text-black py-20 px-6"
         initial="hidden"
@@ -50,54 +50,52 @@ const About = () => {
         </div>
       </motion.section>
 
-      {/* Team Section - Styled Like Work Cards */}
+      {/* Team Section */}
       <motion.section
-        className="bg-white py-20 px-6"
+        className="bg-white py-20 px-6 text-center"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
         variants={fadeInUp}
       >
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold mb-12 text-center">Meet Our Team</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-            {/* Rohan Dhirwani */}
-            <div className="relative rounded-xl overflow-hidden group">
-              <img
-                src="/lovable-uploads/rohandhirwani.png"
-                alt="Rohan Dhirwani"
-                className="w-full h-[400px] object-cover transition-transform duration-300 group-hover:scale-105"
-              />
-              <div className="absolute bottom-0 left-0 w-full bg-white/90 backdrop-blur p-4">
-                <p className="text-lg font-semibold">Rohan Dhirwani</p>
-                <p className="text-sm text-gray-600">Founder & CEO</p>
-              </div>
+        <h2 className="text-4xl md:text-5xl font-bold mb-12">Meet the Team!</h2>
+        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          {/* Rohan */}
+          <div className="relative rounded-xl overflow-hidden group shadow-md">
+            <img
+              src="/lovable-uploads/rohandhirwani.png"
+              alt="Rohan Dhirwani"
+              className="w-full h-[400px] object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+            <div className="absolute bottom-0 left-0 w-full bg-white/90 backdrop-blur p-4">
+              <p className="text-lg font-semibold text-black">Rohan Dhirwani</p>
+              <p className="text-sm text-gray-600">Founder & CEO</p>
             </div>
+          </div>
 
-            {/* Ansh Bhatia */}
-            <div className="relative rounded-xl overflow-hidden group">
-              <img
-                src="/lovable-uploads/AnshBhatia.jpeg"
-                alt="Ansh Bhatia"
-                className="w-full h-[400px] object-cover transition-transform duration-300 group-hover:scale-105"
-              />
-              <div className="absolute bottom-0 left-0 w-full bg-white/90 backdrop-blur p-4">
-                <p className="text-lg font-semibold">Ansh Bhatia</p>
-                <p className="text-sm text-gray-600">Co-Founder & Creative Head</p>
-              </div>
+          {/* Ansh */}
+          <div className="relative rounded-xl overflow-hidden group shadow-md">
+            <img
+              src="/lovable-uploads/AnshBhatia.jpeg"
+              alt="Ansh Bhatia"
+              className="w-full h-[400px] object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+            <div className="absolute bottom-0 left-0 w-full bg-white/90 backdrop-blur p-4">
+              <p className="text-lg font-semibold text-black">Ansh Bhatia</p>
+              <p className="text-sm text-gray-600">Co-Founder & Creative Head</p>
             </div>
+          </div>
 
-            {/* Srishti Bhatia */}
-            <div className="relative rounded-xl overflow-hidden group">
-              <img
-                src="/lovable-uploads/SrishtiBhatia.jpg"
-                alt="Srishti Bhatia"
-                className="w-full h-[400px] object-cover transition-transform duration-300 group-hover:scale-105"
-              />
-              <div className="absolute bottom-0 left-0 w-full bg-white/90 backdrop-blur p-4">
-                <p className="text-lg font-semibold">Srishti Bhatia</p>
-                <p className="text-sm text-gray-600">Co-Founder & Business Head</p>
-              </div>
+          {/* Srishti */}
+          <div className="relative rounded-xl overflow-hidden group shadow-md">
+            <img
+              src="/lovable-uploads/SrishtiBhatia.jpg"
+              alt="Srishti Bhatia"
+              className="w-full h-[400px] object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+            <div className="absolute bottom-0 left-0 w-full bg-white/90 backdrop-blur p-4">
+              <p className="text-lg font-semibold text-black">Srishti Bhatia</p>
+              <p className="text-sm text-gray-600">Co-Founder & Business Head</p>
             </div>
           </div>
         </div>
