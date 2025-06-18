@@ -1,7 +1,7 @@
 
 import { useEffect } from 'react';
 import { Navbar } from '@/components/Navbar';
-import { Footer } from '@/components/Footer';
+import Footer from "@/components/Footer";
 import { CustomCursor } from '@/components/CustomCursor';
 import { Instagram, MapPin, Phone, Mail } from 'lucide-react';
 
