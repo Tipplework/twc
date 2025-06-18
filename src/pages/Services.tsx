@@ -1,6 +1,6 @@
 import React from 'react';
-import { Navbar } from '@/components/Navbar';
-import Footer from "@/components/Footer";
+import { Navbar } from '@/components/Navbar';  // ✅ Correct import
+import Footer from '@/components/Footer';
 
 export default function Services() {
   const handleShare = async () => {
@@ -21,18 +21,19 @@ export default function Services() {
   };
 
   const handleDeckClick = () => {
-    window.open('https://drive.google.com/drive/folders/1oD8mWzAWKjpeHTk4_hvnyQf23eSE8Tuk'); //
+    window.open('https://drive.google.com/drive/folders/1oD8mWzAWKjpeHTk4_hvnyQf23eSE8Tuk', '_blank');
   };
 
   return (
     <>
-      <Header />
+      <Navbar />
+
       <main className="bg-black text-white flex flex-col justify-center items-center h-[calc(100vh-120px)] px-4 text-center">
         {/* Logo */}
         <img
           src="/twc-logo.png"
           alt="Tipple Works Logo"
-          className="w-[260px] md:w-[360px] lg:w-[420px] mb-8"
+          className="w-[300px] md:w-[440px] lg:w-[560px] mb-8"
         />
 
         {/* Buttons */}
@@ -51,6 +52,7 @@ export default function Services() {
           </button>
         </div>
       </main>
+
       <Footer />
     </>
   );
