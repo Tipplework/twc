@@ -10,7 +10,7 @@ const Footer = () => {
         {/* Logo */}
         <div className="mb-8 lg:mb-0">
           <img
-            src="/lovable-uploads/TWC-LOGO.png"
+            src="/lovable-uploads/twc-logo.png"
             alt="Tipple Works Logo"
             className="h-8"
           />
