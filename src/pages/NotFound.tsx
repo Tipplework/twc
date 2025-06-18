@@ -2,7 +2,7 @@
 import { useLocation, Link } from "react-router-dom";
 import { useEffect } from "react";
 import { Navbar } from '@/components/Navbar';
-import { Footer } from '@/components/Footer';
+import Footer from "@/components/Footer";
 import { CustomCursor } from '@/components/CustomCursor';
 
 const NotFound = () => {
