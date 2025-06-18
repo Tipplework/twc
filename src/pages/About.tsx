@@ -52,18 +52,18 @@ const About = () => {
 
       {/* Team Heading */}
       <motion.section
-        className="bg-white text-black text-center py-10"
+        className="bg-white text-black text-center pt-10 pb-4"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
         variants={fadeInUp}
       >
-        <h2 className="text-4xl md:text-5xl font-bold mb-8">Meet the Team!</h2>
+        <h2 className="text-4xl md:text-5xl font-bold">Meet the Team!</h2>
       </motion.section>
 
       {/* Team Grid */}
       <motion.section
-        className="bg-white py-6 px-6 text-center -mt-8"
+        className="bg-white py-6 px-6 text-center"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
@@ -83,19 +83,6 @@ const About = () => {
             </div>
           </div>
 
-          {/* Ansh */}
-          <div className="relative rounded-xl overflow-hidden group shadow-md">
-            <img
-              src="/lovable-uploads/AnshBhatia.jpeg"
-              alt="Ansh Bhatia"
-              className="w-full h-[400px] object-cover transition-transform duration-300 group-hover:scale-105"
-            />
-            <div className="absolute bottom-0 left-0 w-full bg-white/90 backdrop-blur p-4">
-              <p className="text-lg font-semibold text-black">Ansh Bhatia</p>
-              <p className="text-sm text-gray-600">Co-Founder & Creative Head</p>
-            </div>
-          </div>
-
           {/* Srishti */}
           <div className="relative rounded-xl overflow-hidden group shadow-md">
             <img
@@ -106,6 +93,19 @@ const About = () => {
             <div className="absolute bottom-0 left-0 w-full bg-white/90 backdrop-blur p-4">
               <p className="text-lg font-semibold text-black">Srishti Bhatia</p>
               <p className="text-sm text-gray-600">Co-Founder & Business Head</p>
+            </div>
+          </div>
+
+          {/* Ansh */}
+          <div className="relative rounded-xl overflow-hidden group shadow-md">
+            <img
+              src="/lovable-uploads/AnshBhatia.jpeg"
+              alt="Ansh Bhatia"
+              className="w-full h-[400px] object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+            <div className="absolute bottom-0 left-0 w-full bg-white/90 backdrop-blur p-4">
+              <p className="text-lg font-semibold text-black">Ansh Bhatia</p>
+              <p className="text-sm text-gray-600">Co-Founder & Creative Head</p>
             </div>
           </div>
         </div>
