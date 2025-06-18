@@ -186,7 +186,7 @@ export const projectData: Project[] = [
   },
   {
     slug: "momoland",
-    title: "MOMOLAND",
+    title: "Momoland",
     image: "/lovable-uploads/ML.webp",
     category: "Hospitality",
     description: "MoMo Land is a vibrant QSR brand reimagining the way India eats momos — bold, fast, and full of flavour.Tipple Works Co. was brought on to craft the entire brand identity from the ground up — from naming, logo design, and visual language to packaging, store graphics, and digital presence.We built a brand that’s fun, memorable, and built for scale — blending street-style energy with modern QSR sensibilities. Every touchpoint, from social media creatives to on-ground brand elements, reflects a strong, cohesive identity made to stand out in a competitive food landscape.",
@@ -212,7 +212,7 @@ export const projectData: Project[] = [
   },
   {
     slug: "beyond-by-sula",
-    title: "BEYOND BY SULA",
+    title: "Beyond by Sula",
     image: "/lovable-uploads/Beyond.png",
     category: "Hospitality",
     description: "Beyond by Sula is a luxury lakeside resort by Sula Vineyards — where nature, wine, and indulgence come together.Tipple Works Co. drives the creative and digital strategy for the resort, handling everything from brand storytelling, content design, and performance marketing to social media, influencer stays, and photoshoots.With a focus on serenity, sophistication, and sensory escapes, we help position Beyond by Sula as a must-visit destination for discerning travellers seeking a vineyard-side retreat.",
