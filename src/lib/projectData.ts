@@ -235,5 +235,18 @@ export const projectData: Project[] = [
     sector: "Gourmet packaged foods",
     discipline: "360° Marketing",
     year: "2023–2025"
+  },
+  {
+    slug: "DSG",
+    title: "DSG",
+    image: "/lovable-uploads/DSG.png",
+    category: "Event Strategy & Activation",
+    description: "Tipple Works Co. has proudly partnered with DSG Consumer Partners as the creative and production agency for their Annual General Meeting (AGM) over the past two years.From event identity and thematic branding to stage design, presentations, print collaterals, and digital assets, we handled the end-to-end creative production to bring the DSG AGM to life — ensuring every detail reflected the firm’s sharp, founder-first philosophy.Beyond design, our team also led event planning, vendor coordination, AV management, and live production, making sure the experience was seamless, high-impact, and on-brand.",
+    videoUrl: "https://player.vimeo.com/video/000017",
+    gallery: ["/lovable-uploads/Dsg.webp"],
+    client: "DSG Consumer Partners",
+    sector: "FMCG investor group",
+    discipline: "Event Marketing",
+    year: "2023–2025"
   }
 ];
