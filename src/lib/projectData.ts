@@ -235,5 +235,18 @@ export const projectData: Project[] = [
     sector: "FMCG investor group",
     discipline: "Event Marketing",
     year: "2023–2025"
+  },
+  {
+    slug: "thesourcewines",
+    title: "The Source Vineyards",
+    image: "/lovable-uploads/SOURCE.webp",
+    category: "Alco-Bev",
+    description: "The Source Vineyard by Sula is a premium wine label that blends old-world charm with new-world expression — elegant, expressive, and rooted in heritage.Tipple Works Co. leads the entire 360° marketing mandate for The Source, including brand strategy, packaging design, digital campaigns, influencer activations, social media management, and performance marketing.From telling the story of each vintage to crafting standout visuals and managing campaigns that drive awareness and sales, we operate as the brand’s end-to-end marketing partner — ensuring The Source continues to be one of India’s most refined wine labels.",
+    videoUrl: "https://player.vimeo.com/video/000009",
+    gallery: ["/lovable-uploads/Thesource.webp"],
+    client: "Sula Vineyards",
+    sector: "Wine",
+    discipline: "360° Marketing",
+    year: "2023–2025"
   }
 ];
