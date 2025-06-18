@@ -29,19 +29,6 @@ export const projectData: Project[] = [
     year: "2025"
   },
   {
-    slug: "forbes-wpower",
-    title: "W-Power 2025",
-    image: "/lovable-uploads/FORBES.webp",
-    category: "Event Identity",
-    description: "The Forbes W-Power Awards celebrate India’s most influential women across business, entrepreneurship, leadership, and social impact — a platform that honours power, purpose, and progress. For this prestigious event, Tipple Works Co. was brought on board to craft the entire creative vision from the ground up.Our mandate was clear: to develop a distinct and contemporary visual identity that not only aligned with Forbes’ global brand standards but also captured the spirit of modern Indian womanhood — powerful, poised, and visionary.We conceptualised and executed a fresh, elegant design system that ran across all touchpoints — including event branding, digital and social creatives, print collaterals, stage and set design elements, invites, certificates, motion graphics, and more. Every asset was created with intention, combining minimalism with authority and impact with grace.Beyond aesthetics, our focus was on building a cohesive visual language that elevated the W-Power experience — creating a memorable, immersive brand environment for awardees, attendees, and the Forbes community.With this project, Tipple Works Co. helped shape the visual and emotional tone of one of India’s most respected platforms for celebrating women in power.",
-    videoUrl: "https://player.vimeo.com/video/987654321",
-    gallery: ["/lovable-uploads/Forbes.webp"],
-    client: "Forbes India",
-    sector: "Media, Events",
-    discipline: "Brand Identity, Systems, Campaigns",
-    year: "2025"
-  },
-  {
     slug: "zomato",
     title: "Zomato",
     image: "/lovable-uploads/ZOMATO.webp",
