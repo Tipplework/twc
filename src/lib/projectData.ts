@@ -134,7 +134,7 @@ export const projectData: Project[] = [
   },
   {
     slug: "space",
-    title: "SPACE",
+    title: "Space",
     image: "/lovable-uploads/SPACE.webp",
     category: "FMCG",
     description: "Tipple Works Co. partners with Space Coffee to build a bold, visually striking brand across every platform.From packaging design and creative direction to digital content, social media management, and lifestyle photoshoots, we help Space stand out with a futuristic, design-first approach. Every asset is crafted to reflect the brand’s unique identity — sleek, minimal, and made for the modern consumer.",
