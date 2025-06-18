@@ -38,19 +38,22 @@ const About = () => {
           <div>
             <h2 className="text-2xl font-semibold mb-4">Our Philosophy</h2>
             <p className="text-base md:text-lg leading-relaxed">
-              Tipple Works Co. is a creative-led marketing agency built for ambitious brands. We’re passionate about storytelling, strategy, and design that doesn’t just look good—but delivers real results.
+              Tipple Works Co. is a creative-led marketing agency built for ambitious brands. We’re
+              passionate about storytelling, strategy, and design that doesn’t just look good—but
+              delivers real results.
             </p>
           </div>
           <div>
             <h2 className="text-2xl font-semibold mb-4">How We Work</h2>
             <p className="text-base md:text-lg leading-relaxed">
-              From strategy and identity to campaigns and content—we believe in sharp thinking, clean execution, and working as an extension of your team to bring your brand to life.
+              From strategy and identity to campaigns and content—we believe in sharp thinking,
+              clean execution, and working as an extension of your team to bring your brand to life.
             </p>
           </div>
         </div>
       </motion.section>
 
-      {/* Team Grid */}
+      {/* Team Grid with Designations */}
       <motion.section
         className="bg-white py-16 px-6"
         initial="hidden"
@@ -60,24 +63,50 @@ const About = () => {
       >
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold mb-10 text-center">Meet Our Team</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-            {Array.from({ length: 8 }).map((_, i) => (
-              <div
-                key={i}
-                className="w-full aspect-square bg-gray-200 rounded-xl overflow-hidden shadow-md"
-              >
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {/* Ansh Bhatia */}
+            <div className="text-center">
+              <div className="w-full aspect-square bg-gray-200 rounded-xl overflow-hidden shadow-md">
                 <img
-                  src={`/images/team-${i + 1}.jpg`}
-                  alt={`Team member ${i + 1}`}
+                  src="/lovable-uploads/AnshBhatia.jpeg"
+                  alt="Ansh Bhatia"
                   className="w-full h-full object-cover"
                 />
               </div>
-            ))}
+              <p className="mt-4 text-lg font-semibold">Ansh Bhatia</p>
+              <p className="text-sm text-gray-600">Co-Founder & Creative Head</p>
+            </div>
+
+            {/* Rohan Dhirwani */}
+            <div className="text-center">
+              <div className="w-full aspect-square bg-gray-200 rounded-xl overflow-hidden shadow-md">
+                <img
+                  src="/lovable-uploads/rohandhirwani.png"
+                  alt="Rohan Dhirwani"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <p className="mt-4 text-lg font-semibold">Rohan Dhirwani</p>
+              <p className="text-sm text-gray-600">Founder & CEO</p>
+            </div>
+
+            {/* Srishti Bhatia */}
+            <div className="text-center">
+              <div className="w-full aspect-square bg-gray-200 rounded-xl overflow-hidden shadow-md">
+                <img
+                  src="/lovable-uploads/SrishtiBhatia.jpg"
+                  alt="Srishti Bhatia"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <p className="mt-4 text-lg font-semibold">Srishti Bhatia</p>
+              <p className="text-sm text-gray-600">Co-Founder & Business Head</p>
+            </div>
           </div>
         </div>
       </motion.section>
 
-      {/* Our Mission - Updated */}
+      {/* Our Mission */}
       <motion.section
         className="bg-[#F5F5F5] py-20 px-6"
         initial="hidden"
@@ -96,7 +125,9 @@ const About = () => {
           <div className="text-black">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Mission</h2>
             <p className="text-base md:text-lg leading-relaxed">
-              Our goal is to help brands break through the noise. Whether you're building a new identity or scaling what you already have, we’re here to make sure your story is seen, heard, and remembered.
+              Our goal is to help brands break through the noise. Whether you're building a new
+              identity or scaling what you already have, we’re here to make sure your story is seen,
+              heard, and remembered.
             </p>
           </div>
         </div>
