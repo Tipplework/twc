@@ -1,6 +1,6 @@
 import React from 'react';
-import { Header } from '@/components/Header';
-import  Footer  from '@/components/Footer';
+import { Navbar } from '@/components/Navbar';
+import Footer from "@/components/Footer";
 
 export default function Services() {
   const handleShare = async () => {
@@ -21,7 +21,7 @@ export default function Services() {
   };
 
   const handleDeckClick = () => {
-    window.open('https://your-deck-link.com', '_blank'); // 🔁 Replace with actual deck link
+    window.open('https://drive.google.com/drive/folders/1oD8mWzAWKjpeHTk4_hvnyQf23eSE8Tuk'); //
   };
 
   return (
