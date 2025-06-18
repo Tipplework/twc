@@ -1,55 +1,129 @@
-
-import { useEffect } from 'react';
-import { Navbar } from '@/components/Navbar';
+import React from "react";
+import { motion } from "framer-motion";
+import { Navbar } from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { CustomCursor } from '@/components/CustomCursor';
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+};
 
 const About = () => {
-  useEffect(() => {
-    document.title = "About Us | Tipple Works Co.";
-  }, []);
-
   return (
-    <div className="bg-black text-white min-h-screen">
-      <CustomCursor />
+    <>
       <Navbar />
-      
-      <main className="pt-32 pb-20 px-6 md:px-10">
-        <div className="container mx-auto max-w-4xl">
-          <h1 className="text-5xl md:text-6xl font-bold mb-8">About Us</h1>
-          
-          <div className="space-y-6 text-lg text-zinc-300">
-            <p>
-              Tipple Works Co. is a full-service creative marketing agency founded with a clear vision: to bridge the gap between innovative brands and their audiences through exceptional creative strategy and execution.
+
+      {/* Hero Section */}
+      <motion.section
+        className="bg-white text-black py-24 px-6 text-center"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={fadeInUp}
+      >
+        <h1 className="text-4xl md:text-6xl font-bold leading-tight max-w-4xl mx-auto">
+          We build bold brands with clarity, creativity, and cultural insight.
+        </h1>
+      </motion.section>
+
+      {/* Two-Column Philosophy */}
+      <motion.section
+        className="bg-[#F5F5F5] text-black py-16 px-6"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={fadeInUp}
+      >
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
+          <div>
+            <h2 className="text-2xl font-semibold mb-4">Our Philosophy</h2>
+            <p className="text-base md:text-lg leading-relaxed">
+              Tipple Works Co. is a creative-led marketing agency built for ambitious brands. We’re passionate about storytelling, strategy, and design that doesn’t just look good—but delivers real results.
             </p>
-            
-            <p>
-              We don't just run campaigns—we build brands, drive growth, and shape the future of businesses. What began as a boutique agency has transformed into a strategic marketing partner for brands across industries, delivering impactful, performance-driven marketing solutions that make a real difference.
+          </div>
+          <div>
+            <h2 className="text-2xl font-semibold mb-4">How We Work</h2>
+            <p className="text-base md:text-lg leading-relaxed">
+              From strategy and identity to campaigns and content—we believe in sharp thinking, clean execution, and working as an extension of your team to bring your brand to life.
             </p>
-            
-            <p>
-              Our team comprises experienced professionals from diverse backgrounds, united by our passion for creativity and commitment to delivering tangible results. We believe that great marketing isn't just about aesthetics—it's about understanding business objectives, consumer psychology, and market dynamics to create strategies that drive meaningful engagement and growth.
-            </p>
-            
-            <h2 className="text-3xl font-bold mt-12 mb-4">Our Approach</h2>
-            
-            <p>
-              At Tipple Works Co., we don't believe in one-size-fits-all marketing. We tailor every strategy to fit your brand's unique needs, ensuring that every move is intentional and impactful. Our approach is rooted in creativity, data, and a deep understanding of business growth—giving you more than just marketing, but a roadmap to sustained success.
-            </p>
-            
-            <p>
-              We manage everything that falls within your marketing budget—from brand building and digital growth to performance-driven campaigns that fuel business success. But we're not just about marketing; we embed ourselves in your business strategy, ensuring that every marketing move aligns with your company's vision and growth ambitions.
-            </p>
-            
-            <div className="pt-8 text-center">
-              <p className="text-2xl font-bold">Marketing That Works. Business That Grows.</p>
-            </div>
           </div>
         </div>
-      </main>
-      
+      </motion.section>
+
+      {/* Team Grid */}
+      <motion.section
+        className="bg-white py-16 px-6"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={fadeInUp}
+      >
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold mb-10 text-center">Meet Our Team</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <div
+                key={i}
+                className="w-full aspect-square bg-gray-200 rounded-xl overflow-hidden shadow-md"
+              >
+                <img
+                  src={`/images/team-${i + 1}.jpg`}
+                  alt={`Team member ${i + 1}`}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </motion.section>
+
+      {/* Mission Section */}
+      <motion.section
+        className="bg-[#F5F5F5] py-20 px-6"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={fadeInUp}
+      >
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+          <div>
+            <img
+              src="/images/mission.jpg"
+              alt="Our Mission"
+              className="w-full h-auto rounded-xl shadow-lg object-cover"
+            />
+          </div>
+          <div>
+            <h2 className="text-3xl font-bold mb-4">Our Mission</h2>
+            <p className="text-base md:text-lg leading-relaxed">
+              Our goal is to help brands break through the noise. Whether you're building a new identity or scaling what you already have, we’re here to make sure your story is seen, heard, and remembered.
+            </p>
+          </div>
+        </div>
+      </motion.section>
+
+      {/* CTA */}
+      <motion.section
+        className="bg-black text-white py-20 px-6 text-center"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={fadeInUp}
+      >
+        <h2 className="text-3xl md:text-4xl font-bold mb-4">Let’s build something unforgettable.</h2>
+        <p className="text-base md:text-lg mb-8">
+          Start your next project with Tipple Works Co. today.
+        </p>
+        <a
+          href="/contact"
+          className="inline-block bg-white text-black px-6 py-3 rounded-full font-medium hover:bg-gray-200 transition"
+        >
+          Get in Touch
+        </a>
+      </motion.section>
+
       <Footer />
-    </div>
+    </>
   );
 };
 
