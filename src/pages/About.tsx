@@ -26,114 +26,84 @@ const About = () => {
         </h1>
       </motion.section>
 
-      {/* Two-Column Section */}
+      {/* Philosophy + How We Work (No Image) */}
       <motion.section
-        className="bg-[#F5F5F5] text-black py-16 px-6"
+        className="bg-[#F5F5F5] text-black py-20 px-6"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
         variants={fadeInUp}
       >
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div className="max-w-4xl mx-auto space-y-12">
           <div>
-            <h2 className="text-2xl font-semibold mb-4">Our Philosophy</h2>
+            <h2 className="text-2xl font-semibold mb-3">Our Philosophy</h2>
             <p className="text-base md:text-lg leading-relaxed">
-              Tipple Works Co. is a creative-led marketing agency built for ambitious brands. We’re
-              passionate about storytelling, strategy, and design that doesn’t just look good—but
-              delivers real results.
+              Tipple Works Co. is a creative-led marketing agency built for ambitious brands. We’re passionate about storytelling, strategy, and design that doesn’t just look good—but delivers real results.
             </p>
           </div>
           <div>
-            <h2 className="text-2xl font-semibold mb-4">How We Work</h2>
+            <h2 className="text-2xl font-semibold mb-3">How We Work</h2>
             <p className="text-base md:text-lg leading-relaxed">
-              From strategy and identity to campaigns and content—we believe in sharp thinking,
-              clean execution, and working as an extension of your team to bring your brand to life.
+              From strategy and identity to campaigns and content—we believe in sharp thinking, clean execution, and working as an extension of your team to bring your brand to life.
             </p>
           </div>
         </div>
       </motion.section>
 
-      {/* Team Grid with Designations */}
+      {/* Team Section - Styled Like Work Cards */}
       <motion.section
-        className="bg-white py-16 px-6"
+        className="bg-white py-20 px-6"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
         variants={fadeInUp}
       >
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold mb-10 text-center">Meet Our Team</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {/* Ansh Bhatia */}
-            <div className="text-center">
-              <div className="w-full aspect-square bg-gray-200 rounded-xl overflow-hidden shadow-md">
-                <img
-                  src="/lovable-uploads/AnshBhatia.jpeg"
-                  alt="Ansh Bhatia"
-                  className="w-full h-full object-cover"
-                />
+          <h2 className="text-3xl font-bold mb-12 text-center">Meet Our Team</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+            {/* Rohan Dhirwani */}
+            <div className="relative rounded-xl overflow-hidden group">
+              <img
+                src="/lovable-uploads/rohandhirwani.png"
+                alt="Rohan Dhirwani"
+                className="w-full h-[400px] object-cover transition-transform duration-300 group-hover:scale-105"
+              />
+              <div className="absolute bottom-0 left-0 w-full bg-white/90 backdrop-blur p-4">
+                <p className="text-lg font-semibold">Rohan Dhirwani</p>
+                <p className="text-sm text-gray-600">Founder & CEO</p>
               </div>
-              <p className="mt-4 text-lg font-semibold">Ansh Bhatia</p>
-              <p className="text-sm text-gray-600">Co-Founder & Creative Head</p>
             </div>
 
-            {/* Rohan Dhirwani */}
-            <div className="text-center">
-              <div className="w-full aspect-square bg-gray-200 rounded-xl overflow-hidden shadow-md">
-                <img
-                  src="/lovable-uploads/rohandhirwani.png"
-                  alt="Rohan Dhirwani"
-                  className="w-full h-full object-cover"
-                />
+            {/* Ansh Bhatia */}
+            <div className="relative rounded-xl overflow-hidden group">
+              <img
+                src="/lovable-uploads/AnshBhatia.jpeg"
+                alt="Ansh Bhatia"
+                className="w-full h-[400px] object-cover transition-transform duration-300 group-hover:scale-105"
+              />
+              <div className="absolute bottom-0 left-0 w-full bg-white/90 backdrop-blur p-4">
+                <p className="text-lg font-semibold">Ansh Bhatia</p>
+                <p className="text-sm text-gray-600">Co-Founder & Creative Head</p>
               </div>
-              <p className="mt-4 text-lg font-semibold">Rohan Dhirwani</p>
-              <p className="text-sm text-gray-600">Founder & CEO</p>
             </div>
 
             {/* Srishti Bhatia */}
-            <div className="text-center">
-              <div className="w-full aspect-square bg-gray-200 rounded-xl overflow-hidden shadow-md">
-                <img
-                  src="/lovable-uploads/SrishtiBhatia.jpg"
-                  alt="Srishti Bhatia"
-                  className="w-full h-full object-cover"
-                />
+            <div className="relative rounded-xl overflow-hidden group">
+              <img
+                src="/lovable-uploads/SrishtiBhatia.jpg"
+                alt="Srishti Bhatia"
+                className="w-full h-[400px] object-cover transition-transform duration-300 group-hover:scale-105"
+              />
+              <div className="absolute bottom-0 left-0 w-full bg-white/90 backdrop-blur p-4">
+                <p className="text-lg font-semibold">Srishti Bhatia</p>
+                <p className="text-sm text-gray-600">Co-Founder & Business Head</p>
               </div>
-              <p className="mt-4 text-lg font-semibold">Srishti Bhatia</p>
-              <p className="text-sm text-gray-600">Co-Founder & Business Head</p>
             </div>
           </div>
         </div>
       </motion.section>
 
-      {/* Our Mission */}
-      <motion.section
-        className="bg-[#F5F5F5] py-20 px-6"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={fadeInUp}
-      >
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div className="w-full h-[300px] md:h-[400px] overflow-hidden rounded-xl shadow-lg">
-            <img
-              src="/images/mission.jpg"
-              alt="Our Mission"
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="text-black">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Mission</h2>
-            <p className="text-base md:text-lg leading-relaxed">
-              Our goal is to help brands break through the noise. Whether you're building a new
-              identity or scaling what you already have, we’re here to make sure your story is seen,
-              heard, and remembered.
-            </p>
-          </div>
-        </div>
-      </motion.section>
-
-      {/* CTA: Get in Touch */}
+      {/* Get in Touch CTA */}
       <motion.section
         className="bg-black text-white py-20 px-6 text-center"
         initial="hidden"
@@ -153,9 +123,9 @@ const About = () => {
         </a>
       </motion.section>
 
-      {/* CTA: Join Our Team */}
+      {/* Join Our Team CTA */}
       <motion.section
-        className="bg-[#F5F5F5] text-black py-20 px-6 text-center"
+        className="bg-[#F5F5F5] text-black py-20 px-6 text-center mb-0"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
@@ -173,7 +143,10 @@ const About = () => {
         </a>
       </motion.section>
 
-      <Footer />
+      {/* Footer */}
+      <div className="!mt-0">
+        <Footer />
+      </div>
     </>
   );
 };
