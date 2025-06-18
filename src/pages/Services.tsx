@@ -1,7 +1,7 @@
 
 import { useEffect, useState, useRef } from 'react';
 import { Navbar } from '@/components/Navbar';
-import { Footer } from '@/components/Footer';
+import Footer from "@/components/Footer";
 import { CustomCursor } from '@/components/CustomCursor';
 import { Instagram, Linkedin, Twitter, Sparkles, Star } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
