@@ -4,6 +4,7 @@ import { Navbar } from '@/components/Navbar';
 import Footer from "@/components/Footer";
 import { Separator } from "@/components/ui/separator";
 import { useState, useEffect } from "react";
+import { CustomCursor } from '@/components/CustomCursor';
 
 export default function ProjectDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -34,6 +35,7 @@ export default function ProjectDetail() {
   return (
     <>
       <Navbar />
+      <CustomCursor /> 
       <div className="bg-white text-black">
         <div className="px-6 md:px-12 max-w-7xl mx-auto py-12">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-12">
