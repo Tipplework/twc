@@ -28,7 +28,7 @@ export default function Services() {
   return (
     <>
       <Navbar />
-
+      <CustomCursor />
       <main className="bg-black text-white flex flex-col justify-center items-center h-[calc(100vh-120px)] px-4 text-center">
         {/* Logo */}
         <img
