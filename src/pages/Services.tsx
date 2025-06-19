@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navbar } from '@/components/Navbar';  // ✅ Correct import
 import Footer from '@/components/Footer';
+import { CustomCursor } from '@/components/CustomCursor';
 
 export default function Services() {
   const handleShare = async () => {
