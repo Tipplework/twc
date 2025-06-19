@@ -18,7 +18,7 @@ export default function PrivacyPolicy() {
       </ul>
 
       <p className="mt-8 text-gray-300">
-        For any queries, contact us at <a href="mailto:rohandhirwani@tippleworks.com" className="text-blue-400 underline">rohandhirwani@tippleworks.com</a>.
+        For any queries, contact us at <a href="mailto:admin@tippleworks.com" className="text-blue-400 underline">admin@tippleworks.com</a>.
       </p>
     </section>
   );
