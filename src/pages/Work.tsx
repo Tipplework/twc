@@ -22,7 +22,7 @@ export default function Work() {
   return (
     <div className="bg-black text-white min-h-screen px-6 md:px-10 py-20">
       <Navbar />
-
+      <CustomCursor /> 
       <div className="text-center mb-12">
         <h1 className="text-4xl md:text-6xl font-bold mb-6">
           Selected Work
