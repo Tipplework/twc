@@ -83,10 +83,10 @@ const Footer = () => {
       <div className="border-t border-gray-200 py-6 text-center text-sm text-gray-500">
         <p>© 2025 Tipple Works Private Limited. All rights reserved.</p>
         <div className="mt-2">
-          <Link to="/privacy" className="text-gray-500 hover:text-black mr-4">
+          <Link to="/privacy-policy" className="text-gray-500 hover:text-black mr-4">
             Privacy Policy
           </Link>
-          <Link to="/terms" className="text-gray-500 hover:text-black">
+          <Link to="/terms-of-service" className="text-gray-500 hover:text-black">
             Terms of Service
           </Link>
         </div>
