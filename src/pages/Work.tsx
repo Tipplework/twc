@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { Navbar } from '../components/Navbar';
 import Footer from "@/components/Footer";
 import { projectData } from '../lib/projectData';
+import { CustomCursor } from '@/components/CustomCursor';
 
 export default function Work() {
   const [filter, setFilter] = useState('all');
