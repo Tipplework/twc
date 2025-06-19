@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Navbar } from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { CustomCursor } from '@/components/CustomCursor';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -12,7 +13,7 @@ const About = () => {
   return (
     <>
       <Navbar />
-
+      <CustomCursor /> 
       {/* Hero Section */}
       <motion.section
         className="bg-white text-black py-24 px-6 text-center"
