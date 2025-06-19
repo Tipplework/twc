@@ -10,14 +10,14 @@ export default function TermsOfService() {
       </p>
 
       <ul className="list-disc space-y-4 text-gray-300 ml-6">
-        <li>Content and visuals on this site are the property of Tipple Works Co.</li>
+        <li>Content and visuals on this site are the property of Tipple Works Private Limited.</li>
         <li>Service engagements are governed by mutual agreements or project scopes.</li>
         <li>We are not liable for external links or third-party actions.</li>
         <li>We may change or update these terms at our discretion.</li>
       </ul>
 
       <p className="mt-8 text-gray-300">
-        For any concerns, reach out to <a href="mailto:hello@tippleworks.com" className="text-blue-400 underline">hello@tippleworks.com</a>.
+        For any concerns, reach out to <a href="mailto:admin@tippleworks.com" className="text-blue-400 underline">admin@tippleworks.com</a>.
       </p>
     </section>
   );
