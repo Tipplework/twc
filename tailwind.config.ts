@@ -69,8 +69,9 @@ export default {
 				}
 			},
 			fontFamily: {
-				sans: ['"Schibsted Grotesk"', 'sans-serif'],
-				display: ['"Schibsted Grotesk"', 'sans-serif']
+				sans: ['"Schibsted Grotesk"', 'Inter', 'sans-serif'],
+				serif: ['"Times New Roman"', 'Times', 'serif'],
+				display: ['"Schibsted Grotesk"', 'Inter', 'sans-serif']
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -118,5 +119,9 @@ export default {
 			}
 		}
 	},
-	plugins: []
+	plugins: [
+		require("tailwindcss-animate"),
+		require('@tailwindcss/line-clamp'),
+		require('@tailwindcss/aspect-ratio')
+	]
 } satisfies Config;

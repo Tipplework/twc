@@ -1,23 +1,24 @@
-import { SiteNav } from "@/components/SiteNav";
-import { SiteFooter } from "@/components/SiteFooter";
-import { Seo } from "@/lib/seo";
-import { settings } from "@/content/site";
+import React from 'react';
 
 export default function TermsOfService() {
   return (
-    <>
-      <Seo title="Terms of Service | Tipple Works Co." description="Terms for using the Tipple Works Co. website." path="/terms-of-service" />
-      <SiteNav />
-      <main className="site-pad max-w-3xl pb-24 pt-32">
-        <h1 className="display text-5xl">Terms</h1>
-        <p className="mt-4 text-sm text-[#a39c90]">Effective June 2025</p>
-        <div className="mt-8 space-y-4 text-lg text-[#d9d3c7]">
-          <p>Work shown on this site belongs to Tipple Works Private Limited or to the clients it was made with. Do not reuse it without permission.</p>
-          <p>A project engagement is governed by the agreement for that project, not by this page.</p>
-          <p>Questions: <a className="text-[#ffc700]" href={`mailto:${settings.adminEmail}`}>{settings.adminEmail}</a>.</p>
-        </div>
-      </main>
-      <SiteFooter />
-    </>
+    <section className="bg-black text-white min-h-screen py-20 px-6 md:px-12 max-w-4xl mx-auto">
+      <h1 className="text-3xl font-semibold mb-6">Terms of Service</h1>
+      <p className="mb-4 text-gray-300">Effective Date: June 2025</p>
+      <p className="mb-6 text-gray-400">
+        By using our website or services, you agree to the following terms:
+      </p>
+
+      <ul className="list-disc space-y-4 text-gray-300 ml-6">
+        <li>Content and visuals on this site are the property of Tipple Works Private Limited.</li>
+        <li>Service engagements are governed by mutual agreements or project scopes.</li>
+        <li>We are not liable for external links or third-party actions.</li>
+        <li>We may change or update these terms at our discretion.</li>
+      </ul>
+
+      <p className="mt-8 text-gray-300">
+        For any concerns, reach out to <a href="mailto:admin@tippleworks.com" className="text-blue-400 underline">admin@tippleworks.com</a>.
+      </p>
+    </section>
   );
 }
