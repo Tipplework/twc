@@ -49,7 +49,33 @@
   }
 
   .custom-cursor {
-    @apply fixed w-2.5 h-2.5 rounded-full bg-tipple-yellow pointer-events-none z-[70] -translate-x-1/2 -translate-y-1/2;
+    position: fixed;
+    width: 22px;
+    height: 22px;
+    border-radius: 999px;
+    background: #ffc700;
+    pointer-events: none;
+    z-index: 70;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.22);
+    transition:
+      width 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+      height 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+      background-color 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .custom-cursor[data-state="link"],
+  .custom-cursor[data-state="image"] {
+    width: 40px;
+    height: 40px;
+  }
+
+  .custom-cursor[data-state="link"] {
+    background: #ff3d00;
+  }
+
+  .custom-cursor[data-state="image"] {
+    background: #8a2be2;
   }
 
   @media (pointer: fine) {

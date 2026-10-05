@@ -40,6 +40,15 @@ export const Clients = () => {
       ? clientData
       : clientData.filter((c) => c.category.trim().toLowerCase() === filter.toLowerCase());
 
+  const logoFit = (ratio: number) => {
+    if (ratio >= 6) return { maxHeight: "34%", maxWidth: "90%" };
+    if (ratio >= 3.2) return { maxHeight: "42%", maxWidth: "86%" };
+    if (ratio >= 2) return { maxHeight: "50%", maxWidth: "80%" };
+    if (ratio >= 1.25) return { maxHeight: "58%", maxWidth: "74%" };
+    if (ratio >= 0.9) return { maxHeight: "60%", maxWidth: "64%" };
+    return { maxHeight: "62%", maxWidth: "48%" };
+  };
+
   return (
     <section className="py-24 md:py-32 px-6 md:px-10 bg-white" id="clients">
       <div className="mx-auto max-w-[1400px]">
@@ -72,17 +81,26 @@ export const Clients = () => {
             {filteredClients.length === 0 ? (
               <p className="text-black/50">No clients found in this category.</p>
             ) : (
-              <div key={filter} className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10">
+              <div key={filter} className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-2">
                 {filteredClients.map((client) => (
-                  <Link to={`/project/${client.slug}`} key={`${client.slug}-${client.name}`} className="group">
-                    <div className="aspect-square flex items-center justify-center px-2">
-                      <img
-                        src={client.image}
-                        alt={client.name}
-                        className="max-h-[70%] max-w-[80%] object-contain grayscale opacity-70 transition duration-500 ease-out group-hover:grayscale-0 group-hover:opacity-100"
-                      />
-                    </div>
-                    <p className="twc-micro text-black/55 mt-2">{client.name}</p>
+                  <Link
+                    to={`/project/${client.slug}`}
+                    key={`${client.slug}-${client.name}`}
+                    title={client.name}
+                    className="group flex h-[104px] md:h-[120px] items-center justify-center"
+                  >
+                    <img
+                      src={client.image}
+                      alt={client.name}
+                      onLoad={(event) => {
+                        const img = event.currentTarget;
+                        if (!img.naturalHeight) return;
+                        const fit = logoFit(img.naturalWidth / img.naturalHeight);
+                        img.style.maxHeight = fit.maxHeight;
+                        img.style.maxWidth = fit.maxWidth;
+                      }}
+                      className="max-h-[52%] max-w-[74%] object-contain grayscale opacity-70 transition duration-500 ease-out group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-[1.02]"
+                    />
                   </Link>
                 ))}
               </div>

@@ -119,56 +119,60 @@ export const ServicesAccordion = () => {
   return (
     <section className="py-24 md:py-32 px-6 md:px-10 bg-white" id="services">
       <div className="mx-auto max-w-[1400px]">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-y-12 md:gap-12">
-          <div className="md:col-span-5">
-            <motion.h2 
-              className="twc-heading mb-6 text-black"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-            >
-              Our Services
-            </motion.h2>
-            
-            <motion.p 
-              className="twc-body text-black/70"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              We offer strategic marketing solutions that drive impact and growth for brands across industries.
-            </motion.p>
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-y-12 md:gap-16">
+          <div className="md:col-span-4">
+            <div className="lg:sticky lg:top-28">
+              <motion.h2
+                className="twc-heading mb-6 text-black"
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+              >
+                Our Services
+              </motion.h2>
+              <motion.p
+                className="twc-body text-black/70 max-w-sm"
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.08 }}
+              >
+                We offer strategic marketing solutions that drive impact and growth for brands across industries.
+              </motion.p>
+            </div>
           </div>
 
-          <div className="md:col-span-7">
-            <Accordion type="single" collapsible className="w-full">
+          <div className="md:col-span-8">
+            <Accordion type="single" collapsible className="w-full border-t border-black/10">
               {serviceCategories.map((category, index) => (
-                <AccordionItem 
-                  key={category.id} 
+                <AccordionItem
+                  key={category.id}
                   value={category.id}
-                  className="border-b border-gray-200 py-2"
+                  className="border-b border-black/10"
                 >
-                  <AccordionTrigger className="hover:no-underline group py-5">
-                    <div className="flex items-center gap-3 text-left">
-                      <div className="text-black/50">{category.icon}</div>
-                      <h3 className="text-xl md:text-2xl font-medium tracking-[-0.03em] text-black">
-                        {index + 1}. {category.title}
+                  <AccordionTrigger className="group py-7 md:py-8 hover:no-underline [&>svg]:h-[18px] [&>svg]:w-[18px] [&>svg]:text-black/35 [&>svg]:transition-colors hover:[&>svg]:text-black data-[state=open]:[&>svg]:text-tipple-red">
+                    <div className="flex flex-1 items-center gap-4 md:gap-6 text-left min-w-0 pr-4">
+                      <span className="twc-micro w-7 shrink-0 text-black/35 tabular-nums">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <span className="shrink-0 text-black/40 transition-colors duration-300 group-hover:text-tipple-red group-data-[state=open]:text-tipple-red">
+                        {category.icon}
+                      </span>
+                      <h3 className="text-[1.35rem] md:text-[1.65rem] font-medium tracking-[-0.03em] leading-tight text-black transition-transform duration-300 group-hover:translate-x-1">
+                        {category.title}
                       </h3>
+                      <span className="ml-auto h-1.5 w-1.5 shrink-0 rounded-full bg-tipple-red opacity-0 transition-opacity duration-300 group-data-[state=open]:opacity-100" />
                     </div>
                   </AccordionTrigger>
                   <AccordionContent>
-                    <div className="pt-2 pb-4">
-                      <p className="text-gray-600 mb-6">{category.description}</p>
-                      <div className="grid grid-cols-2 sm:grid-cols-2 gap-4">
-                        {category.services.map((service, idx) => (
-                          <div 
-                            key={idx} 
-                            className="flex items-center gap-2 p-3 rounded-md hover:bg-gray-50 transition-colors"
-                          >
-                            <div className="text-gray-600">{service.icon}</div>
-                            <span className="text-sm">{service.name}</span>
+                    <div className="pb-8 pl-0 md:pl-[4.75rem]">
+                      <p className="text-black/60 mb-6 max-w-xl">{category.description}</p>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-4">
+                        {category.services.map((service) => (
+                          <div key={service.name} className="flex items-center gap-3">
+                            <span className="text-black/40">{service.icon}</span>
+                            <span className="text-[15px] text-black/80">{service.name}</span>
                           </div>
                         ))}
                       </div>
