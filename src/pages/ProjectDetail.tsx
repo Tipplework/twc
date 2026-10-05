@@ -1,5 +1,5 @@
-import { Link, useParams } from "react-router-dom";
-import { projectData } from "@/lib/projectData";
+import { Link, useLocation, useParams } from "react-router-dom";
+import { useProject } from "@/lib/cms/usePublic";
 import { Navbar } from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { CustomCursor } from "@/components/CustomCursor";
@@ -152,12 +152,18 @@ function GalleryImage({ plate, alt }: { plate: GalleryPlate; alt: string }) {
 
 export default function ProjectDetail() {
   const { slug } = useParams<{ slug: string }>();
-  const project = projectData.find((item) => item.slug === slug);
-  const next = project
-    ? projectData[(projectData.findIndex((item) => item.slug === project.slug) + 1) % projectData.length]
-    : undefined;
+  const preview = new URLSearchParams(useLocation().search).get("preview") === "1";
+  const { project, next, missing } = useProject(slug, preview);
 
-  if (!project) {
+  useEffect(() => {
+    if (project?.seoTitle) document.title = project.seoTitle;
+    if (project?.seoDescription) {
+      const tag = document.head.querySelector('meta[name="description"]');
+      if (tag) tag.setAttribute("content", project.seoDescription);
+    }
+  }, [project?.seoTitle, project?.seoDescription]);
+
+  if (!project || missing) {
     return (
       <div className="bg-white text-black min-h-screen">
         <Navbar />

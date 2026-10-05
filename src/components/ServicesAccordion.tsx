@@ -19,7 +19,10 @@ import {
   Palette,
   Monitor
 } from 'lucide-react';
+import { useEffect, useState } from "react";
 import { motion } from 'framer-motion';
+import { getServices } from "@/lib/cms/public";
+import { useHomepageSection } from "@/lib/cms/usePublic";
 import {
   Accordion,
   AccordionContent,
@@ -40,8 +43,36 @@ type ServiceCategory = {
   services: ServiceItem[];
 };
 
+const serviceIcons = {
+  brush: Brush,
+  instagram: Instagram,
+  video: Video,
+  globe: Globe,
+  calendar: CalendarDays,
+  utensils: Utensils,
+  palette: Palette,
+  package: Package,
+  pentool: PenTool,
+  building: Building,
+  chart: BarChart2,
+  layout: Layout,
+  megaphone: Megaphone,
+  camera: Camera,
+  mic: Mic,
+  search: Search,
+  mail: Mail,
+  monitor: Monitor,
+  briefcase: Briefcase,
+};
+
+const serviceIcon = (key: string, className: string) => {
+  const Icon = serviceIcons[key as keyof typeof serviceIcons] || Brush;
+  return <Icon className={className} />;
+};
+
 export const ServicesAccordion = () => {
-  const serviceCategories: ServiceCategory[] = [
+  const section = useHomepageSection("services");
+  const [serviceCategories, setServiceCategories] = useState<ServiceCategory[]>([
     {
       id: "creative-design",
       title: "Creative Design",
@@ -114,7 +145,31 @@ export const ServicesAccordion = () => {
         { name: "Digital Presence", icon: <Globe className="h-5 w-5" /> }
       ]
     }
-  ];
+  ]);
+
+  useEffect(() => {
+    let live = true;
+    getServices().then((rows) => {
+      if (!live || !rows?.length) return;
+      setServiceCategories(
+        rows.map((service) => ({
+          id: service.slug,
+          title: service.title,
+          description: service.description,
+          icon: serviceIcon(service.icon_key, "h-6 w-6"),
+          services: service.items.map((item) => ({
+            name: item.name,
+            icon: serviceIcon(item.icon_key, "h-5 w-5"),
+          })),
+        }))
+      );
+    });
+    return () => {
+      live = false;
+    };
+  }, []);
+
+  if (section && section.visible === false) return null;
 
   return (
     <section className="py-24 md:py-32 px-6 md:px-10 bg-white" id="services">
@@ -129,7 +184,7 @@ export const ServicesAccordion = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
               >
-                Our Services
+                {section?.heading || "Our Services"}
               </motion.h2>
               <motion.p
                 className="twc-body text-black/70 max-w-sm"
@@ -138,7 +193,7 @@ export const ServicesAccordion = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.08 }}
               >
-                We offer strategic marketing solutions that drive impact and growth for brands across industries.
+                {section?.body || "We offer strategic marketing solutions that drive impact and growth for brands across industries."}
               </motion.p>
             </div>
           </div>

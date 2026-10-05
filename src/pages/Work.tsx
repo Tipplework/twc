@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Navbar } from "../components/Navbar";
 import Footer from "@/components/Footer";
-import { projectData } from "../lib/projectData";
 import { CustomCursor } from "@/components/CustomCursor";
+import { usePage, usePageSeo, useProjects } from "@/lib/cms/usePublic";
 
 export default function Work() {
+  const projectData = useProjects();
+  const page = usePage("/work");
+  usePageSeo("/work");
   const [filter, setFilter] = useState("all");
   const categories = Array.from(new Set(projectData.map((p) => p.category)));
 
@@ -19,7 +22,7 @@ export default function Work() {
       <Navbar />
       <CustomCursor />
       <div className="px-6 md:px-10 pt-28 md:pt-36 text-center">
-        <h1 className="twc-h1 mb-8">Selected Work</h1>
+        <h1 className="twc-h1 mb-8">{String(page?.content?.heading || "Selected Work")}</h1>
         <div className="flex flex-wrap justify-center gap-2 mb-10 md:mb-14">
           {filters.map((cat) => {
             const active = filter === cat;
