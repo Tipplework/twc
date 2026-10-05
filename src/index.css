@@ -50,32 +50,23 @@
 
   .custom-cursor {
     position: fixed;
-    width: 22px;
-    height: 22px;
+    width: 26px;
+    height: 26px;
     border-radius: 999px;
     background: #ffc700;
+    mix-blend-mode: difference;
     pointer-events: none;
-    z-index: 70;
+    z-index: 9999;
     transform: translate(-50%, -50%);
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.22);
     transition:
-      width 0.28s cubic-bezier(0.16, 1, 0.3, 1),
-      height 0.28s cubic-bezier(0.16, 1, 0.3, 1),
-      background-color 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      width 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+      height 0.22s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .custom-cursor[data-state="link"],
   .custom-cursor[data-state="image"] {
     width: 40px;
     height: 40px;
-  }
-
-  .custom-cursor[data-state="link"] {
-    background: #ff3d00;
-  }
-
-  .custom-cursor[data-state="image"] {
-    background: #8a2be2;
   }
 
   @media (pointer: fine) {

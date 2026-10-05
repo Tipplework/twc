@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
 type CursorState = "default" | "link" | "image";
 
@@ -42,8 +43,8 @@ export const CustomCursor = () => {
     let state: CursorState = "default";
 
     const tick = () => {
-      cx += (x - cx) * 0.62;
-      cy += (y - cy) * 0.62;
+      cx += (x - cx) * 0.82;
+      cy += (y - cy) * 0.82;
       el.style.left = `${cx}px`;
       el.style.top = `${cy}px`;
       frame = requestAnimationFrame(tick);
@@ -86,5 +87,8 @@ export const CustomCursor = () => {
 
   if (!enabled) return null;
 
-  return <div ref={dot} className="custom-cursor" data-state="default" style={{ opacity: 0 }} aria-hidden="true" />;
+  return createPortal(
+    <div ref={dot} className="custom-cursor" data-state="default" style={{ opacity: 0 }} aria-hidden="true" />,
+    document.body
+  );
 };
