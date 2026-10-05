@@ -1,10 +1,8 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom'; // ✅ import Link
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export const Clients = () => {
-  const [hoveredLogo, setHoveredLogo] = useState<number | null>(null);
-  const [filter, setFilter] = useState<string>('all');
+  const [filter, setFilter] = useState<string>("all");
 
   const clientData = [
     { id: 1, name: "Sula Vineyards", image: "/lovable-uploads/SULA.png", category: "Alco-Bev", slug: "sula-vineyards" },
@@ -31,133 +29,81 @@ export const Clients = () => {
     { id: 22, name: "VLIV", image: "/lovable-uploads/VLIV.png", category: "Hospitality", slug: "VLIV" },
     { id: 23, name: "SULAFEST", image: "/lovable-uploads/SULAFEST.png", category: "Event IP's", slug: "sula-fest" },
     { id: 24, name: "FORBES", image: "/lovable-uploads/FORBES.png", category: "Event IP's", slug: "forbes-w-power" },
-    { id: 24, name: "ZOMATO", image: "/lovable-uploads/ZOMATO.png", category: "Hospitality", slug: "zomato" }
-    ];
+    { id: 25, name: "ZOMATO", image: "/lovable-uploads/ZOMATO.png", category: "Hospitality", slug: "zomato" },
+  ];
 
-  const categories = Array.from(new Set(clientData.map(c => c.category.trim())));
+  const categories = Array.from(new Set(clientData.map((c) => c.category.trim())));
+  const filters = ["all", ...categories];
 
   const filteredClients =
-    filter === 'all'
+    filter === "all"
       ? clientData
-      : clientData.filter(c => c.category.trim().toLowerCase() === filter.toLowerCase());
+      : clientData.filter((c) => c.category.trim().toLowerCase() === filter.toLowerCase());
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.05,
-        delayChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    show: { y: 0, opacity: 1 }
+  const logoFit = (ratio: number) => {
+    if (ratio >= 6) return { maxHeight: "34%", maxWidth: "90%" };
+    if (ratio >= 3.2) return { maxHeight: "42%", maxWidth: "86%" };
+    if (ratio >= 2) return { maxHeight: "50%", maxWidth: "80%" };
+    if (ratio >= 1.25) return { maxHeight: "58%", maxWidth: "74%" };
+    if (ratio >= 0.9) return { maxHeight: "60%", maxWidth: "64%" };
+    return { maxHeight: "62%", maxWidth: "48%" };
   };
 
   return (
-    <section className="py-20 px-6 md:px-10 bg-white" id="clients">
-      <div className="container mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-y-8">
-          {/* Sidebar */}
-          <div className="md:col-span-3 md:col-start-1">
-            <motion.h2
-              className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-black"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false }}
-              transition={{ duration: 0.5 }}
-            >
-              Our Clients
-            </motion.h2>
-
-            <motion.p
-              className="text-lg text-gray-600 mb-8"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-            >
+    <section className="py-24 md:py-32 px-6 md:px-10 bg-white" id="clients">
+      <div className="mx-auto max-w-[1400px]">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-y-12 md:gap-8">
+          <div className="md:col-span-4">
+            <h2 className="twc-heading mb-6 text-black">Our Clients</h2>
+            <p className="twc-body text-black/70 mb-10 max-w-md">
               We collaborate with innovative brands across various industries, helping them reach new heights with our creative solutions.
-            </motion.p>
-
-            <motion.div
-              className="flex flex-wrap gap-2 mb-8 md:mb-0"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <button
-                onClick={() => setFilter('all')}
-                className={`px-4 py-1 rounded-full text-sm ${
-                  filter === 'all' ? 'bg-black text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                } transition-all duration-300`}
-              >
-                All
-              </button>
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  onClick={() => setFilter(category)}
-                  className={`px-4 py-1 rounded-full text-sm ${
-                    filter === category ? 'bg-black text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                  } transition-all duration-300`}
-                >
-                  {category}
-                </button>
-              ))}
-            </motion.div>
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {filters.map((category) => {
+                const active = filter === category;
+                const label = category === "all" ? "All" : category;
+                return (
+                  <button
+                    key={category}
+                    onClick={() => setFilter(category)}
+                    className={`px-3 py-1 text-sm rounded-full transition-colors ${
+                      active ? "bg-black text-white" : "bg-black/5 text-black/60 hover:text-black"
+                    }`}
+                  >
+                    {label}
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
-          {/* Logo Grid */}
-          <div className="md:col-span-8 md:col-start-5">
+          <div className="md:col-span-8">
             {filteredClients.length === 0 ? (
-              <p className="text-gray-500">No clients found in this category.</p>
+              <p className="text-black/50">No clients found in this category.</p>
             ) : (
-              <motion.div
-                key={filter}
-                className="grid grid-cols-2 md:grid-cols-4 gap-4"
-                variants={containerVariants}
-                initial="hidden"
-                animate="show"
-              >
+              <div key={filter} className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-2">
                 {filteredClients.map((client) => (
-                  <Link to={`/project/${client.slug}`} key={client.id}>
-                    <motion.div
-                      className={`relative bg-white rounded-lg transition-all duration-300 border border-gray-100 hover:border-black overflow-hidden ${
-                        hoveredLogo === client.id ? 'scale-105 shadow-md' : 'scale-100'
-                      }`}
-                      onMouseEnter={() => setHoveredLogo(client.id)}
-                      onMouseLeave={() => setHoveredLogo(null)}
-                      variants={itemVariants}
-                      whileHover={{ scale: 1.05 }}
-                    >
-                      <div className="aspect-square flex items-center justify-center p-6 overflow-hidden">
-                        <img
-                          src={client.image}
-                          alt={client.name}
-                          className={`w-auto h-auto max-h-full object-contain transition-all duration-500 ${
-                            hoveredLogo === client.id ? 'filter-none' : 'grayscale opacity-60'
-                          }`}
-                        />
-                      </div>
-                      <div
-                        className={`absolute inset-0 flex items-end p-3 bg-gradient-to-t from-black/50 to-transparent transition-opacity duration-300 ${
-                          hoveredLogo === client.id ? 'opacity-100' : 'opacity-0'
-                        }`}
-                      >
-                        <div>
-                          <p className="text-sm text-white font-medium">{client.name}</p>
-                          <p className="text-xs text-white/80">{client.category}</p>
-                        </div>
-                      </div>
-                    </motion.div>
+                  <Link
+                    to={`/project/${client.slug}`}
+                    key={`${client.slug}-${client.name}`}
+                    title={client.name}
+                    className="group flex h-[104px] md:h-[120px] items-center justify-center"
+                  >
+                    <img
+                      src={client.image}
+                      alt={client.name}
+                      onLoad={(event) => {
+                        const img = event.currentTarget;
+                        if (!img.naturalHeight) return;
+                        const fit = logoFit(img.naturalWidth / img.naturalHeight);
+                        img.style.maxHeight = fit.maxHeight;
+                        img.style.maxWidth = fit.maxWidth;
+                      }}
+                      className="max-h-[52%] max-w-[74%] object-contain grayscale opacity-70 transition duration-500 ease-out group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-[1.02]"
+                    />
                   </Link>
                 ))}
-              </motion.div>
+              </div>
             )}
           </div>
         </div>

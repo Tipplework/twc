@@ -9,11 +9,14 @@ import Services from "./pages/Services";
 import Contact from "./pages/Contactinnerpage";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
+import { lazy, Suspense } from "react";
+
+const AdminApp = lazy(() => import("./admin/AdminApp"));
 
 const App = () => {
   return (
     <BrowserRouter>
-      <ScrollToTop /> 
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/about" element={<About />} />
@@ -23,6 +26,14 @@ const App = () => {
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-of-service" element={<TermsOfService />} />
         <Route path="/project/:slug" element={<ProjectDetail />} />
+        <Route
+          path="/admin/*"
+          element={
+            <Suspense fallback={<p className="p-8">Opening studio…</p>}>
+              <AdminApp />
+            </Suspense>
+          }
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

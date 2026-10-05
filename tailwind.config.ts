@@ -69,9 +69,9 @@ export default {
 				}
 			},
 			fontFamily: {
-				sans: ['"Neue Haas Grotesk"', 'Inter', 'sans-serif'],
+				sans: ['"Schibsted Grotesk"', 'Inter', 'sans-serif'],
 				serif: ['"Times New Roman"', 'Times', 'serif'],
-				display: ['"Founders Grotesk"', '"Neue Haas Grotesk"', 'Inter', 'sans-serif']
+				display: ['"Schibsted Grotesk"', 'Inter', 'sans-serif']
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

@@ -1,51 +1,94 @@
+import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
-import { useState, useEffect } from 'react';
+type CursorState = "default" | "link" | "image";
+
+const desktopCursor = () =>
+  window.matchMedia("(pointer: fine)").matches &&
+  window.matchMedia("(hover: hover)").matches &&
+  !window.matchMedia("(pointer: coarse)").matches;
+
+function cursorState(target: EventTarget | null): CursorState {
+  if (!(target instanceof Element)) return "default";
+  if (target.closest("#featured .group, #clients a")) return "image";
+  const link = target.closest("a");
+  if (link?.querySelector("img")) return "image";
+  if (target.closest('a, button, [role="button"], input, textarea, select, label')) return "link";
+  return "default";
+}
 
 export const CustomCursor = () => {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [visible, setVisible] = useState(false);
-  const [clicked, setClicked] = useState(false);
+  const dot = useRef<HTMLDivElement>(null);
+  const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
-    const updatePosition = (e: MouseEvent) => {
-      setPosition({ x: e.clientX, y: e.clientY });
-      if (!visible) setVisible(true);
+    const media = window.matchMedia("(pointer: fine)");
+    const sync = () => setEnabled(desktopCursor());
+    sync();
+    media.addEventListener("change", sync);
+    return () => media.removeEventListener("change", sync);
+  }, []);
+
+  useEffect(() => {
+    if (!enabled) return;
+    const el = dot.current;
+    if (!el) return;
+
+    let x = 0;
+    let y = 0;
+    let cx = 0;
+    let cy = 0;
+    let shown = false;
+    let frame = 0;
+    let state: CursorState = "default";
+
+    const tick = () => {
+      cx += (x - cx) * 0.82;
+      cy += (y - cy) * 0.82;
+      el.style.left = `${cx}px`;
+      el.style.top = `${cy}px`;
+      frame = requestAnimationFrame(tick);
     };
 
-    const handleMouseDown = () => setClicked(true);
-    const handleMouseUp = () => setClicked(false);
-    
-    const handleMouseLeave = () => setVisible(false);
-    const handleMouseEnter = () => setVisible(true);
+    const show = (event: MouseEvent) => {
+      x = event.clientX;
+      y = event.clientY;
+      const next = cursorState(event.target);
+      if (next !== state) {
+        state = next;
+        el.dataset.state = next;
+      }
+      if (shown) return;
+      shown = true;
+      cx = x;
+      cy = y;
+      el.style.opacity = "1";
+      document.documentElement.classList.add("twc-cursor");
+    };
 
-    window.addEventListener('mousemove', updatePosition);
-    window.addEventListener('mousedown', handleMouseDown);
-    window.addEventListener('mouseup', handleMouseUp);
-    document.body.addEventListener('mouseleave', handleMouseLeave);
-    document.body.addEventListener('mouseenter', handleMouseEnter);
+    const hide = () => {
+      if (!shown) return;
+      shown = false;
+      el.style.opacity = "0";
+      document.documentElement.classList.remove("twc-cursor");
+    };
+
+    window.addEventListener("mousemove", show, { passive: true });
+    document.documentElement.addEventListener("mouseleave", hide);
+    frame = requestAnimationFrame(tick);
 
     return () => {
-      window.removeEventListener('mousemove', updatePosition);
-      window.removeEventListener('mousedown', handleMouseDown);
-      window.removeEventListener('mouseup', handleMouseUp);
-      document.body.removeEventListener('mouseleave', handleMouseLeave);
-      document.body.removeEventListener('mouseenter', handleMouseEnter);
+      cancelAnimationFrame(frame);
+      window.removeEventListener("mousemove", show);
+      document.documentElement.removeEventListener("mouseleave", hide);
+      document.documentElement.classList.remove("twc-cursor");
     };
-  }, [visible]);
+  }, [enabled]);
 
-  // Only show custom cursor on desktop
-  const isMobile = 'ontouchstart' in window;
-  if (isMobile) return null;
+  if (!enabled) return null;
 
-  return (
-    <div
-      className={`custom-cursor ${!visible ? 'opacity-0' : 'opacity-100'} ${
-        clicked ? 'scale-75' : 'scale-100'
-      }`}
-      style={{
-        left: `${position.x}px`,
-        top: `${position.y}px`,
-      }}
-    ></div>
+  return createPortal(
+    <div ref={dot} className="custom-cursor" data-state="default" style={{ opacity: 0 }} aria-hidden="true" />,
+    document.body
   );
 };
