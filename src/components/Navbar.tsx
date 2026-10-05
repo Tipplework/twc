@@ -2,16 +2,11 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
-
-const links = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/work", label: "Work" },
-  { href: "/services", label: "Services" },
-  { href: "/contact", label: "Contact" },
-];
+import { fallbackHeader } from "@/lib/cms/fallback";
+import { useNav } from "@/lib/cms/usePublic";
 
 export const Navbar = () => {
+  const links = useNav("header", fallbackHeader).map((link) => ({ href: link.href, label: link.label }));
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();

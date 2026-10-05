@@ -1,17 +1,18 @@
 import { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { EASE } from "@/components/brand/tokens";
+import { getTestimonials } from "@/lib/cms/public";
+import { useHomepageSection } from "@/lib/cms/usePublic";
 
 type Testimonial = {
-  id: number;
+  id: number | string;
   quote: string;
   author: string;
   position: string;
   company: string;
 };
 
-export const Testimonials = () => {
-  const testimonials: Testimonial[] = [
+const fallbackTestimonials: Testimonial[] = [
     {
       id: 1,
       quote: "Tipple Works transformed our brand identity with a fresh approach that perfectly captured our essence. Their creative design and strategic thinking exceeded our expectations.",
@@ -42,6 +43,9 @@ export const Testimonials = () => {
     },
   ];
 
+export const Testimonials = () => {
+  const section = useHomepageSection("testimonials");
+  const [testimonials, setTestimonials] = useState(fallbackTestimonials);
   const [current, setCurrent] = useState(0);
   const [autoplay, setAutoplay] = useState(true);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -55,6 +59,16 @@ export const Testimonials = () => {
   };
 
   useEffect(() => {
+    let live = true;
+    getTestimonials().then((rows) => {
+      if (live && rows?.length) setTestimonials(rows);
+    });
+    return () => {
+      live = false;
+    };
+  }, []);
+
+  useEffect(() => {
     if (!autoplay) return;
     timerRef.current = setInterval(nextSlide, 6000);
     return () => {
@@ -62,7 +76,9 @@ export const Testimonials = () => {
     };
   }, [autoplay, current]);
 
-  const quote = testimonials[current];
+  if (section && section.visible === false) return null;
+  const quote = testimonials[current] || testimonials[0];
+  if (!quote) return null;
 
   return (
     <section
@@ -72,7 +88,7 @@ export const Testimonials = () => {
       onMouseLeave={() => setAutoplay(true)}
     >
       <div className="mx-auto max-w-[1100px]">
-        <h2 className="twc-heading mb-10 md:mb-14">What Clients Say</h2>
+        <h2 className="twc-heading mb-10 md:mb-14">{section?.heading || "What Clients Say"}</h2>
         <AnimatePresence mode="wait">
           <motion.blockquote
             key={quote.id}

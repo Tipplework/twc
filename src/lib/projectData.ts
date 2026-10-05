@@ -14,6 +14,13 @@ export interface Project {
   sector?: string;
   discipline?: string;
   year?: string;
+  id?: string;
+  featured?: boolean;
+  featuredOrder?: number;
+  status?: "draft" | "published";
+  visible?: boolean;
+  seoTitle?: string;
+  seoDescription?: string;
 }
 
 export const projectData: Project[] = [

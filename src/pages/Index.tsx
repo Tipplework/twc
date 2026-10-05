@@ -7,11 +7,17 @@ import { ServicesAccordion } from "@/components/ServicesAccordion";
 import { Clients } from "@/components/Clients";
 import { FeaturedProjects } from "@/components/FeaturedProjects";
 import { CustomCursor } from "@/components/CustomCursor";
+import { useHomepageSection, usePageSeo } from "@/lib/cms/usePublic";
 
 const Index = () => {
+  const hero = useHomepageSection("hero");
+  usePageSeo("/");
   useEffect(() => {
     document.title = "Tipple Works Co. | Creative Marketing Agency";
   }, []);
+  const showCircles = !hero || hero.settings.circles !== false;
+  const intensity = typeof hero?.settings.intensity === "number" ? hero.settings.intensity : undefined;
+  const logo = typeof hero?.settings.logo === "string" && hero.settings.logo ? hero.settings.logo : "/twc-logo.png";
 
   return (
     <div className="bg-white text-black min-h-screen">
@@ -32,13 +38,15 @@ const Index = () => {
             event.currentTarget.style.setProperty("--py", "0");
           }}
         >
-          <div className="absolute inset-0" aria-hidden>
-            <span className="hero-disc hero-disc-y" />
-            <span className="hero-disc hero-disc-r" />
-            <span className="hero-disc hero-disc-p" />
-          </div>
+          {showCircles && (
+            <div className="absolute inset-0" aria-hidden>
+              <span className="hero-disc hero-disc-y" style={intensity == null ? undefined : { opacity: intensity }} />
+              <span className="hero-disc hero-disc-r" style={intensity == null ? undefined : { opacity: intensity }} />
+              <span className="hero-disc hero-disc-p" style={intensity == null ? undefined : { opacity: intensity }} />
+            </div>
+          )}
           <img
-            src="/twc-logo.png"
+            src={logo}
             alt="Tipple Works Co."
             className="relative z-10 w-[280px] md:w-[380px] lg:w-[480px] max-w-[86vw] h-auto"
           />

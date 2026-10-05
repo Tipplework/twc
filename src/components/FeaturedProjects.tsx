@@ -1,17 +1,10 @@
-import { projectData } from "../lib/projectData";
 import { Link } from "react-router-dom";
-
-const selectedSlugs = [
-  "sula-fest",
-  "provogue",
-  "paul-and-mike",
-  "sula-vineyards",
-  "zomato",
-  "forbes-w-power",
-];
+import { useFeaturedProjects, useHomepageSection } from "@/lib/cms/usePublic";
 
 export const FeaturedProjects = () => {
-  const projects = projectData.filter((project) => selectedSlugs.includes(project.slug));
+  const section = useHomepageSection("featured");
+  const projects = useFeaturedProjects();
+  if (section && section.visible === false) return null;
 
   return (
     <section id="featured" className="w-full bg-white text-black">

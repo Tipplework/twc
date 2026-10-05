@@ -4,8 +4,13 @@ import { Navbar } from '@/components/Navbar';
 import Footer from "@/components/Footer";
 import { CustomCursor } from '@/components/CustomCursor';
 import { Instagram, MapPin, Phone, Mail } from 'lucide-react';
+import { fallbackSettings } from "@/lib/cms/fallback";
+import { usePage, usePageSeo, useSiteSettings } from "@/lib/cms/usePublic";
 
 const Contact = () => {
+  const settings = useSiteSettings(fallbackSettings);
+  const page = usePage("/contact");
+  usePageSeo("/contact");
   useEffect(() => {
     document.title = "Contact Us | Tipple Works Co.";
   }, []);
@@ -18,8 +23,8 @@ const Contact = () => {
       <main className="pt-32 pb-20 px-6 md:px-10">
         <div className="container mx-auto">
           <div className="max-w-4xl mx-auto">
-            <h1 className="twc-display mb-6">Let's Create</h1>
-            <p className="twc-body text-white/60 mb-14 max-w-xl">Ready to transform your brand? Get in touch with us.</p>
+            <h1 className="twc-display mb-6">{String(page?.content?.headline || "Let's Create")}</h1>
+            <p className="twc-body text-white/60 mb-14 max-w-xl">{String(page?.content?.intro || "Ready to transform your brand? Get in touch with us.")}</p>
             
             <div className="grid md:grid-cols-2 gap-12">
               <div>
@@ -30,8 +35,8 @@ const Contact = () => {
                     <Phone className="w-5 h-5 mt-1 mr-4 text-tipple-yellow" />
                     <div>
                       <p className="text-lg font-medium">Phone</p>
-                      <a href="tel:+919810035669" className="text-zinc-400 hover:text-white transition-colors">
-                        +91 9136291606
+                      <a href={settings.phone_href} className="text-zinc-400 hover:text-white transition-colors">
+                        {settings.phone}
                       </a>
                     </div>
                   </div>
@@ -40,8 +45,8 @@ const Contact = () => {
                     <Mail className="w-5 h-5 mt-1 mr-4 text-tipple-red" />
                     <div>
                       <p className="text-lg font-medium">Email</p>
-                      <a href="mailto:srishti.bhatia@tippeworks.com" className="text-zinc-400 hover:text-white transition-colors">
-                        srishti.bhatia@tippeworks.com
+                      <a href={`mailto:${settings.email}`} className="text-zinc-400 hover:text-white transition-colors">
+                        {settings.email}
                       </a>
                     </div>
                   </div>
@@ -51,7 +56,7 @@ const Contact = () => {
                     <div>
                       <p className="text-lg font-medium">Location</p>
                       <p className="text-zinc-400">
-                        Mumbai, India
+                        {settings.address}
                       </p>
                     </div>
                   </div>
@@ -61,12 +66,12 @@ const Contact = () => {
                     <div>
                       <p className="text-lg font-medium">Social</p>
                       <a 
-                        href="https://instagram.com" 
+                        href={settings.instagram_contact} 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="text-zinc-400 hover:text-white transition-colors"
                       >
-                        @tippleworksco
+                        {settings.instagram_handle}
                       </a>
                     </div>
                   </div>
@@ -85,7 +90,7 @@ const Contact = () => {
                     const phone = String(data.get("phone") || "");
                     const message = String(data.get("message") || "");
                     const body = `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\n\n${message}`;
-                    window.location.href = `mailto:srishti.bhatia@tippeworks.com?subject=${encodeURIComponent("New project — " + name)}&body=${encodeURIComponent(body)}`;
+                    window.location.href = `mailto:${settings.email}?subject=${encodeURIComponent("New project — " + name)}&body=${encodeURIComponent(body)}`;
                   }}
                 >
                   <div>

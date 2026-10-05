@@ -1,27 +1,32 @@
 import { Navbar } from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { CustomCursor } from "@/components/CustomCursor";
+import { usePage, usePageSeo } from "@/lib/cms/usePublic";
 
 export default function Services() {
+  const page = usePage("/services");
+  usePageSeo("/services");
+  const deckUrl = String(page?.content?.deck_url || "https://drive.google.com/drive/folders/1oD8mWzAWKjpeHTk4_hvnyQf23eSE8Tuk");
+  const shareUrl = String(page?.content?.share_url || "https://tippleworks.com/services");
   const handleShare = async () => {
     if (navigator.share) {
       try {
         await navigator.share({
           title: "Tipple Works Co.",
           text: "Check out Tipple Works Co.",
-          url: "https://tippleworks.com/services",
+          url: shareUrl,
         });
       } catch (error) {
         console.error("Sharing failed:", error);
       }
     } else {
-      navigator.clipboard.writeText("https://tippleworks.com/services");
+      navigator.clipboard.writeText(shareUrl);
       alert("Link copied to clipboard");
     }
   };
 
   const handleDeckClick = () => {
-    window.open("https://drive.google.com/drive/folders/1oD8mWzAWKjpeHTk4_hvnyQf23eSE8Tuk", "_blank");
+    window.open(deckUrl, "_blank");
   };
 
   return (
@@ -36,10 +41,10 @@ export default function Services() {
         />
         <div className="flex flex-col sm:flex-row gap-3">
           <button onClick={handleDeckClick} className="bg-white text-black rounded-full px-8 py-3.5 text-base">
-            View Our Deck
+            {String(page?.content?.deck_label || "View Our Deck")}
           </button>
           <button onClick={handleShare} className="bg-white text-black rounded-full px-8 py-3.5 text-base">
-            Share
+            {String(page?.content?.share_label || "Share")}
           </button>
         </div>
       </main>

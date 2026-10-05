@@ -1,10 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useClients, useHomepageSection } from "@/lib/cms/usePublic";
 
-export const Clients = () => {
-  const [filter, setFilter] = useState<string>("all");
-
-  const clientData = [
+const fallbackClients = [
     { id: 1, name: "Sula Vineyards", image: "/lovable-uploads/SULA.png", category: "Alco-Bev", slug: "sula-vineyards" },
     { id: 2, name: "YORK WINERY", image: "/lovable-uploads/YORK.png", category: "Alco-Bev", slug: "york-winery" },
     { id: 3, name: "Rasa", image: "/lovable-uploads/RASA.png", category: "Alco-Bev", slug: "rasa" },
@@ -32,6 +30,12 @@ export const Clients = () => {
     { id: 25, name: "ZOMATO", image: "/lovable-uploads/ZOMATO.png", category: "Hospitality", slug: "zomato" },
   ];
 
+export const Clients = () => {
+  const [filter, setFilter] = useState<string>("all");
+  const section = useHomepageSection("clients");
+  const clientData = useClients(fallbackClients);
+  if (section && section.visible === false) return null;
+
   const categories = Array.from(new Set(clientData.map((c) => c.category.trim())));
   const filters = ["all", ...categories];
 
@@ -54,9 +58,9 @@ export const Clients = () => {
       <div className="mx-auto max-w-[1400px]">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-y-12 md:gap-8">
           <div className="md:col-span-4">
-            <h2 className="twc-heading mb-6 text-black">Our Clients</h2>
+            <h2 className="twc-heading mb-6 text-black">{section?.heading || "Our Clients"}</h2>
             <p className="twc-body text-black/70 mb-10 max-w-md">
-              We collaborate with innovative brands across various industries, helping them reach new heights with our creative solutions.
+              {section?.body || "We collaborate with innovative brands across various industries, helping them reach new heights with our creative solutions."}
             </p>
             <div className="flex flex-wrap gap-2">
               {filters.map((category) => {
@@ -82,13 +86,8 @@ export const Clients = () => {
               <p className="text-black/50">No clients found in this category.</p>
             ) : (
               <div key={filter} className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-2">
-                {filteredClients.map((client) => (
-                  <Link
-                    to={`/project/${client.slug}`}
-                    key={`${client.slug}-${client.name}`}
-                    title={client.name}
-                    className="group flex h-[104px] md:h-[120px] items-center justify-center"
-                  >
+                {filteredClients.map((client) => {
+                  const logo = (
                     <img
                       src={client.image}
                       alt={client.name}
@@ -101,8 +100,21 @@ export const Clients = () => {
                       }}
                       className="max-h-[52%] max-w-[74%] object-contain grayscale opacity-70 transition duration-500 ease-out group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-[1.02]"
                     />
-                  </Link>
-                ))}
+                  );
+                  const className = "group flex h-[104px] md:h-[120px] items-center justify-center";
+                  if (!client.slug) {
+                    return (
+                      <div key={client.id} title={client.name} className={className}>
+                        {logo}
+                      </div>
+                    );
+                  }
+                  return (
+                    <Link key={client.id} to={`/project/${client.slug}`} title={client.name} className={className}>
+                      {logo}
+                    </Link>
+                  );
+                })}
               </div>
             )}
           </div>
