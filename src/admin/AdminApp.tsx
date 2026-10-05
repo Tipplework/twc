@@ -67,8 +67,8 @@ function Login() {
       >
         <p className="text-xs uppercase tracking-[0.16em] text-neutral-500">Tipple Works</p>
         <h1 className="text-2xl font-semibold tracking-[-0.03em]">Sign in</h1>
-        <Field label="Email"><input className={fieldClass} type="email" value={email} onChange={(event) => setEmail(event.target.value)} /></Field>
-        <Field label="Password"><input className={fieldClass} type="password" value={password} onChange={(event) => setPassword(event.target.value)} /></Field>
+        <Field label="Email"><input className={fieldClass} type="email" autoComplete="username" value={email} onChange={(event) => setEmail(event.target.value)} /></Field>
+        <Field label="Password"><input className={fieldClass} type="password" autoComplete="current-password" value={password} onChange={(event) => setPassword(event.target.value)} /></Field>
         {error && <p className="text-sm text-red-700">{error}</p>}
         <Button type="submit">Sign in</Button>
       </form>

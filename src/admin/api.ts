@@ -72,6 +72,30 @@ export async function deleteAsset(asset: AssetRow) {
   if (error) throw error;
 }
 
+export async function replaceAssetFile(asset: AssetRow, file: File) {
+  const folder = asset.storage_path.split("/")[0] || "site";
+  const uploaded = await uploadAsset(file, folder, asset.alt_text || "");
+  const { error: clearError } = await db().from("assets").delete().eq("id", uploaded.id);
+  if (clearError) throw clearError;
+  const { error } = await db()
+    .from("assets")
+    .update({
+      storage_path: uploaded.storage_path,
+      public_url: uploaded.public_url,
+      filename: uploaded.filename,
+      mime_type: uploaded.mime_type,
+      file_size: uploaded.file_size,
+      width: uploaded.width,
+      height: uploaded.height,
+    })
+    .eq("id", asset.id);
+  if (error) throw error;
+  if (!asset.storage_path.startsWith("/")) {
+    await db().storage.from("website").remove([asset.storage_path]);
+  }
+  return { ...asset, ...uploaded, id: asset.id };
+}
+
 function imageSize(file: File) {
   return new Promise<{ width: number; height: number } | null>((resolve) => {
     const url = URL.createObjectURL(file);

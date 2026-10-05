@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
-import { canEdit, db, deleteAsset, publishColumns, routes, saveDraft, unpublish, uploadAsset, type AssetRow, type Profile } from "@/admin/api";
+import { useEffect, useRef, useState } from "react";
+import { canEdit, db, deleteAsset, publishColumns, replaceAssetFile, routes, saveDraft, unpublish, uploadAsset, type AssetRow, type Profile } from "@/admin/api";
+import { AssetPicker } from "@/admin/AssetPicker";
 import { Button, Field, Notice, Pill, SaveState, fieldClass, useUnsaved } from "@/admin/ui";
 
 export function Dashboard() {
@@ -187,19 +188,20 @@ export function RecordList({
               )}
             </Field>
           ))}
-          {(table === "clients" || table === "team_members") && !locked && (
-            <Field label={table === "clients" ? "Logo" : "Portrait"}>
-              <input type="file" accept="image/*" onChange={async (event) => {
-                const file = event.target.files?.[0];
-                if (!file) return;
-                const asset = await uploadAsset(file, table === "clients" ? "clients" : "team");
+          {(table === "clients" || table === "team_members") && (
+            <AssetPicker
+              label={table === "clients" ? "Logo" : "Team photo"}
+              folder={table === "clients" ? "clients" : "team"}
+              disabled={locked}
+              assetId={String((table === "clients" ? current.logo_asset_id : current.image_asset_id) || "")}
+              previewUrl={current.image ? String(current.image) : null}
+              onChange={(asset) => {
                 const key = table === "clients" ? "logo_asset_id" : "image_asset_id";
                 setCurrent({ ...current, [key]: asset.id, image: asset.public_url });
                 setDirty(true);
                 setState("Unsaved changes");
-              }} />
-              {current.image ? <img src={String(current.image)} alt="" className="mt-2 h-20 object-contain" /> : null}
-            </Field>
+              }}
+            />
           )}
           {!locked && (
             <div className="flex gap-2">
@@ -293,19 +295,41 @@ export function ServicesAdmin({ profile }: { profile: Profile }) {
               <input className={fieldClass} disabled={locked} value={String(current[field] ?? "")} onChange={(event) => setCurrent({ ...current, [field]: event.target.value })} />
             </Field>
           ))}
+          <label className="flex items-center gap-2 text-sm">
+            <input type="checkbox" aria-label="Service visible" disabled={locked} checked={current.visible !== false} onChange={(event) => setCurrent({ ...current, visible: event.target.checked })} /> Visible
+          </label>
           <p className="text-xs uppercase tracking-[0.14em] text-neutral-500">Items</p>
-          {((current.items as Array<Record<string, unknown>>) || []).map((item, index) => (
-            <div key={index} className="grid grid-cols-2 gap-2">
-              <input className={fieldClass} disabled={locked} value={String(item.name || "")} onChange={(event) => {
-                const items = ((current.items as Array<Record<string, unknown>>) || []).slice();
-                items[index] = { ...item, name: event.target.value };
-                setCurrent({ ...current, items });
+          {((current.items as Array<Record<string, unknown>>) || []).map((item, index, items) => (
+            <div key={index} className="grid grid-cols-[1fr_1fr_auto] items-center gap-2">
+              <input className={fieldClass} aria-label="Service item name" disabled={locked} value={String(item.name || "")} onChange={(event) => {
+                const next = items.slice();
+                next[index] = { ...item, name: event.target.value };
+                setCurrent({ ...current, items: next });
               }} />
-              <input className={fieldClass} disabled={locked} value={String(item.icon_key || "")} onChange={(event) => {
-                const items = ((current.items as Array<Record<string, unknown>>) || []).slice();
-                items[index] = { ...item, icon_key: event.target.value };
-                setCurrent({ ...current, items });
+              <input className={fieldClass} aria-label="Service item icon" disabled={locked} value={String(item.icon_key || "")} onChange={(event) => {
+                const next = items.slice();
+                next[index] = { ...item, icon_key: event.target.value };
+                setCurrent({ ...current, items: next });
               }} />
+              <div className="flex items-center gap-2 text-xs">
+                <label className="flex items-center gap-1">
+                  <input type="checkbox" aria-label="Service item visible" disabled={locked} checked={item.visible !== false} onChange={(event) => {
+                    const next = items.slice();
+                    next[index] = { ...item, visible: event.target.checked };
+                    setCurrent({ ...current, items: next });
+                  }} /> Visible
+                </label>
+                {!locked && <button type="button" aria-label="Move service item up" disabled={index === 0} onClick={() => {
+                  const next = items.slice();
+                  [next[index - 1], next[index]] = [next[index], next[index - 1]];
+                  setCurrent({ ...current, items: next });
+                }}>Up</button>}
+                {!locked && <button type="button" aria-label="Move service item down" disabled={index === items.length - 1} onClick={() => {
+                  const next = items.slice();
+                  [next[index + 1], next[index]] = [next[index], next[index + 1]];
+                  setCurrent({ ...current, items: next });
+                }}>Down</button>}
+              </div>
             </div>
           ))}
           {!locked && <Button tone="light" onClick={() => setCurrent({ ...current, items: [...((current.items as unknown[]) || []), { name: "", icon_key: "palette", visible: true }] })}>Add item</Button>}
@@ -349,7 +373,7 @@ export function HomepageAdmin({ profile }: { profile: Profile }) {
   return (
     <div className="space-y-4">
       <h1 className="text-2xl font-semibold tracking-[-0.03em]">Homepage</h1>
-      <p className="text-sm text-neutral-500">Section order on the public site stays fixed. Hero logo stays the approved file unless you set one here.</p>
+      <p className="text-sm text-neutral-500">The public section order is part of the design and stays fixed. You can edit copy and visibility. Hero layout and the cursor stay locked; circles and their intensity are the only hero controls.</p>
       <SaveState state={state} />
       {rows.map((row, index) => (
         <div key={String(row.id)} className="space-y-2 rounded-lg border border-black/10 bg-white p-4">
@@ -373,11 +397,20 @@ export function HomepageAdmin({ profile }: { profile: Profile }) {
             setRows(next);
           }} /> Visible</label>
           {row.section_key === "hero" && (
-            <label className="flex items-center gap-2 text-sm"><input type="checkbox" disabled={locked} checked={(row.settings as { circles?: boolean })?.circles !== false} onChange={(event) => {
-              const next = rows.slice();
-              next[index] = { ...row, settings: { ...(row.settings as object), circles: event.target.checked } };
-              setRows(next);
-            }} /> Background circles</label>
+            <>
+              <label className="flex items-center gap-2 text-sm"><input type="checkbox" aria-label="Background circles" disabled={locked} checked={(row.settings as { circles?: boolean })?.circles !== false} onChange={(event) => {
+                const next = rows.slice();
+                next[index] = { ...row, settings: { ...(row.settings as object), circles: event.target.checked } };
+                setRows(next);
+              }} /> Background circles</label>
+              <Field label="Circle intensity">
+                <input className={fieldClass} type="number" min="0" max="1" step="0.01" aria-label="Circle intensity" disabled={locked} value={String((row.settings as { intensity?: number })?.intensity ?? 0.42)} onChange={(event) => {
+                  const next = rows.slice();
+                  next[index] = { ...row, settings: { ...(row.settings as object), intensity: Number(event.target.value) } };
+                  setRows(next);
+                }} />
+              </Field>
+            </>
           )}
           {!locked && (
             <div className="flex gap-2">
@@ -508,27 +541,51 @@ export function NavAdmin({ profile, placement, title }: { profile: Profile; plac
   return (
     <div className="space-y-3">
       <h1 className="text-2xl font-semibold tracking-[-0.03em]">{title}</h1>
-      <p className="text-sm text-neutral-500">Links stay on the existing routes. New routes cannot be created here.</p>
+      <p className="text-sm text-neutral-500">Links stay on the existing routes. New routes cannot be created here. Order and visibility can be changed.</p>
       {state && <SaveState state={state} />}
       {rows.map((row, index) => (
-        <div key={String(row.id)} className="grid gap-2 rounded-lg border border-black/10 bg-white p-3 md:grid-cols-[1fr_1fr_auto]">
-          <input className={fieldClass} disabled={locked} value={String(row.label || "")} onChange={(event) => {
+        <div key={String(row.id)} className="grid gap-2 rounded-lg border border-black/10 bg-white p-3 md:grid-cols-[1fr_1fr_auto_auto]">
+          <input className={fieldClass} aria-label={`${title} label ${index}`} disabled={locked} value={String(row.label || "")} onChange={(event) => {
             const next = rows.slice();
             next[index] = { ...row, label: event.target.value };
             setRows(next);
           }} />
-          <select className={fieldClass} disabled={locked} value={String(row.href)} onChange={(event) => {
+          <select className={fieldClass} aria-label={`${title} url ${index}`} disabled={locked} value={String(row.href)} onChange={(event) => {
             const next = rows.slice();
             next[index] = { ...row, href: event.target.value };
             setRows(next);
           }}>
             {routes.map((route) => <option key={route}>{route}</option>)}
           </select>
-          {!locked && <Button onClick={async () => {
-            await publishColumns("nav_links", String(row.id), { label: row.label, href: row.href, visible: row.visible !== false, sort_order: index });
-            setState("Published");
-            load();
-          }}>Publish</Button>}
+          <label className="flex items-center gap-2 text-sm">
+            <input type="checkbox" aria-label={`${title} visible ${index}`} disabled={locked} checked={row.visible !== false} onChange={(event) => {
+              const next = rows.slice();
+              next[index] = { ...row, visible: event.target.checked };
+              setRows(next);
+            }} /> Visible
+          </label>
+          <div className="flex gap-2">
+            {!locked && <Button tone="light" disabled={index === 0} onClick={() => {
+              const next = rows.slice();
+              [next[index - 1], next[index]] = [next[index], next[index - 1]];
+              setRows(next);
+            }}>Up</Button>}
+            {!locked && <Button tone="light" disabled={index === rows.length - 1} onClick={() => {
+              const next = rows.slice();
+              [next[index + 1], next[index]] = [next[index], next[index + 1]];
+              setRows(next);
+            }}>Down</Button>}
+            {!locked && <Button onClick={async () => {
+              await Promise.all(rows.map((item, itemIndex) => publishColumns("nav_links", String(item.id), {
+                label: item.label,
+                href: item.href,
+                visible: item.visible !== false,
+                sort_order: itemIndex,
+              })));
+              setState("Published");
+              load();
+            }}>Publish</Button>}
+          </div>
         </div>
       ))}
     </div>
@@ -540,7 +597,7 @@ export function SeoAdmin({ profile, global = false }: { profile: Profile; global
   const [state, setState] = useState("");
   const locked = !canEdit(profile.role);
   useEffect(() => {
-    db().from("page_seo").select("*").order("path").then(({ data }) => setRows(data || []));
+    db().from("page_seo").select("*, og:assets!page_seo_og_asset_id_fkey(public_url)").order("path").then(({ data }) => setRows(data || []));
   }, []);
   const visible = global ? rows.filter((row) => row.path === "/") : rows;
 
@@ -551,6 +608,7 @@ export function SeoAdmin({ profile, global = false }: { profile: Profile; global
         description: row.description,
         canonical: row.canonical,
         indexable: row.indexable !== false,
+        og_asset_id: row.og_asset_id || null,
       }, { idColumn: "path", withStatus: false });
       setState(`Published ${row.path}`);
     } catch (error) {
@@ -584,13 +642,26 @@ export function SeoAdmin({ profile, global = false }: { profile: Profile; global
             setRows(next);
           }} />
           <label className="flex items-center gap-2 text-sm">
-            <input type="checkbox" disabled={locked} checked={row.indexable !== false} onChange={(event) => {
+            <input type="checkbox" aria-label={`Indexable ${row.path}`} disabled={locked} checked={row.indexable !== false} onChange={(event) => {
               const next = rows.slice();
               const real = rows.findIndex((item) => item.path === row.path);
               next[real] = { ...row, indexable: event.target.checked };
               setRows(next);
             }} /> Indexable
           </label>
+          <AssetPicker
+            label={`OG image ${row.path}`}
+            folder="seo"
+            disabled={locked}
+            assetId={row.og_asset_id ? String(row.og_asset_id) : ""}
+            previewUrl={(row.og as { public_url?: string } | null)?.public_url || null}
+            onChange={(asset) => {
+              const next = rows.slice();
+              const real = rows.findIndex((item) => item.path === row.path);
+              next[real] = { ...row, og_asset_id: asset.id, og: { public_url: asset.public_url } };
+              setRows(next);
+            }}
+          />
           {!locked && <Button onClick={() => save(rows.find((item) => item.path === row.path) || row)}>Publish</Button>}
           <span className="hidden">{index}</span>
         </div>
@@ -602,11 +673,16 @@ export function SeoAdmin({ profile, global = false }: { profile: Profile; global
 export function MediaAdmin({ profile, folder }: { profile: Profile; folder?: string }) {
   const [rows, setRows] = useState<AssetRow[]>([]);
   const [state, setState] = useState("");
+  const request = useRef(0);
   const locked = !canEdit(profile.role);
-  const load = () => db().from("assets").select("*").order("created_at", { ascending: false }).then(({ data }) => {
-    const all = (data || []) as AssetRow[];
-    setRows(folder ? all.filter((asset) => asset.storage_path.includes(`/${folder}/`) || asset.storage_path.includes(`${folder}/`)) : all);
-  });
+  const load = () => {
+    const current = ++request.current;
+    db().from("assets").select("*").order("created_at", { ascending: false }).then(({ data }) => {
+      if (current !== request.current) return;
+      const all = (data || []) as AssetRow[];
+      setRows(folder ? all.filter((asset) => asset.storage_path.includes(`/${folder}/`) || asset.storage_path.includes(`${folder}/`)) : all);
+    });
+  };
   useEffect(() => { load(); }, [folder]);
 
   return (
@@ -631,9 +707,28 @@ export function MediaAdmin({ profile, folder }: { profile: Profile; folder?: str
           <div key={asset.id} className="rounded-lg border border-black/10 bg-white p-2">
             <img src={asset.public_url} alt={asset.alt_text || ""} className="h-28 w-full object-contain bg-neutral-100" />
             <p className="mt-2 truncate text-xs">{asset.filename}</p>
-            <input className={`${fieldClass} mt-2`} disabled={locked} defaultValue={asset.alt_text || ""} placeholder="Alt text" onBlur={async (event) => {
+            <input className={`${fieldClass} mt-2`} aria-label={`Alt text ${asset.filename}`} disabled={locked} defaultValue={asset.alt_text || ""} placeholder="Alt text" onBlur={async (event) => {
               await db().from("assets").update({ alt_text: event.target.value }).eq("id", asset.id);
             }} />
+            <input className={`${fieldClass} mt-2`} aria-label={`Caption ${asset.filename}`} disabled={locked} defaultValue={asset.caption || ""} placeholder="Caption" onBlur={async (event) => {
+              await db().from("assets").update({ caption: event.target.value }).eq("id", asset.id);
+            }} />
+            {!locked && (
+              <label className="mt-2 block text-xs underline">
+                Replace
+                <input type="file" accept="image/*" className="hidden" aria-label={`Replace ${asset.filename}`} onChange={async (event) => {
+                  const file = event.target.files?.[0];
+                  if (!file) return;
+                  try {
+                    await replaceAssetFile(asset, file);
+                    setState("Replaced with a new file. The previous stored file was removed.");
+                    load();
+                  } catch (error) {
+                    setState(error instanceof Error ? error.message : "Replace failed");
+                  }
+                }} />
+              </label>
+            )}
             {!locked && <button className="mt-2 text-xs text-red-700" onClick={async () => {
               if (!window.confirm("Delete this media record? Seeded public files stay on the site.")) return;
               try {

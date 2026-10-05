@@ -181,6 +181,7 @@ export function ProjectEditor({ id, profile, back }: { id: string; profile: Prof
   const [state, setState] = useState("No changes");
   const [updatedAt, setUpdatedAt] = useState<string | null>(null);
   const [drag, setDrag] = useState<number | null>(null);
+  const [ready, setReady] = useState(id === "new");
   const locked = !canEdit(profile.role);
   useUnsaved(dirty);
 
@@ -199,6 +200,7 @@ export function ProjectEditor({ id, profile, back }: { id: string; profile: Prof
         setForm(fromRow(data as Record<string, unknown>));
         setUpdatedAt(String(data.updated_at || ""));
         setRecordId(data.id);
+        setReady(true);
       });
   }, [id]);
 
@@ -255,7 +257,14 @@ export function ProjectEditor({ id, profile, back }: { id: string; profile: Prof
     );
   };
 
+  const failure = (error: unknown, fallback: string) => {
+    if (error instanceof Error && error.message) return error.message;
+    if (error && typeof error === "object" && "message" in error && error.message) return String(error.message);
+    return fallback;
+  };
+
   const save = async () => {
+    if (!ready) return;
     setState("Saving draft…");
     try {
       if (!recordId) {
@@ -274,11 +283,12 @@ export function ProjectEditor({ id, profile, back }: { id: string; profile: Prof
       setDirty(false);
       setState("Draft saved");
     } catch (error) {
-      setState(error instanceof Error ? error.message : "Save failed");
+      setState(failure(error, "Save failed"));
     }
   };
 
   const publish = async () => {
+    if (!ready) return;
     setState("Publishing…");
     try {
       let projectId = recordId;
@@ -294,7 +304,7 @@ export function ProjectEditor({ id, profile, back }: { id: string; profile: Prof
       setDirty(false);
       setState("Published");
     } catch (error) {
-      setState(error instanceof Error ? error.message : "Publish failed");
+      setState(failure(error, "Publish failed"));
     }
   };
 
@@ -315,8 +325,8 @@ export function ProjectEditor({ id, profile, back }: { id: string; profile: Prof
           {recordId && form.slug && (
             <a className="rounded-md border border-black/10 px-3 py-2 text-sm" href={`/project/${form.slug}?preview=1`} target="_blank" rel="noreferrer">Preview</a>
           )}
-          {!locked && <Button tone="light" onClick={save}>Save draft</Button>}
-          {!locked && <Button onClick={publish}>Publish</Button>}
+          {!locked && <Button tone="light" disabled={!ready} onClick={save}>Save draft</Button>}
+          {!locked && <Button disabled={!ready} onClick={publish}>Publish</Button>}
           {!locked && recordId && form.status === "published" && (
             <Button tone="light" onClick={() => unpublish("projects", recordId).then(() => { setForm((current) => ({ ...current, status: "draft" })); setState("Unpublished"); })}>Unpublish</Button>
           )}
