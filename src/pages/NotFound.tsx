@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { Navbar } from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { CustomCursor } from "@/components/CustomCursor";
-import { TwcLockup } from "@/components/brand/TwcLockup";
 
 const NotFound = () => {
   const location = useLocation();
@@ -18,8 +17,8 @@ const NotFound = () => {
       <CustomCursor />
       <Navbar />
       <main className="pt-32 pb-20 px-6 md:px-10">
-        <TwcLockup animate={false} className="w-[min(100%,280px)] mb-10" />
-        <h1 className="twc-display mb-4">404</h1>
+        <img src="/twc-logo.png" alt="Tipple Works Co." className="w-[200px] max-w-[70vw] h-auto mb-8" />
+        <h1 className="twc-h1 mb-4">404</h1>
         <p className="twc-body text-white/60 mb-10">The page you're looking for doesn't exist</p>
         <Link
           to="/"

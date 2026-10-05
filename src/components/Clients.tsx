@@ -1,6 +1,4 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { EASE } from "@/components/brand/tokens";
 import { Link } from "react-router-dom";
 
 export const Clients = () => {
@@ -51,7 +49,7 @@ export const Clients = () => {
             <p className="twc-body text-black/70 mb-10 max-w-md">
               We collaborate with innovative brands across various industries, helping them reach new heights with our creative solutions.
             </p>
-            <div className="flex flex-row md:flex-col flex-wrap gap-x-5 gap-y-3">
+            <div className="flex flex-wrap gap-2">
               {filters.map((category) => {
                 const active = filter === category;
                 const label = category === "all" ? "All" : category;
@@ -59,17 +57,10 @@ export const Clients = () => {
                   <button
                     key={category}
                     onClick={() => setFilter(category)}
-                    className={`relative pl-5 text-left twc-micro transition-colors duration-300 ${
-                      active ? "text-black" : "text-black/40 hover:text-black"
+                    className={`px-3 py-1 text-sm rounded-full transition-colors ${
+                      active ? "bg-black text-white" : "bg-black/5 text-black/60 hover:text-black"
                     }`}
                   >
-                    {active && (
-                      <motion.span
-                        layoutId="client-filter"
-                        className="absolute left-0 top-1/2 h-2 w-2 -translate-y-1/2 rounded-full bg-tipple-red"
-                        transition={{ duration: 0.45, ease: EASE }}
-                      />
-                    )}
                     {label}
                   </button>
                 );
@@ -88,7 +79,7 @@ export const Clients = () => {
                       <img
                         src={client.image}
                         alt={client.name}
-                        className="max-h-[72%] w-auto object-contain grayscale opacity-60 transition duration-700 ease-out group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-[1.02]"
+                        className="max-h-[70%] max-w-[80%] object-contain grayscale opacity-70 transition duration-500 ease-out group-hover:grayscale-0 group-hover:opacity-100"
                       />
                     </div>
                     <p className="twc-micro text-black/55 mt-2">{client.name}</p>

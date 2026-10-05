@@ -20,7 +20,6 @@ import {
   Monitor
 } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { TWC_COLORS } from '@/components/brand/tokens';
 import {
   Accordion,
   AccordionContent,
@@ -152,14 +151,9 @@ export const ServicesAccordion = () => {
                   className="border-b border-gray-200 py-2"
                 >
                   <AccordionTrigger className="hover:no-underline group py-5">
-                    <div className="flex items-center gap-4 text-left">
-                      <span
-                        aria-hidden
-                        className="h-2 w-2 shrink-0 rounded-full scale-50 opacity-25 transition-all duration-500 ease-out group-data-[state=open]:scale-100 group-data-[state=open]:opacity-100"
-                        style={{ background: TWC_COLORS[index % TWC_COLORS.length] }}
-                      />
-                      <div className="text-black/55">{category.icon}</div>
-                      <h3 className="twc-heading text-[clamp(1.35rem,2vw,1.85rem)] text-black">
+                    <div className="flex items-center gap-3 text-left">
+                      <div className="text-black/50">{category.icon}</div>
+                      <h3 className="text-xl md:text-2xl font-medium tracking-[-0.03em] text-black">
                         {index + 1}. {category.title}
                       </h3>
                     </div>

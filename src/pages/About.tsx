@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import { CustomCursor } from '@/components/CustomCursor';
 
 const fadeInUp = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 12 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
 };
 
@@ -16,13 +16,13 @@ const About = () => {
       <CustomCursor /> 
       {/* Hero Section */}
       <motion.section
-        className="bg-white text-black pt-32 pb-20 md:pt-40 md:pb-28 px-6 md:px-10"
+        className="bg-white text-black text-center pt-32 pb-20 md:pt-40 md:pb-28 px-6 md:px-10"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
         variants={fadeInUp}
       >
-        <h1 className="twc-statement max-w-5xl mx-auto">
+        <h1 className="twc-h1 max-w-4xl mx-auto">
           We build bold brands with clarity, creativity, and cultural insight.
         </h1>
       </motion.section>

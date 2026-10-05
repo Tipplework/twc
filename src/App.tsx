@@ -9,7 +9,6 @@ import Services from "./pages/Services";
 import Contact from "./pages/Contactinnerpage";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
-import { RouteTransition } from "./components/brand/RouteTransition";
 import { lazy, Suspense } from "react";
 
 const AdminApp = lazy(() => import("./admin/AdminApp"));
@@ -18,7 +17,6 @@ const App = () => {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <RouteTransition>
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/about" element={<About />} />
@@ -38,7 +36,6 @@ const App = () => {
         />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      </RouteTransition>
     </BrowserRouter>
   );
 };

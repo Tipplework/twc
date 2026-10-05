@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { EASE, TWC_COLORS } from "@/components/brand/tokens";
+import { EASE } from "@/components/brand/tokens";
 
 type Testimonial = {
   id: number;
@@ -72,11 +72,11 @@ export const Testimonials = () => {
       onMouseLeave={() => setAutoplay(true)}
     >
       <div className="mx-auto max-w-[1100px]">
-        <p className="twc-micro text-black/45 mb-10 md:mb-16">What Clients Say</p>
+        <h2 className="twc-heading mb-10 md:mb-14">What Clients Say</h2>
         <AnimatePresence mode="wait">
           <motion.blockquote
             key={quote.id}
-            initial={{ y: "40%", opacity: 0 }}
+            initial={{ opacity: 0 }}
             animate={{ y: "0%", opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.7, ease: EASE }}
@@ -97,11 +97,7 @@ export const Testimonials = () => {
               <button
                 key={item.id}
                 onClick={() => setCurrent(index)}
-                className="h-2.5 w-2.5 rounded-full transition-transform duration-500"
-                style={{
-                  background: index === current ? TWC_COLORS[index % TWC_COLORS.length] : "rgba(0,0,0,0.18)",
-                  transform: index === current ? "scale(1)" : "scale(0.75)",
-                }}
+                className={`h-2 w-2 rounded-full ${index === current ? "bg-tipple-red" : "bg-black/20"}`}
                 aria-label={`Go to testimonial ${index + 1}`}
               />
             ))}

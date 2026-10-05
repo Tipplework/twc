@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import { Navbar } from "../components/Navbar";
 import Footer from "@/components/Footer";
 import { projectData } from "../lib/projectData";
 import { CustomCursor } from "@/components/CustomCursor";
-import { EASE } from "@/components/brand/tokens";
 
 export default function Work() {
   const [filter, setFilter] = useState("all");
@@ -20,24 +18,19 @@ export default function Work() {
     <div className="bg-black text-white min-h-screen">
       <Navbar />
       <CustomCursor />
-      <div className="px-6 md:px-10 pt-28 md:pt-36">
-        <h1 className="twc-display mb-10">Selected Work</h1>
-        <div className="flex flex-wrap gap-x-5 gap-y-3 mb-12 md:mb-16">
+      <div className="px-6 md:px-10 pt-28 md:pt-36 text-center">
+        <h1 className="twc-h1 mb-8">Selected Work</h1>
+        <div className="flex flex-wrap justify-center gap-2 mb-10 md:mb-14">
           {filters.map((cat) => {
             const active = filter === cat;
             return (
               <button
                 key={cat}
                 onClick={() => setFilter(cat)}
-                className={`relative pl-5 twc-micro transition-colors ${active ? "text-white" : "text-white/40 hover:text-white"}`}
+                className={`px-3 py-1 text-sm rounded-full border transition-colors ${
+                  active ? "bg-white text-black border-white" : "text-white/80 border-white/30 hover:border-white"
+                }`}
               >
-                {active && (
-                  <motion.span
-                    layoutId="work-filter"
-                    className="absolute left-0 top-1/2 h-2 w-2 -translate-y-1/2 rounded-full bg-tipple-yellow"
-                    transition={{ duration: 0.45, ease: EASE }}
-                  />
-                )}
                 {cat === "all" ? "All Work" : cat}
               </button>
             );
@@ -52,7 +45,7 @@ export default function Work() {
               <img
                 src={project.image}
                 alt={project.title}
-                className="w-full h-64 sm:h-72 lg:h-80 object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                className="w-full h-64 sm:h-72 lg:h-80 object-cover transition-transform duration-700 ease-out group-hover:scale-[1.015]"
               />
             </div>
             <div className="px-3 pt-4 pb-2">

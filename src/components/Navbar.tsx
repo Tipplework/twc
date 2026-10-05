@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { TwcCircles } from "@/components/brand/TwcCircles";
 
 const links = [
   { href: "/", label: "Home" },
@@ -44,10 +43,7 @@ export const Navbar = () => {
         onDark ? "text-white" : "text-black"
       )}
     >
-      <div className="flex justify-end items-center h-16 gap-4">
-        <span className="twc-nav-mark" style={{ ["--spread" as string]: isMenuOpen ? 1 : 0 }}>
-          <TwcCircles size={8} still />
-        </span>
+      <div className="flex justify-end items-center h-16">
         <button
           className="z-50"
           onClick={() => setIsMenuOpen((open) => !open)}
@@ -58,15 +54,10 @@ export const Navbar = () => {
         </button>
       </div>
 
-      <div
-        className={cn(
-          "grid transition-[grid-template-rows] duration-500 ease-out",
-          isMenuOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-        )}
-      >
+      <div className={cn("grid transition-[grid-template-rows] duration-300 ease-out", isMenuOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]")}>
         <div className={cn("overflow-hidden bg-white text-black", !isMenuOpen && "pointer-events-none")}>
-          <nav className="flex flex-col items-center gap-5 py-10" aria-hidden={!isMenuOpen}>
-            {links.map((link, index) => {
+          <nav className="flex flex-col items-center gap-6 py-8" aria-hidden={!isMenuOpen}>
+            {links.map((link) => {
               const active = location.pathname === link.href;
               return (
                 <Link
@@ -74,18 +65,11 @@ export const Navbar = () => {
                   to={link.href}
                   onClick={closeMenu}
                   tabIndex={isMenuOpen ? 0 : -1}
-                  className="twc-heading flex items-center gap-3 text-black"
-                  style={{
-                    transition: "opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
-                    transitionDelay: isMenuOpen ? `${80 + index * 50}ms` : "0ms",
-                    opacity: isMenuOpen ? 1 : 0,
-                    transform: isMenuOpen ? "translateY(0)" : "translateY(12px)",
-                  }}
+                  className={cn(
+                    "text-2xl font-medium tracking-[-0.03em]",
+                    active ? "text-black" : "text-black/45 hover:text-black"
+                  )}
                 >
-                  <span
-                    className="h-2 w-2 rounded-full bg-tipple-red transition-opacity duration-300"
-                    style={{ opacity: active ? 1 : 0 }}
-                  />
                   {link.label}
                 </Link>
               );

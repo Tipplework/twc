@@ -37,11 +37,11 @@ export default function ProjectDetail() {
             <img
               src={project.image}
               alt={project.title}
-              className="w-full aspect-[4/5] object-cover"
+              className="w-full h-auto"
             />
             <div>
               <p className="twc-micro text-black/45 mb-4">{project.category}</p>
-              <h1 className="twc-display text-[clamp(3rem,7vw,6.5rem)] mb-6">{project.title}</h1>
+              <h1 className="twc-h1 mb-6">{project.title}</h1>
               <div className="relative">
                 <p className="twc-body text-black/70">
                   {showFullText || !shouldShowButton
@@ -114,7 +114,7 @@ export default function ProjectDetail() {
               <img
                 src={img}
                 alt={`${project.title} Visual ${i + 1}`}
-                className="block w-full max-w-screen-lg h-auto transition-transform duration-700 ease-out hover:scale-[1.015]"
+                className="block w-full max-w-screen-lg h-auto"
                 loading="lazy"
               />
             </div>
@@ -122,16 +122,9 @@ export default function ProjectDetail() {
         </div>
       </div>
       {next && next.slug !== project.slug && (
-        <Link to={`/project/${next.slug}`} className="group block px-6 md:px-10 max-w-[1400px] mx-auto py-16 md:py-24">
-          <p className="twc-micro text-black/45 mb-4">Next</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
-            <p className="twc-display text-[clamp(3rem,7vw,6.5rem)]">{next.title}</p>
-            <img
-              src={next.image}
-              alt=""
-              className="w-full h-48 md:h-72 object-cover [clip-path:circle(18px_at_0%_50%)] transition-[clip-path] duration-700 ease-out group-hover:[clip-path:circle(80%_at_40%_50%)]"
-            />
-          </div>
+        <Link to={`/project/${next.slug}`} className="block px-6 md:px-10 max-w-[1120px] mx-auto py-14 border-t border-black/10">
+          <p className="twc-micro text-black/45 mb-3">Next</p>
+          <p className="twc-h2">{next.title}</p>
         </Link>
       )}
       <Footer />

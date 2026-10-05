@@ -1,12 +1,8 @@
 import { Navbar } from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { CustomCursor } from "@/components/CustomCursor";
-import { TwcLockup } from "@/components/brand/TwcLockup";
-import { usePointerVars } from "@/components/brand/usePointerVars";
 
 export default function Services() {
-  const stageRef = usePointerVars<HTMLElement>();
-
   const handleShare = async () => {
     if (navigator.share) {
       try {
@@ -32,22 +28,17 @@ export default function Services() {
     <>
       <Navbar />
       <CustomCursor />
-      <main
-        ref={stageRef}
-        className="bg-black text-white flex flex-col justify-center items-center min-h-screen px-6 text-center"
-      >
-        <TwcLockup className="w-[88vw] max-w-[760px] mb-10" />
+      <main className="bg-black text-white flex flex-col justify-center items-center min-h-[calc(100vh-8rem)] px-6 text-center">
+        <img
+          src="/twc-logo.png"
+          alt="Tipple Works Co."
+          className="w-[300px] md:w-[440px] lg:w-[560px] max-w-[86vw] h-auto mb-8"
+        />
         <div className="flex flex-col sm:flex-row gap-3">
-          <button
-            onClick={handleDeckClick}
-            className="bg-white text-black rounded-full px-8 py-3.5 text-base transition-transform duration-500 hover:scale-[1.02]"
-          >
+          <button onClick={handleDeckClick} className="bg-white text-black rounded-full px-8 py-3.5 text-base">
             View Our Deck
           </button>
-          <button
-            onClick={handleShare}
-            className="bg-white text-black rounded-full px-8 py-3.5 text-base transition-transform duration-500 hover:scale-[1.02]"
-          >
+          <button onClick={handleShare} className="bg-white text-black rounded-full px-8 py-3.5 text-base">
             Share
           </button>
         </div>
