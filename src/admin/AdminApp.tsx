@@ -81,12 +81,12 @@ function Login() {
         <p className="mt-2 text-sm leading-6 text-neutral-500">Sign in to manage the Tipple Works website.</p>
         <div className="mt-7 space-y-4">
           <Field label="Email">
-            <input className={`${fieldClass} h-12 rounded-lg px-3.5 text-[15px]`} type="email" autoComplete="username" value={email} onChange={(event) => setEmail(event.target.value)} />
+            <input className={`${fieldClass} h-12 rounded-lg px-3.5 text-[15px] text-black caret-black placeholder:text-neutral-400 [-webkit-text-fill-color:#000] [&:-webkit-autofill]:[-webkit-text-fill-color:#000] [&:-webkit-autofill]:shadow-[inset_0_0_0_1000px_#fff]`} type="email" autoComplete="username" value={email} onChange={(event) => setEmail(event.target.value)} />
           </Field>
           <Field label="Password">
             <div className="relative">
               <input
-                className={`${fieldClass} h-12 rounded-lg px-3.5 pr-16 text-[15px]`}
+                className={`${fieldClass} h-12 rounded-lg px-3.5 pr-16 text-[15px] text-black caret-black placeholder:text-neutral-400 [-webkit-text-fill-color:#000] [&:-webkit-autofill]:[-webkit-text-fill-color:#000] [&:-webkit-autofill]:shadow-[inset_0_0_0_1000px_#fff]`}
                 type={showPassword ? "text" : "password"}
                 autoComplete="current-password"
                 value={password}
@@ -94,7 +94,7 @@ function Login() {
               />
               <button
                 type="button"
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-neutral-500 hover:text-black"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-neutral-800 hover:text-black"
                 onClick={() => setShowPassword((value) => !value)}
                 aria-label={showPassword ? "Hide password" : "Show password"}
               >
