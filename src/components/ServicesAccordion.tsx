@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {
   Briefcase,
   Instagram,
@@ -6,7 +5,6 @@ import {
   Globe,
   CalendarDays,
   Utensils,
-  ChevronDown,
   Brush,
   Camera,
   Package,
@@ -21,7 +19,8 @@ import {
   Palette,
   Monitor
 } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
+import { TWC_COLORS } from '@/components/brand/tokens';
 import {
   Accordion,
   AccordionContent,
@@ -119,22 +118,12 @@ export const ServicesAccordion = () => {
   ];
 
   return (
-    <section className="py-20 px-6 md:px-10 bg-white" id="services">
-      <div className="container mx-auto">
-        <motion.div 
-          className="flex gap-2 items-center mb-6 text-gray-400"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          {/* Optional heading or icon could go here */}
-        </motion.div> {/* ✅ THIS LINE FIXES THE BUILD ERROR */}
-
+    <section className="py-24 md:py-32 px-6 md:px-10 bg-white" id="services">
+      <div className="mx-auto max-w-[1400px]">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-y-12 md:gap-12">
           <div className="md:col-span-5">
             <motion.h2 
-              className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-black"
+              className="twc-heading mb-6 text-black"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -144,7 +133,7 @@ export const ServicesAccordion = () => {
             </motion.h2>
             
             <motion.p 
-              className="text-lg text-gray-600"
+              className="twc-body text-black/70"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -162,16 +151,17 @@ export const ServicesAccordion = () => {
                   value={category.id}
                   className="border-b border-gray-200 py-2"
                 >
-                  <AccordionTrigger className="hover:no-underline group">
-                    <div className="flex items-center gap-3 text-left">
-                      <div className="p-2 rounded-full bg-gray-50 group-hover:bg-gray-100 transition-colors">
-                        {category.icon}
-                      </div>
-                      <div>
-                        <h3 className="text-xl md:text-2xl font-bold tracking-[-0.04em] text-black group-hover:text-gray-800 transition-colors">
-                          {index + 1}. {category.title}
-                        </h3>
-                      </div>
+                  <AccordionTrigger className="hover:no-underline group py-5">
+                    <div className="flex items-center gap-4 text-left">
+                      <span
+                        aria-hidden
+                        className="h-2 w-2 shrink-0 rounded-full scale-50 opacity-25 transition-all duration-500 ease-out group-data-[state=open]:scale-100 group-data-[state=open]:opacity-100"
+                        style={{ background: TWC_COLORS[index % TWC_COLORS.length] }}
+                      />
+                      <div className="text-black/55">{category.icon}</div>
+                      <h3 className="twc-heading text-[clamp(1.35rem,2vw,1.85rem)] text-black">
+                        {index + 1}. {category.title}
+                      </h3>
                     </div>
                   </AccordionTrigger>
                   <AccordionContent>

@@ -18,12 +18,12 @@ const Contact = () => {
       <main className="pt-32 pb-20 px-6 md:px-10">
         <div className="container mx-auto">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-7xl font-bold mb-4">Let's Create</h1>
-            <p className="text-xl text-zinc-400 mb-12">Ready to transform your brand? Get in touch with us.</p>
+            <h1 className="twc-display mb-6">Let's Create</h1>
+            <p className="twc-body text-white/60 mb-14 max-w-xl">Ready to transform your brand? Get in touch with us.</p>
             
             <div className="grid md:grid-cols-2 gap-12">
               <div>
-                <h2 className="text-2xl font-semibold mb-6">Contact Information</h2>
+                <h2 className="twc-heading text-[clamp(1.5rem,2.5vw,2rem)] mb-8">Contact Information</h2>
                 
                 <div className="space-y-6">
                   <div className="flex items-start">
@@ -74,7 +74,7 @@ const Contact = () => {
               </div>
               
               <div>
-                <h2 className="text-2xl font-semibold mb-6">Send a Message</h2>
+                <h2 className="twc-heading text-[clamp(1.5rem,2.5vw,2rem)] mb-8">Send a Message</h2>
                 <form
                   className="space-y-4"
                   onSubmit={(event) => {
@@ -95,7 +95,7 @@ const Contact = () => {
                       id="name"
                       type="text" 
                       placeholder="Name" 
-                      className="w-full p-3 bg-zinc-900 border border-zinc-800 rounded-md focus:outline-none focus:ring-1 focus:ring-white/30"
+                      className="w-full bg-transparent border-b border-white/25 py-3 placeholder:text-white/35 focus:outline-none focus:border-white"
                     />
                   </div>
                   
@@ -107,7 +107,7 @@ const Contact = () => {
                       id="email"
                       type="email" 
                       placeholder="Email" 
-                      className="w-full p-3 bg-zinc-900 border border-zinc-800 rounded-md focus:outline-none focus:ring-1 focus:ring-white/30"
+                      className="w-full bg-transparent border-b border-white/25 py-3 placeholder:text-white/35 focus:outline-none focus:border-white"
                     />
                   </div>
                   
@@ -118,7 +118,7 @@ const Contact = () => {
                       id="phone"
                       type="tel" 
                       placeholder="Phone (optional)" 
-                      className="w-full p-3 bg-zinc-900 border border-zinc-800 rounded-md focus:outline-none focus:ring-1 focus:ring-white/30"
+                      className="w-full bg-transparent border-b border-white/25 py-3 placeholder:text-white/35 focus:outline-none focus:border-white"
                     />
                   </div>
                   
@@ -130,14 +130,14 @@ const Contact = () => {
                       id="message"
                       placeholder="Tell us about your project" 
                       rows={5}
-                      className="w-full p-3 bg-zinc-900 border border-zinc-800 rounded-md focus:outline-none focus:ring-1 focus:ring-white/30"
+                      className="w-full bg-transparent border-b border-white/25 py-3 placeholder:text-white/35 focus:outline-none focus:border-white"
                     ></textarea>
                   </div>
                   
                   <div>
                     <button 
                       type="submit" 
-                      className="w-full py-3 px-4 bg-white text-black font-medium rounded-md hover:bg-opacity-90 transition-all duration-300"
+                      className="w-full py-3 px-4 bg-white text-black rounded-full transition-transform duration-500 hover:scale-[1.02]"
                     >
                       Submit
                     </button>

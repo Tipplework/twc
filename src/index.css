@@ -34,6 +34,7 @@
 
   html {
     scroll-behavior: smooth;
+    overflow-x: clip;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -43,12 +44,12 @@
   }
 
   body {
-    @apply bg-black text-white font-sans;
+    @apply bg-black text-white font-sans antialiased;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 
   .custom-cursor {
-    @apply fixed w-6 h-6 rounded-full bg-tipple-yellow mix-blend-difference pointer-events-none z-50 transition-transform duration-150 ease-out -translate-x-1/2 -translate-y-1/2;
+    @apply fixed w-2.5 h-2.5 rounded-full bg-tipple-yellow pointer-events-none z-[70] -translate-x-1/2 -translate-y-1/2;
   }
 
   .no-scrollbar::-webkit-scrollbar {
@@ -62,6 +63,76 @@
 }
 
 @layer components {
+  .twc-display {
+    font-weight: 500;
+    letter-spacing: -0.06em;
+    line-height: 0.88;
+    font-size: clamp(3.5rem, 10vw, 8rem);
+  }
+
+  .twc-heading {
+    font-weight: 500;
+    letter-spacing: -0.045em;
+    line-height: 0.96;
+    font-size: clamp(2rem, 4vw, 3.4rem);
+  }
+
+  .twc-statement {
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    line-height: 1.04;
+    font-size: clamp(2.05rem, 4.4vw, 4.15rem);
+  }
+
+  .twc-body {
+    font-weight: 400;
+    letter-spacing: -0.011em;
+    line-height: 1.65;
+    font-size: 1.0625rem;
+  }
+
+  .twc-micro {
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-size: 0.6875rem;
+    line-height: 1.45;
+  }
+
+  .twc-lockup,
+  .twc-disc {
+    transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .twc-lockup {
+    transform: translate3d(calc(var(--px, 0) * 6px), calc(var(--py, 0) * 4px), 0);
+  }
+
+  .twc-disc {
+    transform: translate3d(
+      calc(var(--i, 0) * (var(--px, 0) * 5px + var(--spread, 0) * 12px)),
+      calc(var(--py, 0) * var(--i, 0) * 2px),
+      var(--z, 0px)
+    );
+  }
+
+  .twc-disc-in {
+    animation: twc-dot-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .twc-word-reveal {
+    animation: twc-word-in 1s cubic-bezier(0.16, 1, 0.3, 1) 0.22s both;
+  }
+
+  .twc-bar {
+    animation: twc-fade 0.8s ease 0.7s both;
+  }
+
+  .twc-image {
+    transform: translate3d(-5%, -5%, 0) scale(1);
+    transition: transform 1.15s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
   .hover-link {
     @apply relative inline-block transition duration-300 ease-out;
   }
@@ -114,6 +185,34 @@
 
   .project-info-text {
     @apply text-lg leading-relaxed text-zinc-300;
+  }
+}
+
+@keyframes twc-dot-in {
+  from { opacity: 0; transform: scale(0.35); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes twc-word-in {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes twc-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .twc-disc-in,
+  .twc-word-reveal,
+  .twc-bar,
+  .twc-image,
+  .twc-lockup,
+  .twc-disc {
+    animation: none;
+    transition: none;
+    transform: none;
   }
 }
 

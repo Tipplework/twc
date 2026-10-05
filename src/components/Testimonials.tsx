@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useState, useEffect, useRef } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { EASE, TWC_COLORS } from "@/components/brand/tokens";
 
 type Testimonial = {
   id: number;
@@ -17,129 +17,101 @@ export const Testimonials = () => {
       quote: "Tipple Works transformed our brand identity with a fresh approach that perfectly captured our essence. Their creative design and strategic thinking exceeded our expectations.",
       author: "Sarah Johnson",
       position: "Marketing Director",
-      company: "Estate Monkeys"
+      company: "Estate Monkeys",
     },
     {
       id: 2,
       quote: "Working with Tipple Works was a game-changer for our social media presence. Their content strategy and execution helped us connect with our audience in ways we never thought possible.",
       author: "Michael Chen",
       position: "CEO",
-      company: "Matero"
+      company: "Matero",
     },
     {
       id: 3,
       quote: "The team at Tipple Works brought our event to life with their exceptional design and attention to detail. They created an immersive experience that our attendees still talk about.",
       author: "Emma Rodriguez",
       position: "Event Manager",
-      company: "Space Coffee"
+      company: "Space Coffee",
     },
     {
       id: 4,
       quote: "Their hospitality services expertise helped us create a cohesive brand experience across all touchpoints. From menu design to packaging, they delivered outstanding results.",
       author: "David Patel",
       position: "Founder",
-      company: "Desi Streat"
-    }
+      company: "Desi Streat",
+    },
   ];
 
   const [current, setCurrent] = useState(0);
   const [autoplay, setAutoplay] = useState(true);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const nextSlide = () => {
-    setCurrent(current => (current === testimonials.length - 1 ? 0 : current + 1));
+    setCurrent((value) => (value === testimonials.length - 1 ? 0 : value + 1));
   };
 
   const prevSlide = () => {
-    setCurrent(current => (current === 0 ? testimonials.length - 1 : current - 1));
+    setCurrent((value) => (value === 0 ? testimonials.length - 1 : value - 1));
   };
 
   useEffect(() => {
-    if (autoplay) {
-      timerRef.current = setInterval(() => {
-        nextSlide();
-      }, 6000);
-    }
+    if (!autoplay) return;
+    timerRef.current = setInterval(nextSlide, 6000);
     return () => {
-      if (timerRef.current) {
-        clearInterval(timerRef.current);
-      }
+      if (timerRef.current) clearInterval(timerRef.current);
     };
   }, [autoplay, current]);
 
-  const pauseAutoplay = () => setAutoplay(false);
-  const resumeAutoplay = () => setAutoplay(true);
+  const quote = testimonials[current];
 
   return (
-    <section className="py-20 px-6 md:px-10 bg-white" id="testimonials">
-      <div className="container mx-auto">
-        <motion.h2 
-          className="text-3xl md:text-4xl lg:text-5xl font-bold mb-16 text-black text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-        >
-          What Clients Say
-        </motion.h2>
+    <section
+      className="py-24 md:py-36 px-6 md:px-10 bg-white"
+      id="testimonials"
+      onMouseEnter={() => setAutoplay(false)}
+      onMouseLeave={() => setAutoplay(true)}
+    >
+      <div className="mx-auto max-w-[1100px]">
+        <p className="twc-micro text-black/45 mb-10 md:mb-16">What Clients Say</p>
+        <AnimatePresence mode="wait">
+          <motion.blockquote
+            key={quote.id}
+            initial={{ y: "40%", opacity: 0 }}
+            animate={{ y: "0%", opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.7, ease: EASE }}
+          >
+            <p className="twc-statement text-black">“{quote.quote}”</p>
+            <footer className="mt-10 md:mt-14">
+              <p className="text-base font-medium text-black">{quote.author}</p>
+              <p className="twc-micro text-black/50 mt-2">
+                {quote.position}, {quote.company}
+              </p>
+            </footer>
+          </motion.blockquote>
+        </AnimatePresence>
 
-        <div 
-          className="relative max-w-4xl mx-auto"
-          onMouseEnter={pauseAutoplay}
-          onMouseLeave={resumeAutoplay}
-        >
-          <div className="overflow-hidden">
-            <motion.div
-              className="relative"
-              animate={{ x: `-${current * 100}%` }}
-              transition={{ duration: 0.7, ease: "easeInOut" }}
-            >
-              <div className="flex">
-                {testimonials.map((testimonial) => (
-                  <div key={testimonial.id} className="w-full flex-shrink-0">
-                    <div className="px-4 text-center">
-                      <p className="text-2xl md:text-3xl mb-8 font-serif italic text-black">
-                        "{testimonial.quote}"
-                      </p>
-                      <div className="mt-8">
-                        <p className="font-bold text-black">{testimonial.author}</p>
-                        <p className="text-gray-600">{testimonial.position}, {testimonial.company}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
+        <div className="mt-14 flex items-center justify-between gap-6">
+          <div className="flex items-center gap-3" role="tablist" aria-label="Testimonials">
+            {testimonials.map((item, index) => (
+              <button
+                key={item.id}
+                onClick={() => setCurrent(index)}
+                className="h-2.5 w-2.5 rounded-full transition-transform duration-500"
+                style={{
+                  background: index === current ? TWC_COLORS[index % TWC_COLORS.length] : "rgba(0,0,0,0.18)",
+                  transform: index === current ? "scale(1)" : "scale(0.75)",
+                }}
+                aria-label={`Go to testimonial ${index + 1}`}
+              />
+            ))}
           </div>
-
-          <div className="flex justify-center mt-12 gap-4">
-            <button
-              onClick={prevSlide}
-              className="p-2 border border-gray-300 rounded-full hover:bg-gray-100 transition-colors"
-              aria-label="Previous testimonial"
-            >
-              <ChevronLeft className="w-5 h-5 text-black" />
+          <div className="flex gap-5">
+            <button onClick={prevSlide} className="twc-micro text-black/50 hover:text-black" aria-label="Previous testimonial">
+              Previous
             </button>
-
-            <div className="flex gap-2 items-center">
-              {testimonials.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrent(index)}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                    index === current ? 'bg-black w-4' : 'bg-gray-300'
-                  }`}
-                  aria-label={`Go to testimonial ${index + 1}`}
-                />
-              ))}
-            </div>
-
-            <button
-              onClick={nextSlide}
-              className="p-2 border border-gray-300 rounded-full hover:bg-gray-100 transition-colors"
-              aria-label="Next testimonial"
-            >
-              <ChevronRight className="w-5 h-5 text-black" />
+            <button onClick={nextSlide} className="twc-micro text-black/50 hover:text-black" aria-label="Next testimonial">
+              Next
             </button>
           </div>
         </div>

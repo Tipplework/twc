@@ -3,7 +3,7 @@ import { projectData } from "@/lib/projectData";
 import { Navbar } from '@/components/Navbar';
 import Footer from "@/components/Footer";
 import { Separator } from "@/components/ui/separator";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { CustomCursor } from '@/components/CustomCursor';
 
 export default function ProjectDetail() {
@@ -11,21 +11,15 @@ export default function ProjectDetail() {
   const project = projectData.find((p) => p.slug === slug);
 
   const [showFullText, setShowFullText] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkScreen = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    checkScreen();
-    window.addEventListener("resize", checkScreen);
-    return () => window.removeEventListener("resize", checkScreen);
-  }, []);
 
   if (!project) {
     return (
-      <div className="flex text-white items-center justify-center min-h-screen">
-        <h1>Project not found</h1>
+      <div className="bg-white text-black min-h-screen">
+        <Navbar />
+        <main className="px-6 md:px-10 pt-36 pb-24">
+          <h1 className="twc-heading">Project not found</h1>
+        </main>
+        <Footer />
       </div>
     );
   }
@@ -38,17 +32,18 @@ export default function ProjectDetail() {
       <Navbar />
       <CustomCursor /> 
       <div className="bg-white text-black">
-        <div className="px-6 md:px-12 max-w-7xl mx-auto py-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-12">
+        <div className="px-6 md:px-10 max-w-[1400px] mx-auto pt-28 md:pt-36 pb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-14 items-end mb-16 md:mb-24">
             <img
               src={project.image}
               alt={project.title}
-              className="w-full aspect-[4/5] md:aspect-[4/5] rounded-xl object-cover"
+              className="w-full aspect-[4/5] object-cover"
             />
             <div>
-              <h1 className="text-4xl md:text-6xl font-bold tracking-[-0.045em] mb-4">{project.title}</h1>
+              <p className="twc-micro text-black/45 mb-4">{project.category}</p>
+              <h1 className="twc-display text-[clamp(3rem,7vw,6.5rem)] mb-6">{project.title}</h1>
               <div className="relative">
-                <p className="text-lg text-muted-foreground">
+                <p className="twc-body text-black/70">
                   {showFullText || !shouldShowButton
                     ? project.description
                     : `${project.description.slice(0, 220).trim()}...`}
@@ -57,7 +52,7 @@ export default function ProjectDetail() {
                 {shouldShowButton && (
                   <button
                     onClick={() => setShowFullText(!showFullText)}
-                    className="mt-4 inline-block bg-orange-500 text-white text-sm font-medium py-2 px-4 rounded-full hover:bg-orange-600 transition"
+                    className="mt-6 inline-block bg-tipple-red text-white text-sm py-2 px-5 rounded-full transition-transform duration-500 hover:scale-[1.02]"
                   >
                     {showFullText ? "Read Less" : "Read More"}
                   </button>
@@ -76,35 +71,35 @@ export default function ProjectDetail() {
                         alert("Sharing not supported in this browser.");
                       }
                     }}
-                    className="inline-block border border-gray-300 px-4 py-2 text-sm rounded-full text-gray-700 hover:bg-gray-100 transition"
+                    className="inline-block border border-black/15 px-4 py-2 text-sm rounded-full text-black/70 hover:text-black transition-colors"
                   >
                     Share this Project
                   </button>
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4 text-sm text-muted-foreground mt-6">
+              <div className="grid grid-cols-2 gap-6 mt-10">
                 {project.client && (
                   <div>
-                    <p className="font-semibold text-black">Client</p>
+                    <p className="twc-micro text-black/40 mb-1">Client</p>
                     <p>{project.client}</p>
                   </div>
                 )}
                 {project.sector && (
                   <div>
-                    <p className="font-semibold text-black">Sector</p>
+                    <p className="twc-micro text-black/40 mb-1">Sector</p>
                     <p>{project.sector}</p>
                   </div>
                 )}
                 {project.discipline && (
                   <div>
-                    <p className="font-semibold text-black">Discipline</p>
+                    <p className="twc-micro text-black/40 mb-1">Discipline</p>
                     <p>{project.discipline}</p>
                   </div>
                 )}
                 {project.year && (
                   <div>
-                    <p className="font-semibold text-black">Year</p>
+                    <p className="twc-micro text-black/40 mb-1">Year</p>
                     <p>{project.year}</p>
                   </div>
                 )}
@@ -115,11 +110,11 @@ export default function ProjectDetail() {
           <Separator className="my-6" />
 
           {project.gallery?.map((img, i) => (
-            <div key={i} className="w-full flex justify-center my-12">
+            <div key={i} className="w-full flex justify-center my-12 overflow-hidden">
               <img
                 src={img}
                 alt={`${project.title} Visual ${i + 1}`}
-                className="w-full max-w-screen-lg h-auto rounded-xl shadow-lg"
+                className="block w-full max-w-screen-lg h-auto transition-transform duration-700 ease-out hover:scale-[1.015]"
                 loading="lazy"
               />
             </div>
@@ -127,9 +122,16 @@ export default function ProjectDetail() {
         </div>
       </div>
       {next && next.slug !== project.slug && (
-        <Link to={`/project/${next.slug}`} className="block px-6 md:px-12 max-w-7xl mx-auto pb-8">
-          <p className="text-sm uppercase tracking-[0.16em] text-gray-500">Next</p>
-          <p className="text-4xl md:text-6xl font-bold tracking-[-0.045em]">{next.title}</p>
+        <Link to={`/project/${next.slug}`} className="group block px-6 md:px-10 max-w-[1400px] mx-auto py-16 md:py-24">
+          <p className="twc-micro text-black/45 mb-4">Next</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
+            <p className="twc-display text-[clamp(3rem,7vw,6.5rem)]">{next.title}</p>
+            <img
+              src={next.image}
+              alt=""
+              className="w-full h-48 md:h-72 object-cover [clip-path:circle(18px_at_0%_50%)] transition-[clip-path] duration-700 ease-out group-hover:[clip-path:circle(80%_at_40%_50%)]"
+            />
+          </div>
         </Link>
       )}
       <Footer />
