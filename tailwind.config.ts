@@ -69,9 +69,8 @@ export default {
 				}
 			},
 			fontFamily: {
-				sans: ['"Neue Haas Grotesk"', 'Inter', 'sans-serif'],
-				serif: ['"Times New Roman"', 'Times', 'serif'],
-				display: ['"Founders Grotesk"', '"Neue Haas Grotesk"', 'Inter', 'sans-serif']
+				sans: ['"Schibsted Grotesk"', 'sans-serif'],
+				display: ['"Schibsted Grotesk"', 'sans-serif']
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -119,9 +118,5 @@ export default {
 			}
 		}
 	},
-	plugins: [
-		require("tailwindcss-animate"),
-		require('@tailwindcss/line-clamp'),
-		require('@tailwindcss/aspect-ratio')
-	]
+	plugins: []
 } satisfies Config;

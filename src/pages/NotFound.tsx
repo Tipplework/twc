@@ -1,44 +1,25 @@
-
-import { useLocation, Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import { Navbar } from '@/components/Navbar';
-import Footer from "@/components/Footer";
-import { CustomCursor } from '@/components/CustomCursor';
+import { SiteNav } from "@/components/SiteNav";
+import { SiteFooter } from "@/components/SiteFooter";
+import { Seo } from "@/lib/seo";
 
-const NotFound = () => {
+export default function NotFound() {
   const location = useLocation();
-
   useEffect(() => {
-    document.title = "Page Not Found | Tipple Works Co.";
-    
-    console.error(
-      "404 Error: User attempted to access non-existent route:",
-      location.pathname
-    );
+    console.error("Missing route", location.pathname);
   }, [location.pathname]);
 
   return (
-    <div className="bg-black text-white min-h-screen">
-      <CustomCursor />
-      <Navbar />
-      
-      <main className="pt-32 pb-20 px-6 md:px-10">
-        <div className="container mx-auto text-center">
-          <h1 className="text-6xl md:text-8xl font-bold mb-4">404</h1>
-          <p className="text-xl md:text-2xl text-zinc-400 mb-8">The page you're looking for doesn't exist</p>
-          
-          <Link 
-            to="/" 
-            className="inline-flex items-center gap-2 px-8 py-4 bg-white text-black font-medium rounded-full hover:bg-opacity-90 transition-all duration-300"
-          >
-            Return to Home
-          </Link>
-        </div>
+    <>
+      <Seo title="Page not found | Tipple Works Co." description="This page does not exist." path={location.pathname} noIndex />
+      <SiteNav />
+      <main className="site-pad flex min-h-[80vh] flex-col justify-end pb-20 pt-32">
+        <p className="kicker">404</p>
+        <h1 className="display text-[clamp(4rem,12vw,9rem)]">Lost the thread.</h1>
+        <Link to="/" className="mt-8 w-fit border-b border-[#ffc700]">Return home</Link>
       </main>
-      
-      <Footer />
-    </div>
+      <SiteFooter />
+    </>
   );
-};
-
-export default NotFound;
+}

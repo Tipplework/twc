@@ -16,7 +16,17 @@ export default defineConfig(({ mode }) => ({
   ],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'), // ✅ Ensures @ points to /src
+      '@': path.resolve(__dirname, './src'),
+    },
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('three') || id.includes('@react-three')) return 'three';
+          if (id.includes('gsap')) return 'gsap';
+        },
+      },
     },
   },
 }));

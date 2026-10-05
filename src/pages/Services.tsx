@@ -1,60 +1,45 @@
-import React from 'react';
-import { Navbar } from '@/components/Navbar';  // ✅ Correct import
-import Footer from '@/components/Footer';
-import { CustomCursor } from '@/components/CustomCursor';
+import { useEffect, useState } from "react";
+import { SiteNav } from "@/components/SiteNav";
+import { SiteFooter } from "@/components/SiteFooter";
+import { Seo } from "@/lib/seo";
+import { services as fallback, settings } from "@/content/site";
+import { loadPublishedSite } from "@/lib/content";
+import type { Service } from "@/content/site";
 
 export default function Services() {
-  const handleShare = async () => {
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: 'Tipple Works Co.',
-          text: 'Check out Tipple Works Co.',
-          url: 'https://tippleworks.com/services',
-        });
-      } catch (error) {
-        console.error('Sharing failed:', error);
-      }
-    } else {
-      navigator.clipboard.writeText('https://tippleworks.com/services');
-      alert('Link copied to clipboard');
-    }
-  };
+  const [items, setItems] = useState<Service[]>(fallback);
 
-  const handleDeckClick = () => {
-    window.open('https://drive.google.com/drive/folders/1oD8mWzAWKjpeHTk4_hvnyQf23eSE8Tuk', '_blank');
-  };
+  useEffect(() => {
+    loadPublishedSite().then((site) => setItems(site.services));
+  }, []);
 
   return (
     <>
-      <Navbar />
-      <CustomCursor />
-      <main className="bg-black text-white flex flex-col justify-center items-center h-[calc(100vh-120px)] px-4 text-center">
-        {/* Logo */}
-        <img
-          src="/twc-logo.png"
-          alt="Tipple Works Logo"
-          className="w-[300px] md:w-[440px] lg:w-[560px] mb-8"
-        />
-
-        {/* Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4">
-          <button
-            onClick={handleDeckClick}
-            className="bg-white text-black rounded-full px-8 py-4 text-lg font-medium hover:bg-gray-100 transition"
-          >
-            View Our Deck
-          </button>
-          <button
-            onClick={handleShare}
-            className="bg-white text-black rounded-full px-8 py-4 text-lg font-medium hover:bg-gray-100 transition"
-          >
-            Share
-          </button>
+      <Seo
+        title="Capabilities | Tipple Works Co."
+        description="Brand, campaigns, content, performance, PR, digital, and experiences."
+        path="/services"
+      />
+      <SiteNav />
+      <main className="site-pad pb-24 pt-32">
+        <p className="kicker">Capabilities</p>
+        <h1 className="display mt-4 max-w-4xl text-[clamp(3.4rem,7vw,6.5rem)]">One team. The whole marketing job.</h1>
+        <div className="mt-16">
+          {items.map((item) => (
+            <article key={item.title} className="grid gap-4 border-t border-white/10 py-8 md:grid-cols-12">
+              <h2 className="text-3xl font-semibold tracking-[-0.045em] md:col-span-5 md:text-5xl">{item.title}</h2>
+              <div className="md:col-span-6 md:col-start-7">
+                <p className="text-lg text-[#d9d3c7]">{item.summary}</p>
+                <p className="mt-3 text-sm uppercase tracking-[0.14em] text-[#a39c90]">{item.details.join("  /  ")}</p>
+              </div>
+            </article>
+          ))}
         </div>
+        <a href={settings.deckUrl} target="_blank" rel="noreferrer" className="mt-12 inline-block border-b border-[#ffc700] pb-1 text-sm uppercase tracking-[0.16em]">
+          View the deck
+        </a>
       </main>
-
-      <Footer />
+      <SiteFooter />
     </>
   );
 }

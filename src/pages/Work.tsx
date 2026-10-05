@@ -1,83 +1,57 @@
-// twc/src/pages/Work.tsx
-
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { Navbar } from '../components/Navbar';
-import Footer from "@/components/Footer";
-import { projectData } from '../lib/projectData';
-import { CustomCursor } from '@/components/CustomCursor';
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { SiteNav } from "@/components/SiteNav";
+import { SiteFooter } from "@/components/SiteFooter";
+import { Seo } from "@/lib/seo";
+import { publishedProjects } from "@/content/site";
+import { loadPublishedSite } from "@/lib/content";
+import type { Project } from "@/content/site";
 
 export default function Work() {
-  const [filter, setFilter] = useState('all');
-  const categories = Array.from(
-    new Set(projectData.map((p) => p.category))
-  );
+  const [items, setItems] = useState<Project[]>(publishedProjects());
+  const [filter, setFilter] = useState("All");
 
-  const filteredProjects =
-    filter === 'all'
-      ? projectData
-      : projectData.filter((p) => p.category === filter);
+  useEffect(() => {
+    loadPublishedSite().then((site) => setItems(site.projects));
+  }, []);
+
+  const sectors = ["All", ...Array.from(new Set(items.map((item) => item.sector)))];
+  const visible = filter === "All" ? items : items.filter((item) => item.sector === filter);
 
   return (
-    <div className="bg-black text-white min-h-screen px-6 md:px-10 py-20">
-      <Navbar />
-      <CustomCursor /> 
-      <div className="text-center mb-12">
-        <h1 className="text-4xl md:text-6xl font-bold mb-6">
-          Selected Work
-        </h1>
-        <div className="flex flex-wrap justify-center gap-3">
-          <button
-            className={`px-4 py-1 rounded-full border ${
-              filter === 'all'
-                ? 'bg-white text-black'
-                : 'text-white border-white'
-            }`}
-            onClick={() => setFilter('all')}
-          >
-            All Work
-          </button>
-          {categories.map((cat) => (
+    <>
+      <Seo
+        title="Selected Work | Tipple Works Co."
+        description="Campaigns, identities, and brand systems from Tipple Works Co."
+        path="/work"
+        image="/work/sula-vineyards-cover.webp"
+      />
+      <SiteNav />
+      <main className="site-pad pb-24 pt-32">
+        <p className="kicker">Index</p>
+        <h1 className="display mt-4 text-[clamp(4rem,10vw,8.5rem)]">Work</h1>
+        <div className="mt-8 flex flex-wrap gap-2">
+          {sectors.map((sector) => (
             <button
-              key={cat}
-              className={`px-4 py-1 rounded-full border ${
-                filter === cat
-                  ? 'bg-white text-black'
-                  : 'text-white border-white'
-              }`}
-              onClick={() => setFilter(cat)}
+              key={sector}
+              onClick={() => setFilter(sector)}
+              className={`rounded-full border px-3 py-1 text-sm ${filter === sector ? "border-[#ffc700] text-[#ffc700]" : "border-white/20 text-[#a39c90]"}`}
             >
-              {cat}
+              {sector}
             </button>
           ))}
         </div>
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-24">
-        {filteredProjects.map((project) => (
-          <Link key={project.slug} to={`/project/${project.slug}`}>
-            <motion.div
-              whileHover={{ scale: 1.03 }}
-              className="bg-white text-black rounded-xl overflow-hidden transition-all duration-300"
-            >
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-64 object-cover"
-              />
-              <div className="p-4">
-                <h2 className="text-lg font-bold">{project.title}</h2>
-                <p className="text-sm text-gray-700">
-                  {project.category}
-                </p>
-              </div>
-            </motion.div>
-          </Link>
-        ))}
-      </div>
-
-      <Footer />
-    </div>
+        <div className="mt-12 grid gap-x-4 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+          {visible.map((project) => (
+            <Link key={project.slug} to={`/project/${project.slug}`}>
+              <img src={project.cover} alt="" className="aspect-[4/5] w-full object-cover" />
+              <h2 className="mt-3 text-2xl font-semibold tracking-[-0.04em]">{project.title}</h2>
+              <p className="text-sm text-[#a39c90]">{project.client} · {project.year}</p>
+            </Link>
+          ))}
+        </div>
+      </main>
+      <SiteFooter />
+    </>
   );
 }

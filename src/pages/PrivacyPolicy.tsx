@@ -1,25 +1,25 @@
-import React from 'react';
+import { Link } from "react-router-dom";
+import { SiteNav } from "@/components/SiteNav";
+import { SiteFooter } from "@/components/SiteFooter";
+import { Seo } from "@/lib/seo";
+import { settings } from "@/content/site";
 
 export default function PrivacyPolicy() {
   return (
-    <section className="bg-black text-white min-h-screen py-20 px-6 md:px-12 max-w-4xl mx-auto">
-      <h1 className="text-3xl font-semibold mb-6">Privacy Policy</h1>
-      <p className="mb-4 text-gray-300">Effective Date: June 2025</p>
-      <p className="mb-6 text-gray-400">
-        Tipple Works Co. (“we”, “us”, or “our”) values your privacy. This Privacy Policy outlines how we collect, use, and protect your personal information when you interact with our website or services.
-      </p>
-
-      <ul className="list-disc space-y-4 text-gray-300 ml-6">
-        <li><strong>What we collect:</strong> Contact details, browsing behavior, and submitted inquiries.</li>
-        <li><strong>How we use it:</strong> To respond to you, improve services, and provide relevant communication.</li>
-        <li><strong>Data Sharing:</strong> Only with trusted tools used to run our business (analytics, forms).</li>
-        <li><strong>Security:</strong> Your data is stored securely and used responsibly.</li>
-        <li><strong>Your Rights:</strong> You may request access or deletion of your personal info at any time.</li>
-      </ul>
-
-      <p className="mt-8 text-gray-300">
-        For any queries, contact us at <a href="mailto:admin@tippleworks.com" className="text-blue-400 underline">admin@tippleworks.com</a>.
-      </p>
-    </section>
+    <>
+      <Seo title="Privacy Policy | Tipple Works Co." description="How Tipple Works Co. handles personal information." path="/privacy-policy" />
+      <SiteNav />
+      <main className="site-pad max-w-3xl pb-24 pt-32">
+        <h1 className="display text-5xl">Privacy</h1>
+        <p className="mt-4 text-sm text-[#a39c90]">Effective June 2025</p>
+        <div className="mt-8 space-y-4 text-lg text-[#d9d3c7]">
+          <p>Tipple Works Co. collects the details you send us — name, email, phone, and the message — so we can reply. If the studio database is connected, that inquiry is stored there. Otherwise it is sent through your own email app and never reaches a server of ours.</p>
+          <p>We do not run advertising trackers on this site. Server logs from the host may include a browser and IP address for security.</p>
+          <p>To ask for a copy or deletion, write to <a className="text-[#ffc700]" href={`mailto:${settings.adminEmail}`}>{settings.adminEmail}</a>.</p>
+        </div>
+        <Link to="/" className="mt-10 inline-block text-sm uppercase tracking-[0.16em]">Home</Link>
+      </main>
+      <SiteFooter />
+    </>
   );
 }

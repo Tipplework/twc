@@ -1,127 +1,109 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,500&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-    --radius: 0.5rem;
-  }
+:root {
+  --bg: #070707;
+  --fg: #f3efe6;
+  --muted: #a39c90;
+  --line: rgba(243, 239, 230, 0.16);
+  --accent: #ffc700;
+  --paper: #f3efe6;
+  --ink: #111111;
+  color-scheme: dark;
+}
 
-  * {
-    @apply border-border;
-  }
+* {
+  box-sizing: border-box;
+}
 
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "Schibsted Grotesk", sans-serif;
+  font-feature-settings: "ss01" on, "kern" on;
+  text-rendering: optimizeLegibility;
+}
+
+body.admin-mode {
+  background: #f6f4ef;
+  color: #141414;
+  color-scheme: light;
+}
+
+::selection {
+  background: var(--accent);
+  color: #111;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 80;
+  background: var(--accent);
+  color: #111;
+  padding: 0.6rem 0.9rem;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+.display {
+  font-weight: 760;
+  letter-spacing: -0.055em;
+  line-height: 0.84;
+}
+
+.clip-line {
+  display: block;
+  overflow: hidden;
+}
+
+.rule {
+  height: 1px;
+  background: var(--line);
+}
+
+.kicker {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.site-pad {
+  padding-left: clamp(1.1rem, 3vw, 2.5rem);
+  padding-right: clamp(1.1rem, 3vw, 2.5rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
   html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
   }
 
-  body {
-    @apply bg-black text-white font-sans;
-    font-feature-settings: "rlig" 1, "calt" 1;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
-
-  .custom-cursor {
-    @apply fixed w-6 h-6 rounded-full bg-tipple-yellow mix-blend-difference pointer-events-none z-50 transition-transform duration-150 ease-out -translate-x-1/2 -translate-y-1/2;
-  }
-
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-
-  .no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-}
-
-@layer components {
-  .hover-link {
-    @apply relative inline-block transition duration-300 ease-out;
-  }
-
-  .hover-link:after {
-    @apply content-[''] absolute w-full scale-x-0 h-0.5 bottom-0 left-0 bg-white origin-bottom-right transition-transform duration-300 ease-out;
-  }
-
-  .hover-link:hover:after {
-    @apply scale-x-100 origin-bottom-left;
-  }
-
-  .project-hero {
-    @apply w-full h-[90vh] flex items-end bg-cover bg-center relative;
-  }
-
-  .project-hero-overlay {
-    @apply absolute inset-0 bg-black/50;
-  }
-
-  .project-hero-content {
-    @apply relative z-10 text-white max-w-5xl pb-16 px-6 md:px-10;
-  }
-
-  .project-subhead {
-    @apply uppercase tracking-widest text-sm text-white/70 mb-2;
-  }
-
-  .project-title {
-    @apply text-4xl md:text-6xl font-bold font-display leading-tight;
-  }
-
-  .gallery-scroll {
-    @apply flex overflow-x-auto scrollbar-hide gap-6 px-6 py-12;
-  }
-
-  .gallery-image {
-    @apply flex-shrink-0 rounded-xl object-cover transition-transform duration-300 hover:scale-105;
-    width: 480px;
-    height: 320px;
-  }
-
-  .project-info-section {
-    @apply max-w-4xl mx-auto py-16 px-6 md:px-10;
-  }
-
-  .project-info-heading {
-    @apply text-2xl font-semibold mb-4;
-  }
-
-  .project-info-text {
-    @apply text-lg leading-relaxed text-zinc-300;
-  }
-}
-
-@keyframes slide-in-up {
-  0% {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-slide-in-up {
-  animation: slide-in-up 0.7s ease-out forwards;
 }

@@ -1,131 +1,126 @@
-import { useParams } from "react-router-dom";
-import { projectData } from "@/lib/projectData";
-import { Navbar } from '@/components/Navbar';
-import Footer from "@/components/Footer";
-import { Separator } from "@/components/ui/separator";
-import { useState, useEffect } from "react";
-import { CustomCursor } from '@/components/CustomCursor';
+import { useEffect, useMemo, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { SiteNav } from "@/components/SiteNav";
+import { SiteFooter } from "@/components/SiteFooter";
+import { Seo } from "@/lib/seo";
+import { nextProject, projectBySlug, publishedProjects } from "@/content/site";
+import { loadPublishedSite } from "@/lib/content";
+import type { Project } from "@/content/site";
+
+const blocks: Array<{ key: keyof Project; label: string }> = [
+  { key: "challenge", label: "Challenge" },
+  { key: "thinking", label: "Thinking" },
+  { key: "strategy", label: "Strategy" },
+  { key: "creative", label: "Creative" },
+  { key: "execution", label: "Execution" },
+  { key: "results", label: "Results" },
+];
 
 export default function ProjectDetail() {
-  const { slug } = useParams<{ slug: string }>();
-  const project = projectData.find((p) => p.slug === slug);
-
-  const [showFullText, setShowFullText] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const { slug = "" } = useParams();
+  const [list, setList] = useState<Project[]>(publishedProjects());
 
   useEffect(() => {
-    const checkScreen = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    checkScreen();
-    window.addEventListener("resize", checkScreen);
-    return () => window.removeEventListener("resize", checkScreen);
+    loadPublishedSite().then((site) => setList(site.projects));
   }, []);
 
-  if (!project) {
+  const project = projectBySlug(slug, list);
+  const next = project ? nextProject(project.slug, list) : undefined;
+  const jsonLd = useMemo(() => {
+    if (!project) return undefined;
+    return {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      name: project.title,
+      creator: "Tipple Works Co.",
+      about: project.client,
+      dateCreated: project.year,
+    };
+  }, [project]);
+
+  if (!project || project.status !== "published") {
     return (
-      <div className="flex text-white items-center justify-center min-h-screen">
-        <h1>Project not found</h1>
-      </div>
+      <>
+        <SiteNav />
+        <main className="site-pad flex min-h-[70vh] flex-col justify-center">
+          <h1 className="display text-6xl">Project not found</h1>
+          <Link to="/work" className="mt-6 w-fit border-b border-[#ffc700]">Back to work</Link>
+        </main>
+      </>
     );
   }
 
-  const shouldShowButton = project.description && project.description.length > 100;
-
   return (
     <>
-      <Navbar />
-      <CustomCursor /> 
-      <div className="bg-white text-black">
-        <div className="px-6 md:px-12 max-w-7xl mx-auto py-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-12">
-            <img
-              src={project.image}
-              alt={project.title}
-              className="rounded-xl object-cover"
-            />
-            <div>
-              <h1 className="text-4xl font-bold mb-4">{project.title}</h1>
-              <div className="relative">
-                <p className="text-lg text-muted-foreground">
-                  {showFullText || !shouldShowButton
-                    ? project.description
-                    : `${project.description.slice(0, 220).trim()}...`}
-                </p>
-
-                {shouldShowButton && (
-                  <button
-                    onClick={() => setShowFullText(!showFullText)}
-                    className="mt-4 inline-block bg-orange-500 text-white text-sm font-medium py-2 px-4 rounded-full hover:bg-orange-600 transition"
-                  >
-                    {showFullText ? "Read Less" : "Read More"}
-                  </button>
-                )}
-
-                <div className="mt-4">
-                  <button
-                    onClick={() => {
-                      if (navigator.share) {
-                        navigator.share({
-                          title: project.title,
-                          text: project.description?.slice(0, 150),
-                          url: window.location.href,
-                        });
-                      } else {
-                        alert("Sharing not supported in this browser.");
-                      }
-                    }}
-                    className="inline-block border border-gray-300 px-4 py-2 text-sm rounded-full text-gray-700 hover:bg-gray-100 transition"
-                  >
-                    Share this Project
-                  </button>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4 text-sm text-muted-foreground mt-6">
-                {project.client && (
-                  <div>
-                    <p className="font-semibold text-black">Client</p>
-                    <p>{project.client}</p>
-                  </div>
-                )}
-                {project.sector && (
-                  <div>
-                    <p className="font-semibold text-black">Sector</p>
-                    <p>{project.sector}</p>
-                  </div>
-                )}
-                {project.discipline && (
-                  <div>
-                    <p className="font-semibold text-black">Discipline</p>
-                    <p>{project.discipline}</p>
-                  </div>
-                )}
-                {project.year && (
-                  <div>
-                    <p className="font-semibold text-black">Year</p>
-                    <p>{project.year}</p>
-                  </div>
-                )}
-              </div>
-            </div>
+      <Seo
+        title={project.seoTitle}
+        description={project.seoDescription}
+        path={`/project/${project.slug}`}
+        image={project.cover}
+        jsonLd={jsonLd}
+      />
+      <SiteNav />
+      <main>
+        <section className="site-pad grid min-h-[80vh] items-end gap-8 pb-10 pt-32 lg:grid-cols-12">
+          <div className="lg:col-span-7">
+            <img src={project.cover} alt="" className="aspect-[4/5] w-full object-cover lg:aspect-[16/10]" />
           </div>
+          <div className="lg:col-span-5">
+            <p className="kicker">{project.client}</p>
+            <h1 className="display mt-3 text-[clamp(3.4rem,6vw,6rem)]">{project.title}</h1>
+            <p className="mt-6 text-lg text-[#d9d3c7]">{project.summary}</p>
+            <dl className="mt-8 grid grid-cols-2 gap-4 text-sm">
+              <div><dt className="text-[#a39c90]">Sector</dt><dd>{project.sector}</dd></div>
+              <div><dt className="text-[#a39c90]">Year</dt><dd>{project.year}</dd></div>
+              <div className="col-span-2"><dt className="text-[#a39c90]">Disciplines</dt><dd>{project.disciplines.join(", ")}</dd></div>
+            </dl>
+          </div>
+        </section>
 
-          <Separator className="my-6" />
+        {project.introduction && (
+          <section className="site-pad grid gap-8 border-t border-white/10 py-16 lg:grid-cols-12">
+            <h2 className="kicker lg:col-span-3">Introduction</h2>
+            <p className="text-2xl leading-snug tracking-[-0.03em] lg:col-span-8">{project.introduction}</p>
+          </section>
+        )}
 
-          {project.gallery?.map((img, i) => (
-            <div key={i} className="w-full flex justify-center my-12">
-              <img
-                src={img}
-                alt={`${project.title} Visual ${i + 1}`}
-                className="w-full max-w-screen-lg h-auto rounded-xl shadow-lg"
-                loading="lazy"
-              />
+        {blocks.map((block) => {
+          const copy = project[block.key];
+          if (typeof copy !== "string" || !copy.trim()) return null;
+          return (
+            <section key={block.key} className="site-pad grid gap-8 border-t border-white/10 py-16 lg:grid-cols-12">
+              <h2 className="kicker lg:col-span-3">{block.label}</h2>
+              <p className="text-xl leading-relaxed text-[#d9d3c7] lg:col-span-8">{copy}</p>
+            </section>
+          );
+        })}
+
+        {project.video && (
+          <section className="site-pad border-t border-white/10 py-16">
+            <h2 className="kicker">Film</h2>
+            <div className="mt-6 aspect-video">
+              <iframe title={`${project.title} film`} src={project.video} className="h-full w-full" allow="autoplay; fullscreen" allowFullScreen />
             </div>
+          </section>
+        )}
+
+        <section className="site-pad space-y-8 border-t border-white/10 py-16">
+          {project.gallery.map((image) => (
+            <figure key={image.src}>
+              <img src={image.src} alt={image.alt} className="w-full object-cover" loading="lazy" />
+              {image.caption && <figcaption className="mt-2 text-sm text-[#a39c90]">{image.caption}</figcaption>}
+            </figure>
           ))}
-        </div>
-      </div>
-      <Footer />
+        </section>
+
+        {next && (
+          <Link to={`/project/${next.slug}`} className="site-pad block border-t border-white/10 py-16">
+            <p className="kicker">Next</p>
+            <p className="display mt-3 text-[clamp(3rem,7vw,6rem)]">{next.title}</p>
+          </Link>
+        )}
+      </main>
+      <SiteFooter />
     </>
   );
 }
