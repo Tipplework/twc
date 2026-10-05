@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { cmsConfigured, supabase } from "@/lib/cms/client";
 import { db, type Profile } from "@/admin/api";
-import { Button, Field, fieldClass } from "@/admin/ui";
+import { Field, fieldClass } from "@/admin/ui";
 import { ProjectEditor, ProjectList } from "@/admin/ProjectScreen";
 import {
   AuditAdmin,
@@ -52,25 +52,62 @@ where email = 'you@tippleworks.com';`}</pre>
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
+  const [pending, setPending] = useState(false);
 
   return (
-    <main className="grid min-h-screen place-items-center bg-[#f4f1ea] px-6">
+    <main className="grid min-h-screen place-items-center bg-[#f4f1ea] px-4 py-10">
       <form
-        className="w-full max-w-sm space-y-3 rounded-lg border border-black/10 bg-white p-6"
+        className="w-full max-w-[440px] rounded-2xl border border-black/10 bg-white px-7 py-8 shadow-[0_16px_40px_-28px_rgba(0,0,0,0.45)] sm:px-8"
         onSubmit={async (event) => {
           event.preventDefault();
+          if (pending) return;
           setError("");
+          setPending(true);
           const { error: signInError } = await db().auth.signInWithPassword({ email, password });
-          if (signInError) setError(signInError.message);
+          if (signInError) {
+            setError(signInError.message);
+            setPending(false);
+          }
         }}
       >
-        <p className="text-xs uppercase tracking-[0.16em] text-neutral-500">Tipple Works</p>
-        <h1 className="text-2xl font-semibold tracking-[-0.03em]">Sign in</h1>
-        <Field label="Email"><input className={fieldClass} type="email" autoComplete="username" value={email} onChange={(event) => setEmail(event.target.value)} /></Field>
-        <Field label="Password"><input className={fieldClass} type="password" autoComplete="current-password" value={password} onChange={(event) => setPassword(event.target.value)} /></Field>
-        {error && <p className="text-sm text-red-700">{error}</p>}
-        <Button type="submit">Sign in</Button>
+        <div className="mb-6 flex items-center gap-2" aria-hidden="true">
+          <span className="h-3.5 w-3.5 rounded-full bg-[#ffc700]" />
+          <span className="h-3.5 w-3.5 rounded-full bg-[#ff3d00]" />
+          <span className="h-3.5 w-3.5 rounded-full bg-[#8a2be2]" />
+        </div>
+        <h1 className="text-[1.75rem] font-semibold tracking-[-0.03em] text-[#161616]">Welcome back</h1>
+        <p className="mt-2 text-sm leading-6 text-neutral-500">Sign in to manage the Tipple Works website.</p>
+        <div className="mt-7 space-y-4">
+          <Field label="Email">
+            <input className={`${fieldClass} h-12 rounded-lg px-3.5 text-[15px]`} type="email" autoComplete="username" value={email} onChange={(event) => setEmail(event.target.value)} />
+          </Field>
+          <Field label="Password">
+            <div className="relative">
+              <input
+                className={`${fieldClass} h-12 rounded-lg px-3.5 pr-16 text-[15px]`}
+                type={showPassword ? "text" : "password"}
+                autoComplete="current-password"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+              />
+              <button
+                type="button"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-neutral-500 hover:text-black"
+                onClick={() => setShowPassword((value) => !value)}
+                aria-label={showPassword ? "Hide password" : "Show password"}
+              >
+                {showPassword ? "Hide" : "Show"}
+              </button>
+            </div>
+          </Field>
+        </div>
+        {error ? <p className="mt-4 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700" role="alert">{error}</p> : null}
+        <button type="submit" disabled={pending} className="mt-6 h-12 w-full rounded-lg bg-black text-sm font-medium text-white disabled:opacity-60">
+          {pending ? "Signing in…" : "Sign in"}
+        </button>
+        <p className="mt-6 text-center text-xs text-neutral-400">Tipple Works Co. · Internal access only</p>
       </form>
     </main>
   );
