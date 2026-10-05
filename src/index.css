@@ -52,6 +52,13 @@
     @apply fixed w-2.5 h-2.5 rounded-full bg-tipple-yellow pointer-events-none z-[70] -translate-x-1/2 -translate-y-1/2;
   }
 
+  @media (pointer: fine) {
+    html.twc-cursor,
+    html.twc-cursor * {
+      cursor: none !important;
+    }
+  }
+
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
@@ -209,6 +216,25 @@
     transition: none;
     transform: none;
   }
+
+  .project-fade {
+    animation: none;
+  }
+}
+
+@keyframes project-fade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.project-fade {
+  animation: project-fade 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 @keyframes slide-in-up {

@@ -6,6 +6,7 @@ import { Testimonials } from "@/components/Testimonials";
 import { ServicesAccordion } from "@/components/ServicesAccordion";
 import { Clients } from "@/components/Clients";
 import { FeaturedProjects } from "@/components/FeaturedProjects";
+import { CustomCursor } from "@/components/CustomCursor";
 
 const Index = () => {
   useEffect(() => {
@@ -15,6 +16,7 @@ const Index = () => {
   return (
     <div className="bg-white text-black min-h-screen">
       <Navbar />
+      <CustomCursor />
 
       <main>
         <div
